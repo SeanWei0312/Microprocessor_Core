@@ -1,6 +1,6 @@
-# 8-Bit Microprocessor in CMOS
+# Full-Custom 8-Bit Microprocessor Core in 65 nm CMOS
 
-This project implements an 8-bit custom CMOS microprocessor. The repository includes the final GDS layout, layout/DRC/LVS/waveform figures, submission PDFs, and a Markdown project report.
+This project implements a full-custom 8-bit microprocessor core in 65 nm CMOS. The repository includes the final GDS layout, layout/DRC/LVS/waveform figures, submission PDFs, and a Markdown project report.
 
 ## Project Summary
 

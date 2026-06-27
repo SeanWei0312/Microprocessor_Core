@@ -1,4 +1,4 @@
-# 8-Bit Microprocessor in CMOS
+# Full-Custom 8-Bit Microprocessor Core in 65 nm CMOS
 
 Yi-Hsiang Wei and Zijian Shang  
 Department of Electrical Engineering, Columbia University  
@@ -6,7 +6,7 @@ VLSI Design Project
 
 ## Abstract
 
-This report presents the layout, physical verification, and waveform-level functional verification of an 8-bit custom CMOS microprocessor. The processor integrates a PLA-based instruction decoder, control-signal latch, 8x8 SRAM, arithmetic datapath, shifter, accumulator latch, mux, and bidirectional external bus interface.
+This report presents the layout, physical verification, and waveform-level functional verification of a full-custom 8-bit microprocessor core in 65 nm CMOS. The processor integrates a PLA-based instruction decoder, control-signal latch, 8x8 SRAM, arithmetic datapath, shifter, accumulator latch, mux, and bidirectional external bus interface.
 
 The instruction set supports eight operations: `NOP`, `LOAD`, `STORE`, `GET`, `PUT`, `ADD`, `SUB`, and `SHIFT`. In this version, schematic figures are intentionally omitted and will be inserted later. The included figures are limited to layout views, DRC/LVS verification captures, and transient waveform results.
 
