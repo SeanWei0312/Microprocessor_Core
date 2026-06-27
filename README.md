@@ -1,12 +1,12 @@
 # Full-Custom 8-Bit Microprocessor Core in 65 nm CMOS
 
-This project implements a full-custom 8-bit microprocessor core in 65 nm CMOS. The repository includes the final GDS layout, layout/DRC/LVS/waveform figures, submission PDFs, and a Markdown project report.
+This project implements a full-custom 8-bit microprocessor core in 65 nm CMOS. The repository includes the final GDS layout, layout figures, DRC/LVS verification captures, waveform results, submission PDFs, and a Markdown project report.
 
 ## Project Summary
 
-This is a VLSI design project for an 8-bit microprocessor.
+This is a VLSI design project for a compact 8-bit microprocessor core.
 
-The microprocessor uses a PLA-based instruction decoder, a control-signal latch, an 8x8 SRAM, an adder/subtractor datapath, a shifter, a mux, an accumulator latch, and a bidirectional external bus driver. The instruction set supports `NOP`, `LOAD`, `STORE`, `GET`, `PUT`, `ADD`, `SUB`, and `SHIFT`.
+The microprocessor uses a PLA-based instruction decoder, a control-signal latch, an 8x8 SRAM, an adder/subtractor datapath, a shifter, a multiplexer, an accumulator latch, and a bidirectional external bus driver. The instruction set supports `NOP`, `LOAD`, `STORE`, `GET`, `PUT`, `ADD`, `SUB`, and `SHIFT`.
 
 The current Markdown report focuses on layout implementation, DRC/LVS verification, and transient waveform verification. Schematic figures are intentionally omitted for now and can be added later.
 
@@ -14,7 +14,7 @@ The current Markdown report focuses on layout implementation, DRC/LVS verificati
 
 Yi-Hsiang Wei and Zijian Shang are students in Columbia University's Department of Electrical Engineering.
 
-- Yi-Hsiang Wei: custom CMOS schematic/layout implementation, Cadence Virtuoso design, and verification.
+- Yi-Hsiang Wei: full-custom CMOS schematic and layout implementation, Cadence Virtuoso design, and verification.
 - Zijian Shang: report organization, result documentation, and project packaging.
 
 ## Key Results
@@ -26,7 +26,7 @@ Yi-Hsiang Wei and Zijian Shang are students in Columbia University's Department 
 | Instruction opcode width | 3 bits |
 | Supported instructions | 8 |
 | Physical verification | DRC and LVS passed |
-| Functional verification | Transient waveform test passed |
+| Functional verification | Transient waveform tests passed |
 | Measured output delay | approximately 15 ps |
 
 ## Instruction Set
@@ -70,7 +70,7 @@ README.md                      Repository overview
 
 ## Report Notes
 
-The report currently uses only layout, DRC, LVS, and waveform figures. When schematic figures are ready, add them to `figures/report/` and reference them from `VLSI_Project_Report.md` using relative paths such as:
+The report currently uses only layout, DRC, LVS, and waveform figures. When schematic figures are ready, add them to `figures/report/` and reference them from `VLSI_Project_Report.md` with relative paths such as:
 
 ```html
 <img src="figures/report/figure-name.png" alt="Figure caption." width="700">

@@ -6,13 +6,13 @@ VLSI Design Project
 
 ## Abstract
 
-This report presents the layout, physical verification, and waveform-level functional verification of a full-custom 8-bit microprocessor core in 65 nm CMOS. The processor integrates a PLA-based instruction decoder, control-signal latch, 8x8 SRAM, arithmetic datapath, shifter, accumulator latch, mux, and bidirectional external bus interface.
+This report presents the layout, physical verification, and waveform-level functional verification of a full-custom 8-bit microprocessor core in 65 nm CMOS. The processor integrates a PLA-based instruction decoder, a control-signal latch, an 8x8 SRAM, an arithmetic datapath, a shifter, an accumulator latch, a multiplexer, and a bidirectional external bus interface.
 
 The instruction set supports eight operations: `NOP`, `LOAD`, `STORE`, `GET`, `PUT`, `ADD`, `SUB`, and `SHIFT`. In this version, schematic figures are intentionally omitted and will be inserted later. The included figures are limited to layout views, DRC/LVS verification captures, and transient waveform results.
 
 ## I. Introduction
 
-The goal of this project is to design and verify a compact 8-bit microprocessor at the custom-layout level. The processor operates on 8-bit data words and uses a 3-bit opcode plus memory address bits to select memory, arithmetic, shift, and external bus operations.
+The goal of this project is to design and verify a compact full-custom 8-bit microprocessor core. The processor operates on 8-bit data words and uses a 3-bit opcode plus memory address bits to select memory, arithmetic, shift, and external bus operations.
 
 The major top-level signals are summarized below.
 
@@ -37,7 +37,7 @@ The major top-level signals are summarized below.
 The datapath connects the SRAM output, accumulator latch, arithmetic unit, shifter, multiplexer, and external bus driver. The control path decodes `INSTR<0:2>` into operation-specific control signals and latches timing-sensitive controls for datapath evaluation.
 
 ```text
-SRAM -> input latch -> adder/subtractor -> mux -> accumulator latch -> bus driver
+SRAM -> input latch -> adder/subtractor -> multiplexer -> accumulator latch -> bus driver
                          ^                  ^
                          |                  |
                       memory data        shifter output
@@ -73,7 +73,7 @@ The instruction decoder is implemented as a PLA driven by the opcode bits. The l
 
 ### B. Control Latch Layout
 
-The control latch stores the selected PLA outputs so that datapath control remains stable during evaluation. The block includes latch stages for subtraction, mux selection, and shift control.
+The control latch stores the selected PLA outputs so that datapath control remains stable during evaluation. The block includes latch stages for subtraction, multiplexer selection, and shift control.
 
 <div align="center">
 <img src="figures/report/fig05-control-latch-layout.png" alt="Fig. 3. Control-signal latch layout." width="760"><br>
@@ -121,7 +121,7 @@ The SRAM stores eight 8-bit words. It includes address decoding, bit-line precha
 
 ### D. Datapath Layout
 
-The datapath includes the adder/subtractor, shifter, mux, and accumulator latch. The arithmetic block generates the 8-bit result plus carry and overflow flags. The shifter and mux route the selected value into the accumulator latch.
+The datapath includes the adder/subtractor, shifter, multiplexer, and accumulator latch. The arithmetic block generates the 8-bit result plus carry and overflow flags. The shifter and multiplexer route the selected value into the accumulator latch.
 
 <div align="center">
 <img src="figures/report/fig13-adder-layout.png" alt="Fig. 11. Adder/subtractor layout." width="620"><br>
@@ -134,8 +134,8 @@ The datapath includes the adder/subtractor, shifter, mux, and accumulator latch.
 </div>
 
 <div align="center">
-<img src="figures/report/fig15-mux-layout.png" alt="Fig. 13. Mux layout." width="180"><br>
-<em>Fig. 13. Mux layout.</em>
+<img src="figures/report/fig15-mux-layout.png" alt="Fig. 13. Multiplexer layout." width="180"><br>
+<em>Fig. 13. Multiplexer layout.</em>
 </div>
 
 <div align="center">
@@ -167,7 +167,7 @@ The completed top-level layout passes DRC and LVS. The DRC result reports no rul
 
 ### A. Test Operation Table
 
-The transient test sequence loads memory with known values, executes accumulator and arithmetic operations, verifies shift behavior, and stores the final memory values to the external bus.
+The transient test sequence loads memory with known values, executes accumulator and arithmetic operations, verifies shift behavior, and stores the final memory values on the external bus.
 
 | Step | Operation | `INSTR` | Memory Address | Binary Value | Decimal Value | `C` | `OV` | `SHIFT<2:0>` |
 | ---: | --- | --- | ---: | --- | ---: | ---: | ---: | --- |
@@ -221,7 +221,7 @@ The instruction waveform verifies the applied opcode and address fields. The ext
 <em>Fig. 17. Instruction and external bus waveform verification.</em>
 </div>
 
-The status and shift waveform verifies `SHIFT_BYPASS`, carry, overflow, and shift control behavior. The delay plot compares `PHI1` and `EXT_BUS<0>` around a representative output transition.
+The status and shift waveforms verify `SHIFT_BYPASS`, carry, overflow, and shift-control behavior. The delay plot compares `PHI1` and `EXT_BUS<0>` around a representative output transition.
 
 <div align="center">
 <img src="figures/report/fig18-waveforms-shift-delay.png" alt="Fig. 18. Shift, carry, overflow, and delay waveform verification." width="760"><br>
@@ -242,15 +242,15 @@ Measured delay          ~= 15 ps
 
 | File or Directory | Purpose |
 | --- | --- |
-| `EECS4321_Submission/eecs4321_submission.pdf` | Original project report source |
-| `EECS4321_Submission/project_requirements.pdf` | Additional reference PDF |
+| `EECS4321_Submission/eecs4321_submission.pdf` | Final submission report |
+| `EECS4321_Submission/project_requirements.pdf` | Project requirements/reference PDF |
 | `Layout_files/ps9_Microprocessor.gds` | Final microprocessor layout database |
 | `figures/report/` | Layout, DRC/LVS, and waveform figures used by this report |
 | `VLSI_Project_Report.md` | DAC-style Markdown version of the microprocessor report |
 
 ## VII. Conclusion
 
-An 8-bit custom CMOS microprocessor was implemented and verified at the layout level. The design integrates instruction decoding, control latching, SRAM, arithmetic, shifting, accumulator storage, and external bus transfer logic. The included layout figures document the completed physical blocks, while the DRC and LVS captures confirm physical-rule correctness and schematic-layout equivalence.
+A full-custom 8-bit microprocessor core in 65 nm CMOS was implemented and verified at the layout level. The design integrates instruction decoding, control latching, SRAM, arithmetic, shifting, accumulator storage, and external bus transfer logic. The included layout figures document the completed physical blocks, while the DRC and LVS captures confirm physical-rule correctness and schematic-layout equivalence.
 
 Functional transient simulation verifies the instruction sequence, memory loading, arithmetic operations, shift control, bus store behavior, carry and overflow outputs, and representative output timing. Schematic figures are omitted from this version and can be added later when the final schematic images are available.
 
