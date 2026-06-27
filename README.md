@@ -1,38 +1,33 @@
-# Microprocessor Core
+# 8-Bit Microprocessor in CMOS
 
-This repository contains the report, layout database, verification figures, and submission files for an 8-bit custom CMOS microprocessor project.
+This project implements an 8-bit custom CMOS microprocessor. The repository includes the final GDS layout, layout/DRC/LVS/waveform figures, submission PDFs, and a Markdown project report.
 
-## Repository Layout
+## Project Summary
 
-| Path | Description |
-| --- | --- |
-| `VLSI_Microprocessor_Report.md` | Main Markdown project report |
-| `figures/report/` | Report-ready layout, DRC/LVS, and waveform figures |
-| `Layout_files/ps9_Microprocessor.gds` | Final microprocessor GDS layout database |
-| `EECS4321_Submission/eecs4321_submission.pdf` | Final submission PDF |
-| `EECS4321_Submission/project_requirements.pdf` | Project requirements/reference PDF |
+This is a VLSI design project for an 8-bit microprocessor.
 
-## Report
+The microprocessor uses a PLA-based instruction decoder, a control-signal latch, an 8x8 SRAM, an adder/subtractor datapath, a shifter, a mux, an accumulator latch, and a bidirectional external bus driver. The instruction set supports `NOP`, `LOAD`, `STORE`, `GET`, `PUT`, `ADD`, `SUB`, and `SHIFT`.
 
-Open the Markdown report here:
+The current Markdown report focuses on layout implementation, DRC/LVS verification, and transient waveform verification. Schematic figures are intentionally omitted for now and can be added later.
 
-[VLSI_Microprocessor_Report.md](VLSI_Microprocessor_Report.md)
+## Contributors
 
-The report currently includes only layout, DRC, LVS, and waveform figures. Schematic figures are intentionally omitted and can be added later.
+Yi-Hsiang Wei and Zijian Shang are students in Columbia University's Department of Electrical Engineering.
 
-## Design Summary
+- Yi-Hsiang Wei: custom CMOS schematic/layout implementation, Cadence Virtuoso design, and verification.
+- Zijian Shang: report organization, result documentation, and project packaging.
 
-The microprocessor is an 8-bit custom CMOS design with:
+## Key Results
 
-- PLA-based instruction decoding
-- Control-signal latch
-- 8x8 SRAM
-- Adder/subtractor datapath
-- Shifter and mux
-- Accumulator latch
-- Bidirectional external bus driver
-- DRC/LVS verification
-- Transient waveform verification
+| Metric | Result |
+| --- | ---: |
+| Data width | 8 bits |
+| Memory size | 8x8 SRAM |
+| Instruction opcode width | 3 bits |
+| Supported instructions | 8 |
+| Physical verification | DRC and LVS passed |
+| Functional verification | Transient waveform test passed |
+| Measured output delay | approximately 15 ps |
 
 ## Instruction Set
 
@@ -46,3 +41,37 @@ The microprocessor is an 8-bit custom CMOS design with:
 | `101` | `ADD` | `Acc <- Acc + Mem[i]` |
 | `110` | `SUB` | `Acc <- Acc - Mem[i]` |
 | `111` | `SHIFT` | Shift accumulator left by `i` |
+
+## Files
+
+- [VLSI_Project_Report.md](VLSI_Project_Report.md) - complete Markdown project report.
+- [EECS4321_Submission/eecs4321_submission.pdf](EECS4321_Submission/eecs4321_submission.pdf) - final submission PDF.
+- [EECS4321_Submission/project_requirements.pdf](EECS4321_Submission/project_requirements.pdf) - project requirements.
+- `Layout_files/` - final GDS layout database.
+- `figures/report/` - report-ready layout, DRC/LVS, and waveform figures.
+- `EECS4321_Submission/` - organized submission package.
+
+## Repository Layout
+
+```text
+Layout_files/
+  ps9_Microprocessor.gds       Final microprocessor GDS layout database
+
+figures/
+  report/                      Layout, DRC/LVS, and waveform figures for the report
+
+EECS4321_Submission/
+  eecs4321_submission.pdf      Final submission report
+  project_requirements.pdf     Project requirements/reference PDF
+
+VLSI_Project_Report.md         Markdown project report
+README.md                      Repository overview
+```
+
+## Report Notes
+
+The report currently uses only layout, DRC, LVS, and waveform figures. When schematic figures are ready, add them to `figures/report/` and reference them from `VLSI_Project_Report.md` using relative paths such as:
+
+```html
+<img src="figures/report/figure-name.png" alt="Figure caption." width="700">
+```

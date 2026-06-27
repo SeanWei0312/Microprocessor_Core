@@ -26,7 +26,7 @@ The major top-level signals are summarized below.
 | `OV` | Output | Overflow flag |
 
 <div align="center">
-<img src="../figures/report/fig01-top-level-layout.png" alt="Fig. 1. Top-level microprocessor layout." width="760"><br>
+<img src="figures/report/fig01-top-level-layout.png" alt="Fig. 1. Top-level microprocessor layout." width="760"><br>
 <em>Fig. 1. Top-level microprocessor layout.</em>
 </div>
 
@@ -67,7 +67,7 @@ The opcode and decoded control behavior are summarized in Table I.
 The instruction decoder is implemented as a PLA driven by the opcode bits. The layout follows a regular row-column structure for the product terms and decoded control outputs.
 
 <div align="center">
-<img src="../figures/report/fig04-pla-layout.png" alt="Fig. 2. PLA layout." width="700"><br>
+<img src="figures/report/fig04-pla-layout.png" alt="Fig. 2. PLA layout." width="700"><br>
 <em>Fig. 2. PLA layout.</em>
 </div>
 
@@ -76,12 +76,12 @@ The instruction decoder is implemented as a PLA driven by the opcode bits. The l
 The control latch stores the selected PLA outputs so that datapath control remains stable during evaluation. The block includes latch stages for subtraction, mux selection, and shift control.
 
 <div align="center">
-<img src="../figures/report/fig05-control-latch-layout.png" alt="Fig. 3. Control-signal latch layout." width="760"><br>
+<img src="figures/report/fig05-control-latch-layout.png" alt="Fig. 3. Control-signal latch layout." width="760"><br>
 <em>Fig. 3. Control-signal latch layout.</em>
 </div>
 
 <div align="center">
-<img src="../figures/report/fig06-control-latch-cell-layouts.png" alt="Fig. 4. Inverter and latch cell layouts used in the control latch." width="600"><br>
+<img src="figures/report/fig06-control-latch-cell-layouts.png" alt="Fig. 4. Inverter and latch cell layouts used in the control latch." width="600"><br>
 <em>Fig. 4. Inverter and latch cell layouts used in the control latch.</em>
 </div>
 
@@ -90,32 +90,32 @@ The control latch stores the selected PLA outputs so that datapath control remai
 The SRAM stores eight 8-bit words. It includes address decoding, bit-line precharge, write circuitry, read circuitry, and the 8x8 memory array.
 
 <div align="center">
-<img src="../figures/report/fig07-sram-layout.png" alt="Fig. 5. SRAM block layout." width="700"><br>
+<img src="figures/report/fig07-sram-layout.png" alt="Fig. 5. SRAM block layout." width="700"><br>
 <em>Fig. 5. SRAM block layout.</em>
 </div>
 
 <div align="center">
-<img src="../figures/report/fig08-sram-decoder-layout.png" alt="Fig. 6. SRAM decoder layout." width="380"><br>
+<img src="figures/report/fig08-sram-decoder-layout.png" alt="Fig. 6. SRAM decoder layout." width="380"><br>
 <em>Fig. 6. SRAM decoder layout.</em>
 </div>
 
 <div align="center">
-<img src="../figures/report/fig09-sram-precharge-layout.png" alt="Fig. 7. SRAM precharge circuit layout." width="600"><br>
+<img src="figures/report/fig09-sram-precharge-layout.png" alt="Fig. 7. SRAM precharge circuit layout." width="600"><br>
 <em>Fig. 7. SRAM precharge circuit layout.</em>
 </div>
 
 <div align="center">
-<img src="../figures/report/fig10-sram-write-layout.png" alt="Fig. 8. SRAM write circuit layout." width="600"><br>
+<img src="figures/report/fig10-sram-write-layout.png" alt="Fig. 8. SRAM write circuit layout." width="600"><br>
 <em>Fig. 8. SRAM write circuit layout.</em>
 </div>
 
 <div align="center">
-<img src="../figures/report/fig11-sram-read-layout.png" alt="Fig. 9. SRAM read circuit layout." width="600"><br>
+<img src="figures/report/fig11-sram-read-layout.png" alt="Fig. 9. SRAM read circuit layout." width="600"><br>
 <em>Fig. 9. SRAM read circuit layout.</em>
 </div>
 
 <div align="center">
-<img src="../figures/report/fig12-sram-array-layout.png" alt="Fig. 10. 8x8 SRAM array layout." width="460"><br>
+<img src="figures/report/fig12-sram-array-layout.png" alt="Fig. 10. 8x8 SRAM array layout." width="460"><br>
 <em>Fig. 10. 8x8 SRAM array layout.</em>
 </div>
 
@@ -124,22 +124,22 @@ The SRAM stores eight 8-bit words. It includes address decoding, bit-line precha
 The datapath includes the adder/subtractor, shifter, mux, and accumulator latch. The arithmetic block generates the 8-bit result plus carry and overflow flags. The shifter and mux route the selected value into the accumulator latch.
 
 <div align="center">
-<img src="../figures/report/fig13-adder-layout.png" alt="Fig. 11. Adder/subtractor layout." width="620"><br>
+<img src="figures/report/fig13-adder-layout.png" alt="Fig. 11. Adder/subtractor layout." width="620"><br>
 <em>Fig. 11. Adder/subtractor layout.</em>
 </div>
 
 <div align="center">
-<img src="../figures/report/fig14-shifter-layout.png" alt="Fig. 12. Shifter layout." width="700"><br>
+<img src="figures/report/fig14-shifter-layout.png" alt="Fig. 12. Shifter layout." width="700"><br>
 <em>Fig. 12. Shifter layout.</em>
 </div>
 
 <div align="center">
-<img src="../figures/report/fig15-mux-layout.png" alt="Fig. 13. Mux layout." width="180"><br>
+<img src="figures/report/fig15-mux-layout.png" alt="Fig. 13. Mux layout." width="180"><br>
 <em>Fig. 13. Mux layout.</em>
 </div>
 
 <div align="center">
-<img src="../figures/report/fig16-latch-layout.png" alt="Fig. 14. Accumulator latch layout." width="260"><br>
+<img src="figures/report/fig16-latch-layout.png" alt="Fig. 14. Accumulator latch layout." width="260"><br>
 <em>Fig. 14. Accumulator latch layout.</em>
 </div>
 
@@ -151,15 +151,15 @@ The completed top-level layout passes DRC and LVS. The DRC result reports no rul
 | --- | --- |
 | DRC | Passed, no results found |
 | LVS | Passed, extracted and schematic netlists match |
-| Final layout | Included in `../design/ps9_Microprocessor.gds` |
+| Final layout | Included in `Layout_files/ps9_Microprocessor.gds` |
 
 <div align="center">
-<img src="../figures/report/fig02-drc-result.png" alt="Fig. 15. DRC result." width="420"><br>
+<img src="figures/report/fig02-drc-result.png" alt="Fig. 15. DRC result." width="420"><br>
 <em>Fig. 15. DRC result.</em>
 </div>
 
 <div align="center">
-<img src="../figures/report/fig03-lvs-result.png" alt="Fig. 16. LVS result." width="420"><br>
+<img src="figures/report/fig03-lvs-result.png" alt="Fig. 16. LVS result." width="420"><br>
 <em>Fig. 16. LVS result.</em>
 </div>
 
@@ -217,14 +217,14 @@ The transient test sequence loads memory with known values, executes accumulator
 The instruction waveform verifies the applied opcode and address fields. The external bus waveform verifies that memory load values are accepted and that store operations reproduce the expected output sequence.
 
 <div align="center">
-<img src="../figures/report/fig17-waveforms-instruction-bus.png" alt="Fig. 17. Instruction and external bus waveform verification." width="760"><br>
+<img src="figures/report/fig17-waveforms-instruction-bus.png" alt="Fig. 17. Instruction and external bus waveform verification." width="760"><br>
 <em>Fig. 17. Instruction and external bus waveform verification.</em>
 </div>
 
 The status and shift waveform verifies `SHIFT_BYPASS`, carry, overflow, and shift control behavior. The delay plot compares `PHI1` and `EXT_BUS<0>` around a representative output transition.
 
 <div align="center">
-<img src="../figures/report/fig18-waveforms-shift-delay.png" alt="Fig. 18. Shift, carry, overflow, and delay waveform verification." width="760"><br>
+<img src="figures/report/fig18-waveforms-shift-delay.png" alt="Fig. 18. Shift, carry, overflow, and delay waveform verification." width="760"><br>
 <em>Fig. 18. Shift, carry, overflow, and delay waveform verification.</em>
 </div>
 
@@ -242,12 +242,11 @@ Measured delay          ~= 15 ps
 
 | File or Directory | Purpose |
 | --- | --- |
-| `../references/Ps9 Microprocessor_YiHsiangWei_ZijianShang.pdf` | Original project report source |
-| `../references/project (4).pdf` | Additional reference PDF |
-| `../design/ps9_Microprocessor.gds` | Final microprocessor layout database |
-| `../figures/report/` | Layout, DRC/LVS, and waveform figures used by this report |
-| `../figures/source_pages/` | Raw rendered pages from the original PDF |
-| `VLSI_Microprocessor_Report.md` | DAC-style Markdown version of the microprocessor report |
+| `EECS4321_Submission/eecs4321_submission.pdf` | Original project report source |
+| `EECS4321_Submission/project_requirements.pdf` | Additional reference PDF |
+| `Layout_files/ps9_Microprocessor.gds` | Final microprocessor layout database |
+| `figures/report/` | Layout, DRC/LVS, and waveform figures used by this report |
+| `VLSI_Project_Report.md` | DAC-style Markdown version of the microprocessor report |
 
 ## VII. Conclusion
 
