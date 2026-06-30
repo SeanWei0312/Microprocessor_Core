@@ -25,6 +25,8 @@ The major top-level signals are summarized below.
 | `C` | Output | Carry flag |
 | `OV` | Output | Overflow flag |
 
+<div align="center"><strong>Table 1. Top-Level Signal Summary</strong></div>
+
 ## II. Architecture
 
 ### A. Top-Level Datapath
@@ -45,20 +47,20 @@ The external bus can load memory during `LOAD` or receive stored data during `ST
 
 ### B. Instruction Set and Control Table
 
-The opcode and decoded control behavior are summarized in Table I.
+The opcode and decoded control behavior are summarized in Table 2.
 
-| <sub>Instruction</sub> | <sub>Opcode</sub> | <sub>Function</sub> | <sub>`SUB`</sub> | <sub>`MUX2`</sub> | <sub>`MUX1`</sub> | <sub>`MUX0`</sub> | <sub>`MEM_WRITE`</sub> | <sub>`MEM_READ`</sub> | <sub>`DRV_EN`</sub> | <sub>`SHIFT_BYPASS`</sub> | <sub>`LOAD_BUS`</sub> | <sub>`STORE_BUS`</sub> |
+| Instruction | Opcode | Function | `SUB` | `MUX2 (SRAM)` | `MUX1 (Adder)` | `MUX0 (Shifter)` | `MEM_WRITE` | `MEM_READ` | `DRV_EN` | `SHIFT_BYPASS` | `LOAD_BUS` | `STORE_BUS` |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| <sub>`NOP`</sub> | <sub>`000`</sub> | <sub>No operation</sub> | <sub>-</sub> | <sub>0</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>-</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> |
-| <sub>`LOAD`</sub> | <sub>`001`</sub> | <sub>`Mem[i] <- External Bus`</sub> | <sub>-</sub> | <sub>-</sub> | <sub>-</sub> | <sub>-</sub> | <sub>1</sub> | <sub>-</sub> | <sub>0</sub> | <sub>-</sub> | <sub>1</sub> | <sub>0</sub> |
-| <sub>`STORE`</sub> | <sub>`010`</sub> | <sub>`External Bus <- Mem[i]`</sub> | <sub>-</sub> | <sub>1</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>-</sub> | <sub>0</sub> | <sub>1</sub> |
-| <sub>`GET`</sub> | <sub>`011`</sub> | <sub>`Acc <- Mem[i]`</sub> | <sub>-</sub> | <sub>1</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>-</sub> | <sub>0</sub> | <sub>0</sub> |
-| <sub>`PUT`</sub> | <sub>`100`</sub> | <sub>`Mem[i] <- Acc`</sub> | <sub>-</sub> | <sub>-</sub> | <sub>-</sub> | <sub>-</sub> | <sub>1</sub> | <sub>-</sub> | <sub>1</sub> | <sub>-</sub> | <sub>0</sub> | <sub>0</sub> |
-| <sub>`ADD`</sub> | <sub>`101`</sub> | <sub>`Acc <- Acc + Mem[i]`</sub> | <sub>0</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> |
-| <sub>`SUB`</sub> | <sub>`110`</sub> | <sub>`Acc <- Acc - Mem[i]`</sub> | <sub>1</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> |
-| <sub>`SHIFT`</sub> | <sub>`111`</sub> | <sub>Shift accumulator left by `i`</sub> | <sub>-</sub> | <sub>0</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>-</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>0</sub> |
+| `NOP` | `000` | No operation | - | 0 | 0 | 1 | 0 | - | 0 | 0 | 0 | 0 |
+| `LOAD` | `001` | `Mem[i] <- External Bus` | - | - | - | - | 1 | - | 0 | - | 1 | 0 |
+| `STORE` | `010` | `External Bus <- Mem[i]` | - | 1 | 0 | 0 | 0 | 1 | 0 | - | 0 | 1 |
+| `GET` | `011` | `Acc <- Mem[i]` | - | 1 | 0 | 0 | 0 | 1 | 0 | - | 0 | 0 |
+| `PUT` | `100` | `Mem[i] <- Acc` | - | - | - | - | 1 | - | 1 | - | 0 | 0 |
+| `ADD` | `101` | `Acc <- Acc + Mem[i]` | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
+| `SUB` | `110` | `Acc <- Acc - Mem[i]` | 1 | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
+| `SHIFT` | `111` | Shift accumulator left by `i` | - | 0 | 0 | 1 | 0 | - | 0 | 1 | 0 | 0 |
 
-<div align="center"><strong>Table I. Instruction Set and Control Signals</strong></div>
+<div align="center"><strong>Table 2. Instruction Set and Control Signals</strong></div>
 
 ## III. Physical Verification
 
@@ -70,21 +72,26 @@ The completed top-level layout passes DRC and LVS. The DRC result reports no rul
 | LVS | Passed, extracted and schematic netlists match |
 | Final layout | Included in `Layout_files/ps9_Microprocessor.gds` |
 
-<div align="center">
-<img src="figures/fig03-drc-result.jpg" alt="Fig. 3. DRC result." width="420"><br>
-<em>Fig. 3. DRC result.</em>
-</div>
+<div align="center"><strong>Table 3. Physical Verification Results</strong></div>
 
-<div align="center">
-<img src="figures/fig04-lvs-result.jpg" alt="Fig. 4. LVS result." width="420"><br>
+<table>
+<tr>
+<td align="center">
+<img src="figures/fig03-drc-result.jpg" alt="Fig. 3. DRC result." width="500"><br>
+<em>Fig. 3. DRC result.</em>
+</td>
+<td align="center">
+<img src="figures/fig04-lvs-result.jpg" alt="Fig. 4. LVS result." width="500"><br>
 <em>Fig. 4. LVS result.</em>
-</div>
+</td>
+</tr>
+</table>
 
 ## IV. Implementation
 
 ### A. PLA Block
 
-The instruction decoder design begins with the control behavior summarized in Table I. The control table was translated into the Espresso input file `Espresso_files/instr_decoder.pla`, which defines three opcode inputs, `instr2`, `instr1`, and `instr0`, and ten decoded control outputs: `subtract`, `mux2`, `mux1`, `mux0`, `mem_write`, `mem_read`, `drv_enable`, `shift_bypass`, `load_bus`, and `store_bus`. Don't-care entries are used wherever a control value is unused, allowing Espresso to optimize those outputs rather than forcing them to fixed logic levels.
+The instruction decoder design begins with the control behavior summarized in Table 2. The control table was translated into the Espresso input file `Espresso_files/instr_decoder.pla`, which defines three opcode inputs, `instr2`, `instr1`, and `instr0`, and ten decoded control outputs: `subtract`, `mux2`, `mux1`, `mux0`, `mem_write`, `mem_read`, `drv_enable`, `shift_bypass`, `load_bus`, and `store_bus`. Don't-care entries are used wherever a control value is unused, allowing Espresso to optimize those outputs rather than forcing them to fixed logic levels.
 
 <div align="center">
 <img src="figures/fig05-instr-decoder-pla.jpg" alt="Fig. 5. Instruction decoder PLA input file." width="760"><br>
@@ -231,6 +238,8 @@ The transient test sequence loads memory with known values, executes accumulator
 | 39 | `STORE` | `010b` | 6 | `10110110b` | -74 |  |  |  |
 | 40 | `STORE` | `010b` | 7 | `11111111b` | -1 |  |  |  |
 
+<div align="center"><strong>Table 4. Functional Verification Test Sequence</strong></div>
+
 ### B. Waveform Results
 
 The instruction waveform verifies the applied opcode and address fields. The external-bus waveform verifies that memory load values are accepted and that store operations reproduce the expected output sequence.
@@ -266,6 +275,8 @@ Measured delay          ~= 15 ps
 | `Layout_files/ps9_Microprocessor.gds` | Final microprocessor layout database |
 | `figures/` | Schematic, layout, DRC/LVS, and waveform figures used by this report |
 | `VLSI_Project_Report.md` | DAC-style Markdown version of the microprocessor report |
+
+<div align="center"><strong>Table 5. Design File Package</strong></div>
 
 ## VII. Conclusion
 
