@@ -1,0 +1,14 @@
+.i 3
+.o 10
+.ilb instr2 instr1 instr0
+.ob subtract mux2 mux1 mux0 mem_write mem_read drv_enable shift_bypass load_bus store_bus
+.p 8
+111 0001000100
+100 0000101000
+001 0000100010
+010 0100010001
+-00 0001000000
+0-1 0100010000
+-01 0010010000
+1-0 1010010000
+.e
