@@ -31,7 +31,7 @@ The major top-level signals are summarized below.
 </div>
 
 <div align="center">
-<img src="figures/fig01-top-level-layout.png" alt="Fig. 2. Top-level microprocessor layout." width="760"><br>
+<img src="figures/fig01-top-level-layout.jpg" alt="Fig. 2. Top-level microprocessor layout." width="760"><br>
 <em>Fig. 2. Top-level microprocessor layout.</em>
 </div>
 
