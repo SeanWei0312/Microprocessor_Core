@@ -47,7 +47,7 @@ The external bus can load memory during `LOAD` or receive stored data during `ST
 
 The opcode and decoded control behavior are summarized in Table I.
 
-<div style="font-size: 80%;">
+<div style="font-size: 60%;">
 
 | Instruction | Opcode | Function | `SUB` | `MUX2` | `MUX1` | `MUX0` | `MEM_WRITE` | `MEM_READ` | `DRV_EN` | `SHIFT_BYPASS` | `LOAD_BUS` | `STORE_BUS` |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
