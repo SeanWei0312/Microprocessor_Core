@@ -27,6 +27,8 @@ The major top-level signals are summarized below.
 
 <div align="center"><strong>Table 1. Top-Level Signal Summary</strong></div>
 
+<br>
+
 ## II. Architecture
 
 ### A. Top-Level Datapath
@@ -42,6 +44,8 @@ The top-level schematic and layout show the complete processor hierarchy. The da
 <img src="figures/fig02-top-level-layout.jpg" alt="Fig. 2. Top-level microprocessor layout." width="1000"><br>
 <em>Fig. 2. Top-level microprocessor layout.</em>
 </div>
+
+<br>
 
 The external bus can load memory during `LOAD` or receive stored data during `STORE`. Arithmetic operations use the accumulator and SRAM data as operands.
 
@@ -62,6 +66,8 @@ The opcode and decoded control behavior are summarized in Table 2.
 
 <div align="center"><strong>Table 2. Instruction Set and Control Signals</strong></div>
 
+<br>
+
 ## III. Physical Verification
 
 The completed top-level layout passes DRC and LVS. The DRC result reports no rule violations, and LVS reports a successful comparison between the extracted layout and schematic netlists. The final layout is included in `Layout_files/ps9_Microprocessor.gds`.
@@ -79,6 +85,8 @@ The completed top-level layout passes DRC and LVS. The DRC result reports no rul
 </tr>
 </table>
 
+<br>
+
 ## IV. Implementation
 
 ### A. PLA Block
@@ -90,6 +98,8 @@ The instruction decoder design begins with the control behavior summarized in Ta
 <em>Fig. 5. Instruction decoder PLA input file.</em>
 </div>
 
+<br>
+
 The input PLA file was then passed through Espresso to generate the minimized output file, `Espresso_files/instr_decoder_out.pla`. Espresso preserves the same input/output interface while replacing selected opcode-specific rows with shared implicants, such as `-00`, `0-1`, `-01`, and `1-0`. These minimized product terms reduce the amount of logic required in the instruction-decoder PLA.
 
 <div align="center">
@@ -97,17 +107,21 @@ The input PLA file was then passed through Espresso to generate the minimized ou
 <em>Fig. 6. Espresso-minimized instruction decoder PLA output file.</em>
 </div>
 
+<br>
+
 The Espresso-minimized output was used to build the instruction-decoder PLA schematic. The schematic maps the minimized product terms to the decoded control outputs, and the final layout implements the same logic as a regular row-column PLA.
 
 <div align="center">
-<img src="figures/fig07-pla-schematic.jpg" alt="Fig. 7. PLA schematic." width="760"><br>
+<img src="figures/fig07-pla-schematic.jpg" alt="Fig. 7. PLA schematic." width="1000"><br>
 <em>Fig. 7. PLA schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig08-pla-layout.jpg" alt="Fig. 8. PLA layout." width="700"><br>
+<img src="figures/fig08-pla-layout.jpg" alt="Fig. 8. PLA layout." width="1000"><br>
 <em>Fig. 8. PLA layout.</em>
 </div>
+
+<br>
 
 ### B. Control Latch Block
 
@@ -122,6 +136,8 @@ The control latch stores the selected PLA outputs so that datapath control remai
 <img src="figures/fig10-control-latch-cell-layouts.png" alt="Fig. 10. Inverter and latch cell layouts used in the control latch." width="600"><br>
 <em>Fig. 10. Inverter and latch cell layouts used in the control latch.</em>
 </div>
+
+<br>
 
 ### C. SRAM Block
 
@@ -157,6 +173,8 @@ The SRAM stores eight 8-bit words. It includes address decoding, bit-line precha
 <em>Fig. 16. 8x8 SRAM array layout.</em>
 </div>
 
+<br>
+
 ### D. Datapath Block
 
 The datapath includes the adder/subtractor, shifter, multiplexer, and accumulator latch. The arithmetic block generates the 8-bit result, carry flag, and overflow flag. The shifter and multiplexer route the selected value into the accumulator latch.
@@ -180,6 +198,8 @@ The datapath includes the adder/subtractor, shifter, multiplexer, and accumulato
 <img src="figures/fig20-latch-layout.png" alt="Fig. 20. Accumulator latch layout." width="260"><br>
 <em>Fig. 20. Accumulator latch layout.</em>
 </div>
+
+<br>
 
 ## V. Functional Verification
 
@@ -232,6 +252,8 @@ The transient test sequence loads memory with known values, executes accumulator
 
 <div align="center"><strong>Table 3. Functional Verification Test Sequence</strong></div>
 
+<br>
+
 ### B. Waveform Results
 
 The instruction waveform verifies the applied opcode and address fields. The external-bus waveform verifies that memory load values are accepted and that store operations reproduce the expected output sequence.
@@ -241,12 +263,16 @@ The instruction waveform verifies the applied opcode and address fields. The ext
 <em>Fig. 21. Instruction and external bus waveform verification.</em>
 </div>
 
+<br>
+
 The status and shift waveforms verify `SHIFT_BYPASS`, carry, overflow, and shift-control behavior. The delay plot compares `PHI1` and `EXT_BUS<0>` around a representative output transition.
 
 <div align="center">
 <img src="figures/fig22-waveforms-shift-delay.png" alt="Fig. 22. Shift, carry, overflow, and delay waveform verification." width="760"><br>
 <em>Fig. 22. Shift, carry, overflow, and delay waveform verification.</em>
 </div>
+
+<br>
 
 ### C. Delay Measurement
 
@@ -269,6 +295,8 @@ Measured delay          ~= 15 ps
 | `VLSI_Project_Report.md` | DAC-style Markdown version of the microprocessor report |
 
 <div align="center"><strong>Table 4. Design File Package</strong></div>
+
+<br>
 
 ## VII. Conclusion
 
