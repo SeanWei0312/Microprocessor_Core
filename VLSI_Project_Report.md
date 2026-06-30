@@ -150,11 +150,11 @@ The control latch stores the selected PLA outputs so that datapath control remai
 <table>
 <tr>
 <td align="center">
-<img src="figures/fig13-control-latch-inverter-schematic.jpg" alt="Fig. 13. Inverter schematic used in the control latch." width="800"><br>
+<img src="figures/fig13-control-latch-inverter-schematic.jpg" alt="Fig. 13. Inverter schematic used in the control latch." width="900"><br>
 <em>Fig. 13. Inverter schematic used in the control latch.</em>
 </td>
 <td align="center">
-<img src="figures/fig14-control-latch-inverter-layout.jpg" alt="Fig. 14. Inverter layout used in the control latch." width="200"><br>
+<img src="figures/fig14-control-latch-inverter-layout.jpg" alt="Fig. 14. Inverter layout used in the control latch." width="100"><br>
 <em>Fig. 14. Inverter layout used in the control latch.</em>
 </td>
 </tr>
@@ -163,11 +163,11 @@ The control latch stores the selected PLA outputs so that datapath control remai
 <table>
 <tr>
 <td align="center">
-<img src="figures/fig15-control-latch-latch-schematic.jpg" alt="Fig. 15. Latch schematic used in the control latch." width="500"><br>
+<img src="figures/fig15-control-latch-latch-schematic.jpg" alt="Fig. 15. Latch schematic used in the control latch." width="600"><br>
 <em>Fig. 15. Latch schematic used in the control latch.</em>
 </td>
 <td align="center">
-<img src="figures/fig16-control-latch-latch-layout.jpg" alt="Fig. 16. Latch layout used in the control latch." width="500"><br>
+<img src="figures/fig16-control-latch-latch-layout.jpg" alt="Fig. 16. Latch layout used in the control latch." width="400"><br>
 <em>Fig. 16. Latch layout used in the control latch.</em>
 </td>
 </tr>
