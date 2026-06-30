@@ -109,33 +109,69 @@ The input PLA file was then passed through Espresso to generate the minimized ou
 
 <br>
 
-The Espresso-minimized output was used to build the instruction-decoder PLA schematic. The schematic maps the minimized product terms to the decoded control outputs, and the final layout implements the same logic as a regular row-column PLA.
+The Espresso-minimized output was used to build the instruction-decoder PLA symbol and schematic. The symbol provides the block-level interface, the schematic maps the minimized product terms to the decoded control outputs, and the final layout implements the same logic as a regular row-column PLA.
 
 <div align="center">
-<img src="figures/fig07-pla-schematic.jpg" alt="Fig. 7. PLA schematic." width="1000"><br>
-<em>Fig. 7. PLA schematic.</em>
+<img src="figures/fig07-pla-symbol.jpg" alt="Fig. 7. PLA symbol." width="500"><br>
+<em>Fig. 7. PLA symbol.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig08-pla-layout.jpg" alt="Fig. 8. PLA layout." width="1000"><br>
-<em>Fig. 8. PLA layout.</em>
+<img src="figures/fig08-pla-schematic.jpg" alt="Fig. 8. PLA schematic." width="1000"><br>
+<em>Fig. 8. PLA schematic.</em>
+</div>
+
+<div align="center">
+<img src="figures/fig09-pla-layout.jpg" alt="Fig. 9. PLA layout." width="1000"><br>
+<em>Fig. 9. PLA layout.</em>
 </div>
 
 <br>
 
 ### B. Control Latch Block
 
-The control latch stores the selected PLA outputs so that datapath control remains stable during evaluation. The block includes latch stages for subtraction, multiplexer selection, and shift control.
+The control latch stores the selected PLA outputs so that datapath control remains stable during evaluation. The symbol defines the block interface, the schematic connects the latch stages for subtraction, multiplexer selection, and shift control, and the layout implements those stages physically. The inverter and latch cell schematics and layouts are shown separately because they form the repeated cells used inside the control-latch block.
 
 <div align="center">
-<img src="figures/fig09-control-latch-layout.png" alt="Fig. 9. Control-signal latch layout." width="760"><br>
-<em>Fig. 9. Control-signal latch layout.</em>
+<img src="figures/fig10-control-latch-symbol.jpg" alt="Fig. 10. Control-signal latch symbol." width="1000"><br>
+<em>Fig. 10. Control-signal latch symbol.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig10-control-latch-cell-layouts.png" alt="Fig. 10. Inverter and latch cell layouts used in the control latch." width="600"><br>
-<em>Fig. 10. Inverter and latch cell layouts used in the control latch.</em>
+<img src="figures/fig11-control-latch-schematic.jpg" alt="Fig. 11. Control-signal latch schematic." width="1000"><br>
+<em>Fig. 11. Control-signal latch schematic.</em>
 </div>
+
+<div align="center">
+<img src="figures/fig12-control-latch-layout.jpg" alt="Fig. 12. Control-signal latch layout." width="1000"><br>
+<em>Fig. 12. Control-signal latch layout.</em>
+</div>
+
+<table>
+<tr>
+<td align="center">
+<img src="figures/fig13-control-latch-inverter-schematic.jpg" alt="Fig. 13. Inverter schematic used in the control latch." width="400"><br>
+<em>Fig. 13. Inverter schematic used in the control latch.</em>
+</td>
+<td align="center">
+<img src="figures/fig14-control-latch-inverter-layout.jpg" alt="Fig. 14. Inverter layout used in the control latch." width="100"><br>
+<em>Fig. 14. Inverter layout used in the control latch.</em>
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td align="center">
+<img src="figures/fig15-control-latch-latch-schematic.jpg" alt="Fig. 15. Latch schematic used in the control latch." width="300"><br>
+<em>Fig. 15. Latch schematic used in the control latch.</em>
+</td>
+<td align="center">
+<img src="figures/fig16-control-latch-latch-layout.jpg" alt="Fig. 16. Latch layout used in the control latch." width="200"><br>
+<em>Fig. 16. Latch layout used in the control latch.</em>
+</td>
+</tr>
+</table>
 
 <br>
 
@@ -144,33 +180,33 @@ The control latch stores the selected PLA outputs so that datapath control remai
 The SRAM stores eight 8-bit words. It includes address decoding, bit-line precharge, write circuitry, read circuitry, and the 8x8 memory array.
 
 <div align="center">
-<img src="figures/fig11-sram-layout.png" alt="Fig. 11. SRAM block layout." width="700"><br>
-<em>Fig. 11. SRAM block layout.</em>
+<img src="figures/fig17-sram-layout.png" alt="Fig. 17. SRAM block layout." width="700"><br>
+<em>Fig. 17. SRAM block layout.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig12-sram-decoder-layout.png" alt="Fig. 12. SRAM decoder layout." width="380"><br>
-<em>Fig. 12. SRAM decoder layout.</em>
+<img src="figures/fig18-sram-decoder-layout.png" alt="Fig. 18. SRAM decoder layout." width="380"><br>
+<em>Fig. 18. SRAM decoder layout.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig13-sram-precharge-layout.png" alt="Fig. 13. SRAM precharge circuit layout." width="600"><br>
-<em>Fig. 13. SRAM precharge circuit layout.</em>
+<img src="figures/fig19-sram-precharge-layout.png" alt="Fig. 19. SRAM precharge circuit layout." width="600"><br>
+<em>Fig. 19. SRAM precharge circuit layout.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig14-sram-write-layout.png" alt="Fig. 14. SRAM write circuit layout." width="600"><br>
-<em>Fig. 14. SRAM write circuit layout.</em>
+<img src="figures/fig20-sram-write-layout.png" alt="Fig. 20. SRAM write circuit layout." width="600"><br>
+<em>Fig. 20. SRAM write circuit layout.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig15-sram-read-layout.png" alt="Fig. 15. SRAM read circuit layout." width="600"><br>
-<em>Fig. 15. SRAM read circuit layout.</em>
+<img src="figures/fig21-sram-read-layout.png" alt="Fig. 21. SRAM read circuit layout." width="600"><br>
+<em>Fig. 21. SRAM read circuit layout.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig16-sram-array-layout.png" alt="Fig. 16. 8x8 SRAM array layout." width="460"><br>
-<em>Fig. 16. 8x8 SRAM array layout.</em>
+<img src="figures/fig22-sram-array-layout.png" alt="Fig. 22. 8x8 SRAM array layout." width="460"><br>
+<em>Fig. 22. 8x8 SRAM array layout.</em>
 </div>
 
 <br>
@@ -180,23 +216,23 @@ The SRAM stores eight 8-bit words. It includes address decoding, bit-line precha
 The datapath includes the adder/subtractor, shifter, multiplexer, and accumulator latch. The arithmetic block generates the 8-bit result, carry flag, and overflow flag. The shifter and multiplexer route the selected value into the accumulator latch.
 
 <div align="center">
-<img src="figures/fig17-adder-layout.png" alt="Fig. 17. Adder/subtractor layout." width="620"><br>
-<em>Fig. 17. Adder/subtractor layout.</em>
+<img src="figures/fig23-adder-layout.png" alt="Fig. 23. Adder/subtractor layout." width="620"><br>
+<em>Fig. 23. Adder/subtractor layout.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig18-shifter-layout.png" alt="Fig. 18. Shifter layout." width="700"><br>
-<em>Fig. 18. Shifter layout.</em>
+<img src="figures/fig24-shifter-layout.png" alt="Fig. 24. Shifter layout." width="700"><br>
+<em>Fig. 24. Shifter layout.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig19-mux-layout.png" alt="Fig. 19. Multiplexer layout." width="180"><br>
-<em>Fig. 19. Multiplexer layout.</em>
+<img src="figures/fig25-mux-layout.png" alt="Fig. 25. Multiplexer layout." width="180"><br>
+<em>Fig. 25. Multiplexer layout.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig20-latch-layout.png" alt="Fig. 20. Accumulator latch layout." width="260"><br>
-<em>Fig. 20. Accumulator latch layout.</em>
+<img src="figures/fig26-latch-layout.png" alt="Fig. 26. Accumulator latch layout." width="260"><br>
+<em>Fig. 26. Accumulator latch layout.</em>
 </div>
 
 <br>
@@ -259,8 +295,8 @@ The transient test sequence loads memory with known values, executes accumulator
 The instruction waveform verifies the applied opcode and address fields. The external-bus waveform verifies that memory load values are accepted and that store operations reproduce the expected output sequence.
 
 <div align="center">
-<img src="figures/fig21-waveforms-instruction-bus.png" alt="Fig. 21. Instruction and external bus waveform verification." width="760"><br>
-<em>Fig. 21. Instruction and external bus waveform verification.</em>
+<img src="figures/fig27-waveforms-instruction-bus.png" alt="Fig. 27. Instruction and external bus waveform verification." width="760"><br>
+<em>Fig. 27. Instruction and external bus waveform verification.</em>
 </div>
 
 <br>
@@ -268,8 +304,8 @@ The instruction waveform verifies the applied opcode and address fields. The ext
 The status and shift waveforms verify `SHIFT_BYPASS`, carry, overflow, and shift-control behavior. The delay plot compares `PHI1` and `EXT_BUS<0>` around a representative output transition.
 
 <div align="center">
-<img src="figures/fig22-waveforms-shift-delay.png" alt="Fig. 22. Shift, carry, overflow, and delay waveform verification." width="760"><br>
-<em>Fig. 22. Shift, carry, overflow, and delay waveform verification.</em>
+<img src="figures/fig28-waveforms-shift-delay.png" alt="Fig. 28. Shift, carry, overflow, and delay waveform verification." width="760"><br>
+<em>Fig. 28. Shift, carry, overflow, and delay waveform verification.</em>
 </div>
 
 <br>
