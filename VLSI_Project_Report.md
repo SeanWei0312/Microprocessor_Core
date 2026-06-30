@@ -47,20 +47,16 @@ The external bus can load memory during `LOAD` or receive stored data during `ST
 
 The opcode and decoded control behavior are summarized in Table I.
 
-<div style="font-size: 60%;">
-
-| Instruction | Opcode | Function | `SUB` | `MUX2` | `MUX1` | `MUX0` | `MEM_WRITE` | `MEM_READ` | `DRV_EN` | `SHIFT_BYPASS` | `LOAD_BUS` | `STORE_BUS` |
+| <sub>Instruction</sub> | <sub>Opcode</sub> | <sub>Function</sub> | <sub>`SUB`</sub> | <sub>`MUX2`</sub> | <sub>`MUX1`</sub> | <sub>`MUX0`</sub> | <sub>`MEM_WRITE`</sub> | <sub>`MEM_READ`</sub> | <sub>`DRV_EN`</sub> | <sub>`SHIFT_BYPASS`</sub> | <sub>`LOAD_BUS`</sub> | <sub>`STORE_BUS`</sub> |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `NOP` | `000` | No operation | - | 0 | 0 | 1 | 0 | - | 0 | 0 | 0 | 0 |
-| `LOAD` | `001` | `Mem[i] <- External Bus` | - | - | - | - | 1 | - | 0 | - | 1 | 0 |
-| `STORE` | `010` | `External Bus <- Mem[i]` | - | 1 | 0 | 0 | 0 | 1 | 0 | - | 0 | 1 |
-| `GET` | `011` | `Acc <- Mem[i]` | - | 1 | 0 | 0 | 0 | 1 | 0 | - | 0 | 0 |
-| `PUT` | `100` | `Mem[i] <- Acc` | - | - | - | - | 1 | - | 1 | - | 0 | 0 |
-| `ADD` | `101` | `Acc <- Acc + Mem[i]` | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
-| `SUB` | `110` | `Acc <- Acc - Mem[i]` | 1 | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
-| `SHIFT` | `111` | Shift accumulator left by `i` | - | 0 | 0 | 1 | 0 | - | 0 | 1 | 0 | 0 |
-
-</div>
+| <sub>`NOP`</sub> | <sub>`000`</sub> | <sub>No operation</sub> | <sub>-</sub> | <sub>0</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>-</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> |
+| <sub>`LOAD`</sub> | <sub>`001`</sub> | <sub>`Mem[i] <- External Bus`</sub> | <sub>-</sub> | <sub>-</sub> | <sub>-</sub> | <sub>-</sub> | <sub>1</sub> | <sub>-</sub> | <sub>0</sub> | <sub>-</sub> | <sub>1</sub> | <sub>0</sub> |
+| <sub>`STORE`</sub> | <sub>`010`</sub> | <sub>`External Bus <- Mem[i]`</sub> | <sub>-</sub> | <sub>1</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>-</sub> | <sub>0</sub> | <sub>1</sub> |
+| <sub>`GET`</sub> | <sub>`011`</sub> | <sub>`Acc <- Mem[i]`</sub> | <sub>-</sub> | <sub>1</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>-</sub> | <sub>0</sub> | <sub>0</sub> |
+| <sub>`PUT`</sub> | <sub>`100`</sub> | <sub>`Mem[i] <- Acc`</sub> | <sub>-</sub> | <sub>-</sub> | <sub>-</sub> | <sub>-</sub> | <sub>1</sub> | <sub>-</sub> | <sub>1</sub> | <sub>-</sub> | <sub>0</sub> | <sub>0</sub> |
+| <sub>`ADD`</sub> | <sub>`101`</sub> | <sub>`Acc <- Acc + Mem[i]`</sub> | <sub>0</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> |
+| <sub>`SUB`</sub> | <sub>`110`</sub> | <sub>`Acc <- Acc - Mem[i]`</sub> | <sub>1</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> | <sub>0</sub> |
+| <sub>`SHIFT`</sub> | <sub>`111`</sub> | <sub>Shift accumulator left by `i`</sub> | <sub>-</sub> | <sub>0</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>-</sub> | <sub>0</sub> | <sub>1</sub> | <sub>0</sub> | <sub>0</sub> |
 
 <div align="center"><strong>Table I. Instruction Set and Control Signals</strong></div>
 
