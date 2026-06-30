@@ -64,15 +64,7 @@ The opcode and decoded control behavior are summarized in Table 2.
 
 ## III. Physical Verification
 
-The completed top-level layout passes DRC and LVS. The DRC result reports no rule violations, and LVS reports a successful comparison between the extracted layout and schematic netlists.
-
-| Check | Result |
-| --- | --- |
-| DRC | Passed, no results found |
-| LVS | Passed, extracted and schematic netlists match |
-| Final layout | Included in `Layout_files/ps9_Microprocessor.gds` |
-
-<div align="center"><strong>Table 3. Physical Verification Results</strong></div>
+The completed top-level layout passes DRC and LVS. The DRC result reports no rule violations, and LVS reports a successful comparison between the extracted layout and schematic netlists. The final layout is included in `Layout_files/ps9_Microprocessor.gds`.
 
 <table>
 <tr>
@@ -238,7 +230,7 @@ The transient test sequence loads memory with known values, executes accumulator
 | 39 | `STORE` | `010b` | 6 | `10110110b` | -74 |  |  |  |
 | 40 | `STORE` | `010b` | 7 | `11111111b` | -1 |  |  |  |
 
-<div align="center"><strong>Table 4. Functional Verification Test Sequence</strong></div>
+<div align="center"><strong>Table 3. Functional Verification Test Sequence</strong></div>
 
 ### B. Waveform Results
 
@@ -276,7 +268,7 @@ Measured delay          ~= 15 ps
 | `figures/` | Schematic, layout, DRC/LVS, and waveform figures used by this report |
 | `VLSI_Project_Report.md` | DAC-style Markdown version of the microprocessor report |
 
-<div align="center"><strong>Table 5. Design File Package</strong></div>
+<div align="center"><strong>Table 4. Design File Package</strong></div>
 
 ## VII. Conclusion
 
