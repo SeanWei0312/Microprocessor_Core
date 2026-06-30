@@ -112,7 +112,7 @@ The input PLA file was then passed through Espresso to generate the minimized ou
 The Espresso-minimized output was used to build the instruction-decoder PLA symbol and schematic. The symbol provides the block-level interface, the schematic maps the minimized product terms to the decoded control outputs, and the final layout implements the same logic as a regular row-column PLA.
 
 <div align="center">
-<img src="figures/fig07-pla-symbol.jpg" alt="Fig. 7. PLA symbol." width="500"><br>
+<img src="figures/fig07-pla-symbol.jpg" alt="Fig. 7. PLA symbol." width="1000"><br>
 <em>Fig. 7. PLA symbol.</em>
 </div>
 
