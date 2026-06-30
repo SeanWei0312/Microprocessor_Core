@@ -32,12 +32,12 @@ The major top-level signals are summarized below.
 The top-level schematic and layout show the complete processor hierarchy. The datapath connects the SRAM, accumulator latch, arithmetic unit, shifter, multiplexer, and external-bus driver, while the control path decodes `INSTR<0:2>` and latches timing-sensitive control signals for datapath evaluation.
 
 <div align="center">
-<img src="figures/fig01-top-level-schematic.jpg" alt="Fig. 1. Top-level microprocessor schematic." width="900"><br>
+<img src="figures/fig01-top-level-schematic.jpg" alt="Fig. 1. Top-level microprocessor schematic." width="1000"><br>
 <em>Fig. 1. Top-level microprocessor schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig02-top-level-layout.jpg" alt="Fig. 2. Top-level microprocessor layout." width="900"><br>
+<img src="figures/fig02-top-level-layout.jpg" alt="Fig. 2. Top-level microprocessor layout." width="1000"><br>
 <em>Fig. 2. Top-level microprocessor layout.</em>
 </div>
 
@@ -46,6 +46,8 @@ The external bus can load memory during `LOAD` or receive stored data during `ST
 ### B. Instruction Set and Control Table
 
 The opcode and decoded control behavior are summarized in Table I.
+
+<div style="font-size: 80%;">
 
 | Instruction | Opcode | Function | `SUB` | `MUX2` | `MUX1` | `MUX0` | `MEM_WRITE` | `MEM_READ` | `DRV_EN` | `SHIFT_BYPASS` | `LOAD_BUS` | `STORE_BUS` |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -57,6 +59,10 @@ The opcode and decoded control behavior are summarized in Table I.
 | `ADD` | `101` | `Acc <- Acc + Mem[i]` | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
 | `SUB` | `110` | `Acc <- Acc - Mem[i]` | 1 | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
 | `SHIFT` | `111` | Shift accumulator left by `i` | - | 0 | 0 | 1 | 0 | - | 0 | 1 | 0 | 0 |
+
+</div>
+
+<div align="center"><strong>Table I. Instruction Set and Control Signals</strong></div>
 
 ## III. Physical Verification
 
