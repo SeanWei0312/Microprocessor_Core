@@ -624,7 +624,7 @@ Steps 1-8 load the initial SRAM contents through the external bus. Steps 9-32 ex
 The simulation testbench applies the two-phase clocks, instruction sequence, and external bus values used for functional verification. It connects the processor core to the stimulus sources and output probes used to confirm memory, arithmetic, shift, and bus-transfer behavior.
 
 <div align="center">
-<img src="figures/fig58-functional-verification-testbench-schematic.jpg" alt="Fig. 58. Functional-verification testbench schematic." width="1000"><br>
+<img src="figures/fig58-functional-verification-testbench-schematic.jpg" alt="Fig. 58. Functional-verification testbench schematic." width="300"><br>
 <em>Fig. 58. Functional-verification testbench schematic.</em>
 </div>
 
