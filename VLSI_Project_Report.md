@@ -217,7 +217,7 @@ The SRAM core implements the required eight-word by eight-bit memory array. It i
 
 #### Row Decoder
 
-The row decoder selects one SRAM row from the 3-bit address field. Because the requirements specify single-level decoding, the decoder directly generates the row-select terms without a predecoder. Its schematic and layout are shown together to compare the row-selection logic with its physical implementation.
+The row decoder converts the 3-bit SRAM address into one active row-select signal. Because the SRAM requirements specify single-level decoding, the decoder directly generates the eight row-select terms without a predecoder. During operation, the address bits and their complemented versions are combined to select one target row, and the selected row is then qualified by `PHI1` so the SRAM word line is active only during the evaluation phase. The schematic and layout in Fig. 22 and Fig. 23 show this row-selection logic and its physical implementation.
 
 <table>
 <tr>
@@ -232,7 +232,7 @@ The row decoder selects one SRAM row from the 3-bit address field. Because the r
 </tr>
 </table>
 
-The decoder is implemented with three inverter cells and sixteen three-input AND cells. The inverters generate the complemented address bits required for decoding. Eight first-stage three-input AND cells form the decoded row terms from the true and complemented address bits, and eight second-stage three-input AND cells qualify those row terms with `PHI1`. This structure enables the selected word line only during the active `PHI1` interval and keeps the decoder outputs disabled otherwise.
+The row decoder uses three inverter cells and sixteen three-input AND cells. The inverter cells generate the complemented address bits needed to form all eight address combinations. The first eight three-input AND cells make the decoding stage: each one receives a unique combination of true and complemented address bits and produces one decoded row term. The second eight three-input AND cells make the control stage: each one receives `PHI1`, one decoded row term from the first stage, and `VDD`, then drives the corresponding SRAM row-control line. This connection allows only the addressed row to turn on during `PHI1`; when `PHI1` is low, all row-control outputs remain disabled. Fig. 24 and Fig. 25 show the reusable inverter and three-input AND cells used to build this decoder.
 
 <div align="center">
 <img src="figures/fig24-sram-decoder-inverter-schematic.jpg" alt="Fig. 24. SRAM decoder inverter schematic." width="500"><br>
