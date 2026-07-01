@@ -184,17 +184,17 @@ The control-signal latch is built from one inverter cell and five latch cells. T
 The SRAM stores eight 8-bit words and provides the memory interface for `LOAD`, `STORE`, arithmetic, and shift operations. The block includes the top-level SRAM symbol, schematic, and layout, along with the core array, decoder, precharge, write, and read circuits.
 
 <div align="center">
-<img src="figures/fig17-sram-symbol.jpg" alt="Fig. 17. SRAM symbol." width="700"><br>
+<img src="figures/fig17-sram-symbol.jpg" alt="Fig. 17. SRAM symbol." width="500"><br>
 <em>Fig. 17. SRAM symbol.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig18-sram-schematic.jpg" alt="Fig. 18. SRAM schematic." width="700"><br>
+<img src="figures/fig18-sram-schematic.jpg" alt="Fig. 18. SRAM schematic." width="800"><br>
 <em>Fig. 18. SRAM schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig19-sram-layout.jpg" alt="Fig. 19. SRAM layout." width="900"><br>
+<img src="figures/fig19-sram-layout.jpg" alt="Fig. 19. SRAM layout." width="1000"><br>
 <em>Fig. 19. SRAM layout.</em>
 </div>
 
@@ -203,11 +203,11 @@ At the core level, the SRAM contains the 8-by-8 memory array and connects it to 
 <table>
 <tr>
 <td align="center">
-<img src="figures/fig20-sram-core-schematic.jpg" alt="Fig. 20. SRAM core schematic." width="500"><br>
+<img src="figures/fig20-sram-core-schematic.jpg" alt="Fig. 20. SRAM core schematic." width="700"><br>
 <em>Fig. 20. SRAM core schematic.</em>
 </td>
 <td align="center">
-<img src="figures/fig21-sram-core-layout.jpg" alt="Fig. 21. SRAM core layout." width="500"><br>
+<img src="figures/fig21-sram-core-layout.jpg" alt="Fig. 21. SRAM core layout." width="300"><br>
 <em>Fig. 21. SRAM core layout.</em>
 </td>
 </tr>
@@ -218,74 +218,74 @@ The decoder selects one SRAM row from the address bits. Its schematic and layout
 <table>
 <tr>
 <td align="center">
-<img src="figures/fig22-sram-decoder-schematic.jpg" alt="Fig. 22. SRAM decoder schematic." width="500"><br>
+<img src="figures/fig22-sram-decoder-schematic.jpg" alt="Fig. 22. SRAM decoder schematic." width="475"><br>
 <em>Fig. 22. SRAM decoder schematic.</em>
 </td>
 <td align="center">
-<img src="figures/fig23-sram-decoder-layout.jpg" alt="Fig. 23. SRAM decoder layout." width="500"><br>
+<img src="figures/fig23-sram-decoder-layout.jpg" alt="Fig. 23. SRAM decoder layout." width="525"><br>
 <em>Fig. 23. SRAM decoder layout.</em>
 </td>
 </tr>
 </table>
 
 <div align="center">
-<img src="figures/fig24-sram-decoder-inverter-schematic.jpg" alt="Fig. 24. SRAM decoder inverter schematic." width="700"><br>
+<img src="figures/fig24-sram-decoder-inverter-schematic.jpg" alt="Fig. 24. SRAM decoder inverter schematic." width="500"><br>
 <em>Fig. 24. SRAM decoder inverter schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig25-sram-decoder-3input-and-schematic.jpg" alt="Fig. 25. SRAM decoder three-input AND schematic." width="700"><br>
+<img src="figures/fig25-sram-decoder-3input-and-schematic.jpg" alt="Fig. 25. SRAM decoder three-input AND schematic." width="500"><br>
 <em>Fig. 25. SRAM decoder three-input AND schematic.</em>
 </div>
 
 The decoder layout is built from reusable inverter and three-input AND cells, which generate the decoded word-line signals used to select the target SRAM row. After row selection, the precharge circuit initializes the bit lines before read and write activity.
 
 <div align="center">
-<img src="figures/fig26-sram-precharge-schematic.jpg" alt="Fig. 26. SRAM precharge schematic." width="700"><br>
+<img src="figures/fig26-sram-precharge-schematic.jpg" alt="Fig. 26. SRAM precharge schematic." width="1000"><br>
 <em>Fig. 26. SRAM precharge schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig27-sram-precharge-layout.jpg" alt="Fig. 27. SRAM precharge layout." width="700"><br>
+<img src="figures/fig27-sram-precharge-layout.jpg" alt="Fig. 27. SRAM precharge layout." width="1000"><br>
 <em>Fig. 27. SRAM precharge layout.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig28-sram-precharge-1bit-schematic.jpg" alt="Fig. 28. One-bit SRAM precharge schematic." width="900"><br>
+<img src="figures/fig28-sram-precharge-1bit-schematic.jpg" alt="Fig. 28. One-bit SRAM precharge schematic." width="500"><br>
 <em>Fig. 28. One-bit SRAM precharge schematic.</em>
 </div>
 
 The write circuit drives the selected SRAM column during memory-update operations. The full write schematic and layout show the column-level implementation, while the one-bit schematic shows the repeated write cell used across the 8-bit data path.
 
 <div align="center">
-<img src="figures/fig29-sram-write-schematic.jpg" alt="Fig. 29. SRAM write schematic." width="700"><br>
+<img src="figures/fig29-sram-write-schematic.jpg" alt="Fig. 29. SRAM write schematic." width="1000"><br>
 <em>Fig. 29. SRAM write schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig30-sram-write-layout.jpg" alt="Fig. 30. SRAM write layout." width="900"><br>
+<img src="figures/fig30-sram-write-layout.jpg" alt="Fig. 30. SRAM write layout." width="1000"><br>
 <em>Fig. 30. SRAM write layout.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig31-sram-write-1bit-schematic.jpg" alt="Fig. 31. One-bit SRAM write schematic." width="700"><br>
+<img src="figures/fig31-sram-write-1bit-schematic.jpg" alt="Fig. 31. One-bit SRAM write schematic." width="500"><br>
 <em>Fig. 31. One-bit SRAM write schematic.</em>
 </div>
 
 The read circuit senses the selected SRAM column and drives the internal data path during memory-read operations. The full read schematic and layout show the complete read path, and the one-bit schematic shows the repeated cell used for each data bit.
 
 <div align="center">
-<img src="figures/fig32-sram-read-schematic.jpg" alt="Fig. 32. SRAM read schematic." width="700"><br>
+<img src="figures/fig32-sram-read-schematic.jpg" alt="Fig. 32. SRAM read schematic." width="1000"><br>
 <em>Fig. 32. SRAM read schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig33-sram-read-layout.jpg" alt="Fig. 33. SRAM read layout." width="900"><br>
+<img src="figures/fig33-sram-read-layout.jpg" alt="Fig. 33. SRAM read layout." width="1000"><br>
 <em>Fig. 33. SRAM read layout.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig34-sram-read-1bit-schematic.jpg" alt="Fig. 34. One-bit SRAM read schematic." width="700"><br>
+<img src="figures/fig34-sram-read-1bit-schematic.jpg" alt="Fig. 34. One-bit SRAM read schematic." width="500"><br>
 <em>Fig. 34. One-bit SRAM read schematic.</em>
 </div>
 
