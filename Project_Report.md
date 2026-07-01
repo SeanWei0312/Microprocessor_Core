@@ -358,7 +358,7 @@ The one-bit read cell is the repeated read path used for each SRAM data bit. It 
 The adder/subtractor performs 8-bit addition and subtraction for the accumulator datapath and generates the carry and overflow flags. The symbol defines the arithmetic block interface, the schematic connects the repeated one-bit adder stages, and the layout implements the full arithmetic datapath. Fig. 33, Fig. 34, and Fig. 35 show the adder/subtractor symbol, schematic, and layout.
 
 <div align="center">
-<img src="figures/fig33-adder-subtractor-symbol.jpg" alt="Fig. 33. Adder/subtractor symbol." width="500"><br>
+<img src="figures/fig33-adder-subtractor-symbol.jpg" alt="Fig. 33. Adder/subtractor symbol." width="300"><br>
 <em>Fig. 33. Adder/subtractor symbol.</em>
 </div>
 
