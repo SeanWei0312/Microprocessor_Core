@@ -455,11 +455,11 @@ The multiplexer selects the value written into the accumulator from the SRAM, ad
 <table>
 <tr>
 <td align="center">
-<img src="figures/fig45-multiplexer-symbol.jpg" alt="Fig. 45. Multiplexer symbol." width="700"><br>
+<img src="figures/fig45-multiplexer-symbol.jpg" alt="Fig. 45. Multiplexer symbol." width="600"><br>
 <em>Fig. 45. Multiplexer symbol.</em>
 </td>
 <td align="center">
-<img src="figures/fig46-multiplexer-schematic.jpg" alt="Fig. 46. Multiplexer schematic." width="100"><br>
+<img src="figures/fig46-multiplexer-schematic.jpg" alt="Fig. 46. Multiplexer schematic." width="200"><br>
 <em>Fig. 46. Multiplexer schematic.</em>
 </td>
 <td align="center">
