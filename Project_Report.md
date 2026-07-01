@@ -165,12 +165,12 @@ The control-signal latch stores selected PLA outputs so the datapath control sig
 The control-signal latch is built from one inverter cell and five latch cells. The inverter generates the complementary clock phase required by the latch stages, while each latch cell stores one decoded control bit from the PLA. The inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path. The latch switch devices use matched 700 nm PMOS and NMOS widths so the pass path remains compact while providing balanced switching behavior. Fig. 13 and Fig. 14 show the reusable inverter and latch cells, and Table 4 lists the device sizes.
 
 <div align="center">
-<img src="figures/fig13-control-signal-latch-inverter-schematic.jpg" alt="Fig. 13. Control-signal latch inverter schematic." width="850"><br>
+<img src="figures/fig13-control-signal-latch-inverter-schematic.jpg" alt="Fig. 13. Control-signal latch inverter schematic." width="800"><br>
 <em>Fig. 13. Control-signal latch inverter schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig14-control-signal-latch-cell-schematic.jpg" alt="Fig. 14. Control-signal latch cell schematic." width="550"><br>
+<img src="figures/fig14-control-signal-latch-cell-schematic.jpg" alt="Fig. 14. Control-signal latch cell schematic." width="800"><br>
 <em>Fig. 14. Control-signal latch cell schematic.</em>
 </div>
 
@@ -435,7 +435,7 @@ The shifter uses reusable inverter and multiplexer cells. The inverter generates
 </div>
 
 <div align="center">
-<img src="figures/fig44-shifter-multiplexer-cell-schematic.jpg" alt="Fig. 44. Shifter multiplexer cell schematic." width="500"><br>
+<img src="figures/fig44-shifter-multiplexer-cell-schematic.jpg" alt="Fig. 44. Shifter multiplexer cell schematic." width="1000"><br>
 <em>Fig. 44. Shifter multiplexer cell schematic.</em>
 </div>
 
