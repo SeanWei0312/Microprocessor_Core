@@ -179,7 +179,7 @@ The control-signal latch is built from one inverter cell and five latch cells. T
 
 <br>
 
-### C. SRAM Memory Subsystem
+### C. SRAM Memory Design
 
 The SRAM memory subsystem stores eight 8-bit words and provides the data-memory interface required by the processor. Following the SRAM project requirements, the block uses `PHI1`, `PHI2`, `MEM_READ`, `MEM_WRITE`, an 8-bit bidirectional data bus, and a 3-bit address input. The implementation is organized into the top-level SRAM interface, the 8-by-8 core array, the row decoder, `PHI2` precharge circuitry, `PHI1`-qualified write circuitry, and the `MEM_READ`-controlled read path.
 
