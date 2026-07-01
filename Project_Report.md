@@ -500,7 +500,7 @@ The accumulator latch stores the selected 8-bit datapath result for the next ope
 <em>Fig. 50. Accumulator latch schematic.</em>
 </td>
 <td align="center">
-<img src="figures/fig51-accumulator-latch-layout.jpg" alt="Fig. 51. Accumulator latch layout." width="125"><br>
+<img src="figures/fig51-accumulator-latch-layout.jpg" alt="Fig. 51. Accumulator latch layout." width="150"><br>
 <em>Fig. 51. Accumulator latch layout.</em>
 </td>
 </tr>
