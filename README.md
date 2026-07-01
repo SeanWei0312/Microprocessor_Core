@@ -1,12 +1,14 @@
-# Full-Custom 8-Bit Microprocessor Core in 65-nm CMOS
+# Full-Custom 8-Bit Microprocessor Core in 65 nm CMOS
 
-This repository contains a full-custom 8-bit microprocessor core designed in 65-nm CMOS. It includes the final layout database, Virtuoso design files, Espresso PLA files, report figures, physical-verification captures, transient waveform results, submission PDFs, and the Markdown project report.
+This repository contains a full-custom 8-bit microprocessor core designed in 65 nm CMOS. It includes the final layout database, Virtuoso design files, Espresso PLA files, report figures, physical-verification captures, transient waveform results, submission PDFs, and the Markdown project report.
 
 ## Project Summary
 
-The processor uses a PLA-based instruction decoder, a control-signal latch, an 8-by-8 SRAM memory subsystem, an adder/subtractor, a shifter, a multiplexer, an accumulator latch, and a bidirectional external bus driver. The instruction set supports `NOP`, `LOAD`, `STORE`, `GET`, `PUT`, `ADD`, `SUB`, and `SHIFT`.
+The processor uses a PLA-based instruction decoder, a control-signal latch, an 8-by-8 SRAM, an adder/subtractor, a shifter, a multiplexer, an accumulator latch, and a bidirectional external bus driver. The instruction set supports `NOP`, `LOAD`, `STORE`, `GET`, `PUT`, `ADD`, `SUB`, and `SHIFT`.
 
 The design uses a 6-bit instruction field. `INSTR<2:0>` provides the opcode, and `INSTR<5:3>` provides the SRAM address code. The completed layout passes DRC and LVS, and transient simulation verifies memory loading, internal datapath operations, external-bus store operations, carry and overflow outputs, shift control, and clock-to-Q timing.
+
+The main report is [Project_Report.md](Project_Report.md). It documents the top-level architecture, physical verification, circuit implementation, functional verification, and measured delay results.
 
 ## Contributors
 
@@ -48,6 +50,9 @@ Yi-Hsiang Wei and Zijian Shang are students in Columbia University's Department 
 - [Project_Report.md](Project_Report.md) - complete Markdown project report.
 - [EECS4321_Submission/eecs4321_submission.pdf](EECS4321_Submission/eecs4321_submission.pdf) - final submission PDF.
 - [EECS4321_Submission/final_project_requirements.pdf](EECS4321_Submission/final_project_requirements.pdf) - project requirements and reference PDF.
+- [EECS4321_Submission/project_SRAM_requirements.pdf](EECS4321_Submission/project_SRAM_requirements.pdf) - SRAM project requirements.
+- [EECS4321_Submission/project_Adder_requirements.pdf](EECS4321_Submission/project_Adder_requirements.pdf) - adder project requirements.
+- [EECS4321_Submission/project_Shifter_requirements.pdf](EECS4321_Submission/project_Shifter_requirements.pdf) - shifter project requirements.
 - `Layout_files/` - final GDS layout database.
 - `Virtuoso_files/` - Cadence Virtuoso design directories for the processor blocks and testbenches.
 - `Espresso_files/` - instruction-decoder PLA input and Espresso-minimized output files.
@@ -74,6 +79,9 @@ figures/                           Report figures in numbered order
 EECS4321_Submission/
   eecs4321_submission.pdf          Final submission report
   final_project_requirements.pdf   Project requirements/reference PDF
+  project_SRAM_requirements.pdf    SRAM project requirements
+  project_Adder_requirements.pdf   Adder project requirements
+  project_Shifter_requirements.pdf Shifter project requirements
 ```
 
 ## Report Notes
