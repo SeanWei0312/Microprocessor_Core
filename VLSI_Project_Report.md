@@ -6,20 +6,20 @@ VLSI Design Project
 
 ## Abstract
 
-This report presents the layout, physical verification, and waveform-level functional verification of a full-custom 8-bit microprocessor core in 65 nm CMOS. The processor integrates a PLA-based instruction decoder, a control-signal latch, an 8x8 SRAM, an arithmetic datapath, a shifter, an accumulator latch, a multiplexer, and a bidirectional external-bus interface.
+This report presents the layout, physical verification, and waveform-level functional verification of a full-custom 8-bit microprocessor core in 65 nm CMOS. The processor integrates a PLA-based instruction decoder, a control-signal latch, an 8-by-8 SRAM, an arithmetic datapath, a shifter, an accumulator latch, a multiplexer, and a bidirectional external bus interface.
 
 The instruction set supports eight operations: `NOP`, `LOAD`, `STORE`, `GET`, `PUT`, `ADD`, `SUB`, and `SHIFT`. The included figures document the top-level schematic, layout views, DRC/LVS verification captures, and transient waveform results.
 
 ## I. Introduction
 
-The goal of this project is to design and verify a compact full-custom 8-bit microprocessor core. The processor operates on 8-bit data words and uses a 3-bit opcode and memory-address bits to select memory, arithmetic, shift, and external-bus operations.
+The goal of this project is to design and verify a compact full-custom 8-bit microprocessor core. The processor operates on 8-bit data words and uses a 3-bit opcode and memory address bits to select memory, arithmetic, shift, and external bus operations.
 
 The major top-level signals are summarized below.
 
 | Signal | Direction | Description |
 | --- | --- | --- |
 | `PHI1`, `PHI2` | Input | Two-phase clock signals |
-| `INSTR<0:5>` | Input | Instruction code containing opcode and memory-address fields |
+| `INSTR<0:5>` | Input | Instruction code containing opcode and memory address fields |
 | `EXT_BUS<0:7>` | Bidirectional | External 8-bit data bus |
 | `SHIFT_BYPASS` | Control | Selects shift-bypass mode |
 | `C` | Output | Carry flag |
@@ -33,7 +33,7 @@ The major top-level signals are summarized below.
 
 ### A. Top-Level Datapath
 
-The top-level schematic and layout show the complete processor hierarchy. The datapath connects the SRAM, accumulator latch, arithmetic unit, shifter, multiplexer, and external-bus driver, while the control path decodes `INSTR<0:2>` and latches timing-sensitive control signals for datapath evaluation.
+The top-level schematic and layout show the complete processor hierarchy. The datapath connects the SRAM, accumulator latch, arithmetic unit, shifter, multiplexer, and external bus driver. The control path decodes `INSTR<0:2>` and latches timing-sensitive control signals for datapath evaluation.
 
 <div align="center">
 <img src="figures/fig01-top-level-schematic.jpg" alt="Fig. 1. Top-level microprocessor schematic." width="1000"><br>
@@ -51,7 +51,7 @@ The external bus can load memory during `LOAD` or receive stored data during `ST
 
 ### B. Instruction Set and Control Table
 
-The opcode and decoded control behavior are summarized in Table 2.
+Table 2 summarizes the opcode and decoded control behavior.
 
 | Instruction | Opcode | Function | `SUB` | `MUX2 (SRAM)` | `MUX1 (Adder)` | `MUX0 (Shifter)` | `MEM_WRITE` | `MEM_READ` | `DRV_EN` | `SHIFT_BYPASS` | `LOAD_BUS` | `STORE_BUS` |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -70,7 +70,7 @@ The opcode and decoded control behavior are summarized in Table 2.
 
 ## III. Physical Verification
 
-The completed top-level layout passes DRC and LVS. The DRC result reports no rule violations, and LVS reports a successful comparison between the extracted layout and schematic netlists. The final layout is included in `Layout_files/ps9_Microprocessor.gds`.
+The completed top-level layout passes DRC and LVS. The DRC result reports no rule violations, and the LVS result confirms a successful comparison between the extracted layout and schematic netlists. The final layout database is included in `Layout_files/ps9_Microprocessor.gds`.
 
 <table>
 <tr>
@@ -91,7 +91,7 @@ The completed top-level layout passes DRC and LVS. The DRC result reports no rul
 
 ### A. PLA Block
 
-The instruction decoder design begins with the control behavior summarized in Table 2. The control table was translated into the Espresso input file `Espresso_files/instr_decoder.pla`, which defines three opcode inputs, `instr2`, `instr1`, and `instr0`, and ten decoded control outputs: `subtract`, `mux2`, `mux1`, `mux0`, `mem_write`, `mem_read`, `drv_enable`, `shift_bypass`, `load_bus`, and `store_bus`. Don't-care entries are used wherever a control value is unused, allowing Espresso to optimize those outputs rather than forcing them to fixed logic levels.
+The instruction decoder design begins with the control behavior summarized in Table 2. The control table was translated into the Espresso input file `Espresso_files/instr_decoder.pla`, which defines three opcode inputs, `instr2`, `instr1`, and `instr0`, and ten decoded control outputs: `subtract`, `mux2`, `mux1`, `mux0`, `mem_write`, `mem_read`, `drv_enable`, `shift_bypass`, `load_bus`, and `store_bus`. Don't-care entries are used wherever a control value is unused, allowing Espresso to optimize those outputs instead of forcing them to fixed logic levels.
 
 <div align="center">
 <img src="figures/fig05-instr-decoder-pla.jpg" alt="Fig. 5. Instruction decoder PLA input file." width="1000"><br>
@@ -100,7 +100,7 @@ The instruction decoder design begins with the control behavior summarized in Ta
 
 <br>
 
-The input PLA file was then passed through Espresso to generate the minimized output file, `Espresso_files/instr_decoder_out.pla`. Espresso preserves the same input/output interface while replacing selected opcode-specific rows with shared implicants, such as `-00`, `0-1`, `-01`, and `1-0`. These minimized product terms reduce the amount of logic required in the instruction-decoder PLA.
+The input PLA file was passed through Espresso to generate the minimized output file, `Espresso_files/instr_decoder_out.pla`. Espresso preserves the same input/output interface while replacing selected opcode-specific rows with shared implicants, such as `-00`, `0-1`, `-01`, and `1-0`. These minimized product terms reduce the logic required by the instruction-decoder PLA.
 
 <div align="center">
 <img src="figures/fig06-instr-decoder-out-pla.jpg" alt="Fig. 6. Espresso-minimized instruction decoder PLA output file." width="1000"><br>
@@ -130,7 +130,7 @@ The Espresso-minimized output was used to build the instruction-decoder PLA symb
 
 ### B. Control Latch Block
 
-The control latch stores the selected PLA outputs so that datapath control remains stable during evaluation. The symbol defines the block interface, the schematic connects the latch stages for subtraction, multiplexer selection, and shift control, and the layout implements those stages physically. The inverter and latch cell schematics and layouts are shown separately because they form the repeated cells used inside the control-latch block.
+The control latch stores the selected PLA outputs so that datapath control remains stable during evaluation. The symbol defines the block interface, the schematic connects the latch stages for subtraction, multiplexer selection, and shift control, and the layout implements those stages physically. The inverter and latch-cell schematics and layouts are shown separately because they form the repeated cells used inside the control-latch block.
 
 <div align="center">
 <img src="figures/fig10-control-latch-symbol.jpg" alt="Fig. 10. Control-signal latch symbol." width="1000"><br>
@@ -146,6 +146,8 @@ The control latch stores the selected PLA outputs so that datapath control remai
 <img src="figures/fig12-control-latch-layout.jpg" alt="Fig. 12. Control-signal latch layout." width="1000"><br>
 <em>Fig. 12. Control-signal latch layout.</em>
 </div>
+
+The control-signal latch contains one inverter cell and five latch cells.
 
 <table>
 <tr>
@@ -177,7 +179,7 @@ The control latch stores the selected PLA outputs so that datapath control remai
 
 ### C. SRAM Block
 
-The SRAM stores eight 8-bit words. It includes address decoding, bit-line precharge, write circuitry, read circuitry, and the 8x8 memory array.
+The SRAM stores eight 8-bit words. It includes address decoding, bit-line precharge, write circuitry, read circuitry, and the 8-by-8 memory array.
 
 <div align="center">
 <img src="figures/fig17-sram-layout.png" alt="Fig. 17. SRAM block layout." width="700"><br>
@@ -205,8 +207,8 @@ The SRAM stores eight 8-bit words. It includes address decoding, bit-line precha
 </div>
 
 <div align="center">
-<img src="figures/fig22-sram-array-layout.png" alt="Fig. 22. 8x8 SRAM array layout." width="460"><br>
-<em>Fig. 22. 8x8 SRAM array layout.</em>
+<img src="figures/fig22-sram-array-layout.png" alt="Fig. 22. 8-by-8 SRAM array layout." width="460"><br>
+<em>Fig. 22. 8-by-8 SRAM array layout.</em>
 </div>
 
 <br>
@@ -241,7 +243,7 @@ The datapath includes the adder/subtractor, shifter, multiplexer, and accumulato
 
 ### A. Test Operation Table
 
-The transient test sequence loads memory with known values, executes accumulator and arithmetic operations, verifies shift behavior, and stores the final memory values on the external bus.
+The transient test sequence loads memory with known values, executes accumulator and arithmetic operations, verifies shift behavior, and stores the final memory values onto the external bus.
 
 | Step | Operation | `INSTR` | Memory Address | Binary Value | Decimal Value | `C` | `OV` | `SHIFT<2:0>` |
 | ---: | --- | --- | ---: | --- | ---: | ---: | ---: | --- |
@@ -292,7 +294,7 @@ The transient test sequence loads memory with known values, executes accumulator
 
 ### B. Waveform Results
 
-The instruction waveform verifies the applied opcode and address fields. The external-bus waveform verifies that memory load values are accepted and that store operations reproduce the expected output sequence.
+The instruction waveform verifies the applied opcode and address fields. The external bus waveform verifies that memory load values are accepted and that store operations reproduce the expected output sequence.
 
 <div align="center">
 <img src="figures/fig27-waveforms-instruction-bus.png" alt="Fig. 27. Instruction and external bus waveform verification." width="760"><br>
@@ -312,7 +314,7 @@ The status and shift waveforms verify `SHIFT_BYPASS`, carry, overflow, and shift
 
 ### C. Delay Measurement
 
-A representative timing measurement compares `PHI1` and `EXT_BUS<0>` at the 500 mV crossing. From the plotted cursor values, the output transition follows the clock transition by approximately 15 ps.
+A representative timing measurement compares `PHI1` and `EXT_BUS<0>` at the 500 mV crossing. Based on the plotted cursor values, the output transition follows the clock transition by approximately 15 ps.
 
 ```text
 PHI1 reference crossing ~= 40.080 ns
@@ -336,7 +338,7 @@ Measured delay          ~= 15 ps
 
 ## VII. Conclusion
 
-A full-custom 8-bit microprocessor core in 65 nm CMOS was implemented and verified at the layout level. The design integrates instruction decoding, control latching, SRAM, arithmetic, shifting, accumulator storage, and external-bus transfer logic. The included schematic and layout figures document the completed design hierarchy and physical blocks, while the DRC and LVS captures confirm physical-rule correctness and schematic-layout equivalence.
+A full-custom 8-bit microprocessor core in 65 nm CMOS was implemented and verified at the layout level. The design integrates instruction decoding, control latching, SRAM, arithmetic, shifting, accumulator storage, and external bus transfer logic. The included schematic and layout figures document the completed design hierarchy and physical blocks, while the DRC and LVS captures confirm design-rule correctness and schematic-layout equivalence.
 
 Functional transient simulation verifies the instruction sequence, memory loading, arithmetic operations, shift control, bus store behavior, carry and overflow outputs, and representative output timing.
 
