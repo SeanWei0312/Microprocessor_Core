@@ -91,7 +91,7 @@ The completed top-level layout passes DRC and LVS. The DRC result reports no rul
 
 ### A. PLA Block
 
-The instruction decoder design begins with the control behavior summarized in Table 2. The control table was translated into the Espresso input file `Espresso_files/instr_decoder.pla`, which defines three opcode inputs, `instr2`, `instr1`, and `instr0`, and ten decoded control outputs: `subtract`, `mux2`, `mux1`, `mux0`, `mem_write`, `mem_read`, `drv_enable`, `shift_bypass`, `load_bus`, and `store_bus`. Don't-care entries are used wherever a control value is unused, allowing Espresso to optimize those outputs instead of forcing them to fixed logic levels.
+The instruction decoder design begins with the control behavior summarized in Table 2. The control table was translated into the Espresso input file `Espresso_files/instr_decoder.pla`, which defines three opcode inputs, `instr2`, `instr1`, and `instr0`, and ten decoded control outputs: `subtract`, `mux2`, `mux1`, `mux0`, `mem_write`, `mem_read`, `drv_enable`, `shift_bypass`, `load_bus`, and `store_bus`. Unused control values are marked as don't-care entries, allowing Espresso to optimize those outputs instead of forcing them to fixed logic levels.
 
 <div align="center">
 <img src="figures/fig05-instr-decoder-pla.jpg" alt="Fig. 5. Instruction decoder PLA input file." width="1000"><br>
@@ -100,7 +100,7 @@ The instruction decoder design begins with the control behavior summarized in Ta
 
 <br>
 
-The input PLA file was passed through Espresso to generate the minimized output file, `Espresso_files/instr_decoder_out.pla`. Espresso preserves the same input/output interface while replacing selected opcode-specific rows with shared implicants, such as `-00`, `0-1`, `-01`, and `1-0`. These minimized product terms reduce the logic required by the instruction-decoder PLA.
+The input PLA file was passed through Espresso to generate the minimized output file, `Espresso_files/instr_decoder_out.pla`. Espresso preserves the same input and output interface while replacing selected opcode-specific rows with shared implicants, such as `-00`, `0-1`, `-01`, and `1-0`. These minimized product terms reduce the logic required by the instruction-decoder PLA.
 
 <div align="center">
 <img src="figures/fig06-instr-decoder-out-pla.jpg" alt="Fig. 6. Espresso-minimized instruction decoder PLA output file." width="1000"><br>
@@ -109,7 +109,7 @@ The input PLA file was passed through Espresso to generate the minimized output 
 
 <br>
 
-The Espresso-minimized output was used to build the instruction-decoder PLA symbol and schematic. The symbol provides the block-level interface, the schematic maps the minimized product terms to the decoded control outputs, and the final layout implements the same logic as a regular row-column PLA.
+The Espresso-minimized output was used to build the instruction-decoder PLA symbol and schematic. The symbol provides the block-level interface, the schematic maps the minimized product terms to the decoded control outputs, and the final layout implements the same logic as a regular row-and-column PLA.
 
 <div align="center">
 <img src="figures/fig07-pla-symbol.jpg" alt="Fig. 7. PLA symbol." width="1000"><br>
@@ -130,7 +130,7 @@ The Espresso-minimized output was used to build the instruction-decoder PLA symb
 
 ### B. Control Latch Block
 
-The control latch stores the selected PLA outputs so that datapath control remains stable during evaluation. The symbol defines the block interface, the schematic connects the latch stages for subtraction, multiplexer selection, and shift control, and the layout implements those stages physically. The inverter and latch-cell schematics and layouts are shown separately because they form the repeated cells used inside the control-latch block.
+The control latch stores the selected PLA outputs so that datapath control remains stable during evaluation. The symbol defines the block interface, the schematic connects the latch stages for subtraction, multiplexer selection, and shift control, and the layout implements those stages physically. The inverter and latch-cell schematics and layouts are shown separately because they form the repeated cells used in the control-latch block.
 
 <div align="center">
 <img src="figures/fig10-control-latch-symbol.jpg" alt="Fig. 10. Control-signal latch symbol." width="1000"><br>
@@ -147,7 +147,9 @@ The control latch stores the selected PLA outputs so that datapath control remai
 <em>Fig. 12. Control-signal latch layout.</em>
 </div>
 
-The control-signal latch contains one inverter cell and five latch cells.
+<br>
+
+The control-signal latch is built from one inverter cell and five latch cells. The inverter cell generates the complementary control phase needed by the latch stages, while each latch cell stores one decoded control bit from the PLA. Using repeated latch cells keeps the control block modular and makes the schematic-to-layout correspondence clear: the cell schematics define the transistor-level storage behavior, and the cell layouts are tiled and connected to form the complete control-latch block.
 
 <table>
 <tr>
@@ -243,7 +245,7 @@ The datapath includes the adder/subtractor, shifter, multiplexer, and accumulato
 
 ### A. Test Operation Table
 
-The transient test sequence loads memory with known values, executes accumulator and arithmetic operations, verifies shift behavior, and stores the final memory values onto the external bus.
+The transient test sequence loads memory with known values, executes accumulator and arithmetic operations, verifies shift behavior, and stores the final memory values on the external bus.
 
 | Step | Operation | `INSTR` | Memory Address | Binary Value | Decimal Value | `C` | `OV` | `SHIFT<2:0>` |
 | ---: | --- | --- | ---: | --- | ---: | ---: | ---: | --- |
@@ -294,7 +296,7 @@ The transient test sequence loads memory with known values, executes accumulator
 
 ### B. Waveform Results
 
-The instruction waveform verifies the applied opcode and address fields. The external bus waveform verifies that memory load values are accepted and that store operations reproduce the expected output sequence.
+The instruction waveform verifies the applied opcode and address fields. The external bus waveform confirms that memory load values are accepted and that store operations reproduce the expected output sequence.
 
 <div align="center">
 <img src="figures/fig27-waveforms-instruction-bus.png" alt="Fig. 27. Instruction and external bus waveform verification." width="760"><br>
