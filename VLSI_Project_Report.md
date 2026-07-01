@@ -151,26 +151,25 @@ The control-signal latch stores selected outputs from the PLA so that datapath c
 
 The control-signal latch is built from one inverter cell and five latch cells. The inverter cell generates the complementary control phase required by the latch stages, while each latch cell stores one decoded control bit from the PLA. Reusing the latch cell keeps the control block modular and makes the schematic-to-layout correspondence clear: the cell schematics define the transistor-level storage behavior, and the cell layouts are tiled and connected to form the complete control-signal latch.
 
-<table width="2000">
-<tr>
-<td align="center" width="850">
+<div align="center">
 <img src="figures/fig13-control-latch-inverter-schematic.jpg" alt="Fig. 13. Inverter schematic used in the control latch." width="850"><br>
 <em>Fig. 13. Inverter schematic used in the control latch.</em>
-</td>
-<td align="center" width="150">
+</div>
+
+<div align="center">
 <img src="figures/fig14-control-latch-inverter-layout.jpg" alt="Fig. 14. Inverter layout used in the control latch." width="150"><br>
 <em>Fig. 14. Inverter layout used in the control latch.</em>
-</td>
-<td align="center" width="550">
+</div>
+
+<div align="center">
 <img src="figures/fig15-control-latch-latch-schematic.jpg" alt="Fig. 15. Latch schematic used in the control latch." width="550"><br>
 <em>Fig. 15. Latch schematic used in the control latch.</em>
-</td>
-<td align="center" width="450">
+</div>
+
+<div align="center">
 <img src="figures/fig16-control-latch-latch-layout.jpg" alt="Fig. 16. Latch layout used in the control latch." width="450"><br>
 <em>Fig. 16. Latch layout used in the control latch.</em>
-</td>
-</tr>
-</table>
+</div>
 
 <br>
 
