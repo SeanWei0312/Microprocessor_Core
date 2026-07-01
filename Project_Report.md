@@ -463,7 +463,7 @@ The multiplexer selects the value written into the accumulator from the SRAM, ad
 <em>Fig. 46. Multiplexer schematic.</em>
 </td>
 <td align="center">
-<img src="figures/fig47-multiplexer-layout.jpg" alt="Fig. 47. Multiplexer layout." width="150"><br>
+<img src="figures/fig47-multiplexer-layout.jpg" alt="Fig. 47. Multiplexer layout." width="125"><br>
 <em>Fig. 47. Multiplexer layout.</em>
 </td>
 </tr>
