@@ -219,11 +219,11 @@ The SRAM core implements the required eight-word by eight-bit storage array. It 
 <table>
 <tr>
 <td align="center">
-<img src="figures/fig18-sram-core-array-schematic.jpg" alt="Fig. 18. SRAM core-array schematic." width="650"><br>
+<img src="figures/fig18-sram-core-array-schematic.jpg" alt="Fig. 18. SRAM core-array schematic." width="625"><br>
 <em>Fig. 18. SRAM core-array schematic.</em>
 </td>
 <td align="center">
-<img src="figures/fig19-sram-core-array-layout.jpg" alt="Fig. 19. SRAM core-array layout." width="350"><br>
+<img src="figures/fig19-sram-core-array-layout.jpg" alt="Fig. 19. SRAM core-array layout." width="375"><br>
 <em>Fig. 19. SRAM core-array layout.</em>
 </td>
 </tr>
