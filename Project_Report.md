@@ -472,7 +472,7 @@ The multiplexer selects the value written into the accumulator from the SRAM, ad
 The multiplexer is built from a repeated one-bit selection cell. Each one-bit cell selects the corresponding datapath bit under the decoded control signals, and repeating the cell keeps the 8-bit schematic and layout regular. Fig. 48 shows the one-bit multiplexer schematic, and Table 11 references the corresponding device sizing.
 
 <div align="center">
-<img src="figures/fig48-one-bit-multiplexer-schematic.jpg" alt="Fig. 48. One-bit multiplexer schematic." width="500"><br>
+<img src="figures/fig48-one-bit-multiplexer-schematic.jpg" alt="Fig. 48. One-bit multiplexer schematic." width="800"><br>
 <em>Fig. 48. One-bit multiplexer schematic.</em>
 </div>
 
@@ -496,11 +496,11 @@ The accumulator latch stores the selected 8-bit datapath result for the next ope
 <table>
 <tr>
 <td align="center">
-<img src="figures/fig50-accumulator-latch-schematic.jpg" alt="Fig. 50. Accumulator latch schematic." width="400"><br>
+<img src="figures/fig50-accumulator-latch-schematic.jpg" alt="Fig. 50. Accumulator latch schematic." width="100"><br>
 <em>Fig. 50. Accumulator latch schematic.</em>
 </td>
 <td align="center">
-<img src="figures/fig51-accumulator-latch-layout.jpg" alt="Fig. 51. Accumulator latch layout." width="600"><br>
+<img src="figures/fig51-accumulator-latch-layout.jpg" alt="Fig. 51. Accumulator latch layout." width="125"><br>
 <em>Fig. 51. Accumulator latch layout.</em>
 </td>
 </tr>
