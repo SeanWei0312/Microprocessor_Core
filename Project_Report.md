@@ -413,7 +413,7 @@ The adder/subtractor is built from repeated one-bit adder cells. The full-adder 
 The shifter implements the accumulator shift operation and supports the shift-bypass control path. The symbol defines the shifter interface, the schematic connects the repeated shift-selection cells, and the layout tiles those cells into the full 8-bit shifter. Fig. 40, Fig. 41, and Fig. 42 show the shifter symbol, schematic, and layout.
 
 <div align="center">
-<img src="figures/fig40-shifter-symbol.jpg" alt="Fig. 40. Shifter symbol." width="500"><br>
+<img src="figures/fig40-shifter-symbol.jpg" alt="Fig. 40. Shifter symbol." width="300"><br>
 <em>Fig. 40. Shifter symbol.</em>
 </div>
 
