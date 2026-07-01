@@ -112,7 +112,7 @@ The input PLA file was then processed with Espresso to generate the minimized ou
 The Espresso-minimized output was used to build the instruction-decoder PLA symbol, schematic, and layout. The symbol provides the block-level interface, the schematic maps the minimized product terms to the decoded control outputs, and the final layout implements the same logic in a regular row-and-column PLA structure.
 
 <div align="center">
-<img src="figures/fig07-pla-symbol.jpg" alt="Fig. 7. PLA symbol." width="1000"><br>
+<img src="figures/fig07-pla-symbol.jpg" alt="Fig. 7. PLA symbol." width="800"><br>
 <em>Fig. 7. PLA symbol.</em>
 </div>
 
@@ -154,11 +154,11 @@ The control-signal latch is built from one inverter cell and five latch cells. T
 <table>
 <tr>
 <td align="center">
-<img src="figures/fig13-control-latch-inverter-schematic.jpg" alt="Fig. 13. Inverter schematic used in the control latch." width="425"><br>
+<img src="figures/fig13-control-latch-inverter-schematic.jpg" alt="Fig. 13. Inverter schematic used in the control latch." width="850"><br>
 <em>Fig. 13. Inverter schematic used in the control latch.</em>
 </td>
 <td align="center">
-<img src="figures/fig14-control-latch-inverter-layout.jpg" alt="Fig. 14. Inverter layout used in the control latch." width="75"><br>
+<img src="figures/fig14-control-latch-inverter-layout.jpg" alt="Fig. 14. Inverter layout used in the control latch." width="150"><br>
 <em>Fig. 14. Inverter layout used in the control latch.</em>
 </td>
 </tr>
@@ -167,11 +167,11 @@ The control-signal latch is built from one inverter cell and five latch cells. T
 <table>
 <tr>
 <td align="center">
-<img src="figures/fig15-control-latch-latch-schematic.jpg" alt="Fig. 15. Latch schematic used in the control latch." width="275"><br>
+<img src="figures/fig15-control-latch-latch-schematic.jpg" alt="Fig. 15. Latch schematic used in the control latch." width="550"><br>
 <em>Fig. 15. Latch schematic used in the control latch.</em>
 </td>
 <td align="center">
-<img src="figures/fig16-control-latch-latch-layout.jpg" alt="Fig. 16. Latch layout used in the control latch." width="225"><br>
+<img src="figures/fig16-control-latch-latch-layout.jpg" alt="Fig. 16. Latch layout used in the control latch." width="450"><br>
 <em>Fig. 16. Latch layout used in the control latch.</em>
 </td>
 </tr>
