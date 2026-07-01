@@ -14,7 +14,7 @@ The instruction set supports eight operations: `NOP`, `LOAD`, `STORE`, `GET`, `P
 
 The goal of this project is to design and verify a compact full-custom 8-bit microprocessor core. The processor operates on 8-bit data words and uses a 3-bit opcode field and a 3-bit memory-address field to select memory, arithmetic, shift, and external bus operations.
 
-The major top-level signals are summarized below.
+The major top-level signals are summarized in Table 1.
 
 | Signal | Direction | Description |
 | --- | --- | --- |
@@ -47,11 +47,11 @@ The top-level schematic and layout show the complete processor hierarchy. The da
 
 <br>
 
-The external bus can load memory during `LOAD` or receive stored data during `STORE`. Arithmetic operations use the accumulator and SRAM data as operands.
+During `LOAD`, the external bus writes data into SRAM. During `STORE`, the external bus receives data read from SRAM. Arithmetic operations use the accumulator and SRAM outputs as operands.
 
 ### B. Instruction Set and Control Table
 
-Table 2 summarizes the opcode and decoded control behavior.
+Table 2 summarizes the instruction opcode and decoded control behavior.
 
 | Instruction | Opcode | Function | `SUB` | `MUX2 (SRAM)` | `MUX1 (Adder)` | `MUX0 (Shifter)` | `MEM_WRITE` | `MEM_READ` | `DRV_EN` | `SHIFT_BYPASS` | `LOAD_BUS` | `STORE_BUS` |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -70,7 +70,7 @@ Table 2 summarizes the opcode and decoded control behavior.
 
 ## III. Physical Verification
 
-The completed top-level layout passes DRC and LVS. The DRC result reports no rule violations, and the LVS result confirms a successful comparison between the extracted layout and schematic netlists. The final layout database is included in `Layout_files/ps9_Microprocessor.gds`.
+The completed top-level layout passes both DRC and LVS. The DRC result reports no rule violations, and the LVS result confirms a successful comparison between the extracted layout and schematic netlists. The final layout database is included in `Layout_files/ps9_Microprocessor.gds`.
 
 <table>
 <tr>
@@ -91,7 +91,7 @@ The completed top-level layout passes DRC and LVS. The DRC result reports no rul
 
 ### A. Instruction-Decoder PLA
 
-The instruction-decoder PLA is generated from the control behavior summarized in Table 2. The control table was translated into the Espresso input file `Espresso_files/instr_decoder.pla`, which defines three opcode inputs, `instr2`, `instr1`, and `instr0`, and ten decoded control outputs: `subtract`, `mux2`, `mux1`, `mux0`, `mem_write`, `mem_read`, `drv_enable`, `shift_bypass`, `load_bus`, and `store_bus`. Unused control values are marked as don't-care entries so Espresso can minimize the logic without forcing every output to a fixed value.
+The instruction-decoder PLA is generated from the control behavior summarized in Table 2. The control table was translated into the Espresso input file `Espresso_files/instr_decoder.pla`, which defines three opcode inputs, `instr2`, `instr1`, and `instr0`, and ten decoded control outputs: `subtract`, `mux2`, `mux1`, `mux0`, `mem_write`, `mem_read`, `drv_enable`, `shift_bypass`, `load_bus`, and `store_bus`. Unused control values are marked as don't-care terms so Espresso can minimize the logic without forcing every output to a fixed value.
 
 <div align="center">
 <img src="figures/fig05-instruction-decoder-pla-input-file.jpg" alt="Fig. 5. Instruction-decoder PLA input file." width="800"><br>
@@ -187,7 +187,7 @@ The control-signal latch is built from one inverter cell and five latch cells. T
 
 ### C. SRAM Memory Design
 
-The SRAM memory subsystem stores eight 8-bit words and provides the processor's data-memory interface. The block uses `PHI1`, `PHI2`, `MEM_READ`, `MEM_WRITE`, an 8-bit bidirectional data bus, and a 3-bit address input. It is organized into the top-level SRAM interface, the 8-by-8 core array, the row decoder, `PHI2` precharge circuitry, `PHI1`-qualified write circuitry, and the `MEM_READ`-controlled read path.
+The SRAM memory subsystem stores eight 8-bit words and provides the processor's data-memory interface. The block uses `PHI1`, `PHI2`, `MEM_READ`, `MEM_WRITE`, an 8-bit bidirectional data bus, and a 3-bit address input. It is organized into the top-level SRAM interface, the 8-by-8 core array, the row decoder, the `PHI2` precharge circuitry, the `PHI1`-qualified write circuitry, and the `MEM_READ`-controlled read path.
 
 <div align="center">
 <img src="figures/fig15-sram-symbol.jpg" alt="Fig. 15. SRAM symbol." width="500"><br>
@@ -568,7 +568,7 @@ The external bus driver uses a tristate output cell and a repeated one-bit bus-d
 
 ### A. Test Operation Table
 
-The transient test sequence in Table 14 verifies the processor at the instruction level. The opcode field is applied on `INSTR<2:0>`, and the SRAM address field is applied on `INSTR<5:3>`. Each instruction is evaluated over one 1 ns clock period.
+The transient test sequence in Table 14 verifies the processor at the instruction level. The opcode field is applied to `INSTR<2:0>`, and the SRAM address field is applied to `INSTR<5:3>`. Each instruction is evaluated over one clock period of 1 ns.
 
 Steps 1-8 load the initial SRAM contents through the external bus. Steps 9-32 exercise internal processor operations by repeating a `NOP`, `GET`, arithmetic or shift operation, and `PUT` sequence on selected SRAM addresses. The ADD and SUB steps record the expected carry and overflow outputs, while the SHIFT steps record the applied `SHIFT<2:0>` control code. Steps 33-40 store the final SRAM contents onto the external bus so the memory results can be checked against the expected binary and decimal values.
 
@@ -632,7 +632,7 @@ The simulation testbench applies the two-phase clocks, instruction sequence, and
 
 ### C. Waveform Results
 
-The clock and instruction waveform verifies that `PHI1`, `PHI2`, `INSTR<2:0>`, and `INSTR<5:3>` follow the sequence defined in Table 14. The clock runs at 1 GHz, so each instruction occupies one 1 ns period. `INSTR<2:0>` carries the opcode from MSB to LSB, and `INSTR<5:3>` carries the SRAM address code from MSB to LSB. The waveform first shows the eight LOAD cycles, then the internal NOP/GET/arithmetic-or-shift/PUT groups, and finally the STORE cycles used to read out the final SRAM contents.
+The clock and instruction waveform verifies that `PHI1`, `PHI2`, `INSTR<2:0>`, and `INSTR<5:3>` follow the sequence defined in Table 14. The clock runs at 1 GHz, so each instruction occupies one clock period of 1 ns. `INSTR<2:0>` carries the opcode from MSB to LSB, and `INSTR<5:3>` carries the SRAM address code from MSB to LSB. The waveform first shows the eight LOAD cycles, then the internal NOP/GET/arithmetic-or-shift/PUT groups, and finally the STORE cycles used to read out the final SRAM contents.
 
 <div align="center">
 <img src="figures/fig59-clock-and-instruction-waveform.jpg" alt="Fig. 59. Clock and instruction-code waveform." width="760"><br>
@@ -668,12 +668,12 @@ The clock-to-Q delay waveform shows the measured output delay from the active cl
 
 <br>
 
-A representative timing measurement compares `PHI1` and `EXT_BUS<0>` at the 500 mV crossing. Based on the plotted cursor values in Fig. 62, the output transition follows the clock transition by approximately 15 ps.
+A representative timing measurement compares `PHI1` and `EXT_BUS<0>` at the 500 mV crossing. Based on the plotted cursor values in Fig. 62, the output transition follows the clock transition by approximately 15.44 ps.
 
 ```text
 PHI1 reference crossing ~= 40.07966 ns
 EXT_BUS<0> crossing     ~= 40.0951 ns
-Measured delay          ~= 15 ps
+Measured delay          ~= 15.44 ps
 ```
 
 ## VI. Design File Package
@@ -684,7 +684,7 @@ Measured delay          ~= 15 ps
 | `EECS4321_Submission/project_requirements.pdf` | Project requirements/reference PDF |
 | `Layout_files/ps9_Microprocessor.gds` | Final microprocessor layout database |
 | `figures/` | Schematic, layout, DRC/LVS, and waveform figures used by this report |
-| `VLSI_Project_Report.md` | DAC-style Markdown version of the microprocessor report |
+| `Project_Report.md` | DAC-style Markdown version of the microprocessor report |
 
 <div align="center"><strong>Table 15. Design File Package</strong></div>
 
