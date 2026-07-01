@@ -94,7 +94,7 @@ The completed top-level layout passes DRC and LVS. The DRC result reports no rul
 The instruction-decoder PLA is generated from the control behavior summarized in Table 2. The control table was translated into the Espresso input file `Espresso_files/instr_decoder.pla`, which defines three opcode inputs, `instr2`, `instr1`, and `instr0`, and ten decoded control outputs: `subtract`, `mux2`, `mux1`, `mux0`, `mem_write`, `mem_read`, `drv_enable`, `shift_bypass`, `load_bus`, and `store_bus`. Unused control values are marked as don't-care entries so Espresso can minimize the logic instead of forcing every output to a fixed value.
 
 <div align="center">
-<img src="figures/fig05-instr-decoder-pla.jpg" alt="Fig. 5. Instruction decoder PLA input file." width="1000"><br>
+<img src="figures/fig05-instr-decoder-pla.jpg" alt="Fig. 5. Instruction decoder PLA input file." width="800"><br>
 <em>Fig. 5. Instruction decoder PLA input file.</em>
 </div>
 
@@ -103,7 +103,7 @@ The instruction-decoder PLA is generated from the control behavior summarized in
 The input PLA file was then processed with Espresso to generate the minimized output file, `Espresso_files/instr_decoder_out.pla`. Espresso preserves the same input and output interface while replacing selected opcode-specific rows with shared implicants, such as `-00`, `0-1`, `-01`, and `1-0`. These minimized product terms reduce the amount of logic required by the instruction decoder.
 
 <div align="center">
-<img src="figures/fig06-instr-decoder-out-pla.jpg" alt="Fig. 6. Espresso-minimized instruction decoder PLA output file." width="1000"><br>
+<img src="figures/fig06-instr-decoder-out-pla.jpg" alt="Fig. 6. Espresso-minimized instruction decoder PLA output file." width="800"><br>
 <em>Fig. 6. Espresso-minimized instruction decoder PLA output file.</em>
 </div>
 
