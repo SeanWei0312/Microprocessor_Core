@@ -62,7 +62,7 @@ Table 2 summarizes the opcode and decoded control behavior.
 | `PUT` | `100` | Mem[`i`]&nbsp;&lt;-&nbsp;Acc | - | - | - | - | 1 | - | 1 | - | 0 | 0 |
 | `ADD` | `101` | Acc&nbsp;&lt;-&nbsp;Acc&nbsp;+&nbsp;Mem[`i`] | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
 | `SUB` | `110` | Acc&nbsp;&lt;-&nbsp;Acc&nbsp;-&nbsp;Mem[`i`] | 1 | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
-| `SHIFT` | `111` | Shift&nbsp;accumulator&nbsp;left&nbsp;by&nbsp;`i` | - | 0 | 0 | 1 | 0 | - | 0 | 1 | 0 | 0 |
+| `SHIFT` | `111` | Shift&nbsp;accumulator&nbsp;left&nbsp;by&nbsp;`1` | - | 0 | 0 | 1 | 0 | - | 0 | 1 | 0 | 0 |
 
 <div align="center"><strong>Table 2. Instruction Set and Control Signals</strong></div>
 
@@ -112,17 +112,17 @@ The input PLA file was then processed with Espresso to generate the minimized ou
 The Espresso-minimized output was used to build the instruction-decoder PLA symbol, schematic, and layout. The symbol provides the block-level interface, the schematic maps the minimized product terms to the decoded control outputs, and the final layout implements the same logic in a regular row-and-column PLA structure.
 
 <div align="center">
-<img src="figures/fig07-pla-symbol.jpg" alt="Fig. 7. PLA symbol." width="800"><br>
+<img src="figures/fig07-pla-symbol.jpg" alt="Fig. 7. PLA symbol." width="1000"><br>
 <em>Fig. 7. PLA symbol.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig08-pla-schematic.jpg" alt="Fig. 8. PLA schematic." width="800"><br>
+<img src="figures/fig08-pla-schematic.jpg" alt="Fig. 8. PLA schematic." width="1000"><br>
 <em>Fig. 8. PLA schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig09-pla-layout.jpg" alt="Fig. 9. PLA layout." width="800"><br>
+<img src="figures/fig09-pla-layout.jpg" alt="Fig. 9. PLA layout." width="1000"><br>
 <em>Fig. 9. PLA layout.</em>
 </div>
 
@@ -133,17 +133,17 @@ The Espresso-minimized output was used to build the instruction-decoder PLA symb
 The control-signal latch stores selected outputs from the PLA so that datapath control remains stable during evaluation. The symbol defines the block-level interface, the schematic connects the latch stages used for subtraction, multiplexer selection, and shift control, and the layout implements the same control-storage structure physically. The inverter and latch-cell schematics and layouts are shown separately because they are the repeated cells used to construct the full control-signal latch.
 
 <div align="center">
-<img src="figures/fig10-control-latch-symbol.jpg" alt="Fig. 10. Control-signal latch symbol." width="800"><br>
+<img src="figures/fig10-control-latch-symbol.jpg" alt="Fig. 10. Control-signal latch symbol." width="1000"><br>
 <em>Fig. 10. Control-signal latch symbol.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig11-control-latch-schematic.jpg" alt="Fig. 11. Control-signal latch schematic." width="800"><br>
+<img src="figures/fig11-control-latch-schematic.jpg" alt="Fig. 11. Control-signal latch schematic." width="1000"><br>
 <em>Fig. 11. Control-signal latch schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig12-control-latch-layout.jpg" alt="Fig. 12. Control-signal latch layout." width="800"><br>
+<img src="figures/fig12-control-latch-layout.jpg" alt="Fig. 12. Control-signal latch layout." width="1000"><br>
 <em>Fig. 12. Control-signal latch layout.</em>
 </div>
 
