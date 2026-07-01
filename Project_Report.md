@@ -123,12 +123,12 @@ The Espresso-minimized output was used to build the instruction-decoder PLA symb
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| PLA AND plane | PMOS | 60 nm | 1 um | 1 |
-|  | NMOS | 60 nm | 1 um | 1 |
-| PLA OR plane | PMOS | 60 nm | 1 um | 1 |
-|  | NMOS | 60 nm | 1 um | 1 |
-| PLA inverter | PMOS | 60 nm | 1 um | 2 |
-|  | NMOS | 60 nm | 1 um | 1 |
+| PLA AND plane | Pull-up PMOS | 60 nm | 1 um | 1 |
+|  | Pull-down NMOS | 60 nm | 1 um | 1 |
+| PLA OR plane | Pull-up PMOS | 60 nm | 1 um | 1 |
+|  | Pull-down NMOS | 60 nm | 1 um | 1 |
+| PLA inverter | Pull-up PMOS | 60 nm | 1 um | 2 |
+|  | Pull-down NMOS | 60 nm | 1 um | 1 |
 
 <div align="center"><strong>Table 3. Instruction-Decoder PLA Cell Sizing</strong></div>
 
@@ -176,10 +176,12 @@ The control-signal latch is built from one inverter cell and five latch cells. T
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| Control-latch inverter | PMOS | 60 nm | 1 um | 2 |
-|  | NMOS | 60 nm | 1 um | 1 |
-| Control-latch switch | PMOS | 60 nm | 700 nm | 1 |
-|  | NMOS | 60 nm | 700 nm | 1 |
+| Control-signal latch inverter | Pull-up PMOS | 60 nm | 1 um | 2 |
+|  | Pull-down NMOS | 60 nm | 1 um | 1 |
+| Control-signal latch switch | Switch PMOS | 60 nm | 700 nm | 1 |
+|  | Switch NMOS | 60 nm | 700 nm | 1 |
+| | inverter PMOS | 60 nm | 1 um | 2 |
+|  | inverter NMOS | 60 nm | 1 um | 1 |
 
 <div align="center"><strong>Table 4. Control-Signal Latch Cell Sizing</strong></div>
 
@@ -256,10 +258,12 @@ The decoder is implemented with three inverter cells and sixteen three-input AND
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| Row-decoder inverter | PMOS | 60 nm | 150 nm | 10 |
-|  | NMOS | 60 nm | 150 nm | 5 |
-| Row-decoder three-input AND | PMOS | 60 nm | 150 nm | 2 |
-|  | NMOS | 60 nm | 150 nm | 3 |
+| Row-decoder inverter | Pull-up PMOS | 60 nm | 150 nm | 10 |
+|  | Pull-down NMOS | 60 nm | 150 nm | 5 |
+| Row-decoder three-input AND | NAND pull-up PMOS | 60 nm | 150 nm | 2 |
+|  | NAND pull-down NMOS | 60 nm | 150 nm | 3 |
+|  | Inverter PMOS | 60 nm | 150 nm | 10 |
+|  | Inverter NMOS | 60 nm | 150 nm | 5 |
 
 <div align="center"><strong>Table 5. SRAM Row-Decoder Cell Sizing</strong></div>
 
@@ -288,7 +292,7 @@ The one-bit precharge cell is the repeated column cell used for each SRAM bit. I
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| Precharge cell | Bitline PMOS | 60 nm | 300 nm | 1 |
+| One-bit precharge cell | Bitline PMOS | 60 nm | 300 nm | 1 |
 |  | Bitline-bar PMOS | 60 nm | 300 nm | 1 |
 
 <div align="center"><strong>Table 6. SRAM Precharge Cell Sizing</strong></div>
@@ -318,7 +322,14 @@ The one-bit write cell is the repeated driver used for each data bit. It receive
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| Write cell | Write-driver devices | See Fig. 29 | See Fig. 29 | See Fig. 29 |
+| Write-cell inverter | Pull-up PMOS | 60 nm | 150 nm | 10 |
+|  | Pull-down NMOS | 60 nm | 150 nm | 5 |
+| Write-cell three-input AND | NAND pull-up PMOS | 60 nm | 150 nm | 2 |
+|  | NAND pull-down NMOS | 60 nm | 150 nm | 3 |
+|  | Inverter PMOS | 60 nm | 150 nm | 10 |
+|  | Inverter NMOS | 60 nm | 150 nm | 5 |
+| Write-cell bitline switch | Bitline NMOS | 60 nm | 500 nm | 2 |
+|  | Bitline-bar NMOS | 60 nm | 500 nm | 2 |
 
 <div align="center"><strong>Table 7. SRAM Write Cell Sizing</strong></div>
 
@@ -347,7 +358,12 @@ The one-bit read cell is the repeated read path used for each SRAM data bit. It 
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| Read cell | Read-driver devices | See Fig. 32 | See Fig. 32 | See Fig. 32 |
+| Read-cell inverter | Pull-up PMOS | 60 nm | 150 nm | 10 |
+|  | Pull-down NMOS | 60 nm | 150 nm | 5 |
+| Read-cell three-input AND | NAND pull-up PMOS | 60 nm | 150 nm | 2 |
+|  | NAND pull-down NMOS | 60 nm | 150 nm | 3 |
+|  | Inverter PMOS | 60 nm | 150 nm | 10 |
+|  | Inverter NMOS | 60 nm | 150 nm | 5 |
 
 <div align="center"><strong>Table 8. SRAM Read Cell Sizing</strong></div>
 
@@ -399,10 +415,12 @@ The adder/subtractor is built from repeated one-bit adder cells. The full-adder 
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| One-bit adder | Adder devices | See Fig. 36 | See Fig. 36 | See Fig. 36 |
-| Full-adder cell | Full-adder devices | See Fig. 37 | See Fig. 37 | See Fig. 37 |
-| XOR cell | XOR devices | See Fig. 38 | See Fig. 38 | See Fig. 38 |
-| NAND cell | NAND devices | See Fig. 39 | See Fig. 39 | See Fig. 39 |
+| XOR cell | Pull-up PMOS | 60 nm | 240 nm | 1 |
+|  | Pull-down NMOS | 60 nm | 120 nm | 1 |
+|  | Inverter PMOS | 60 nm | 240 nm | 1 |
+|  | Inverter NMOS | 60 nm | 120 nm | 1 |
+| NAND cell | Pull-up PMOS | 60 nm | 1 um | 10 |
+|  | Pull-down NMOS | 60 nm | 1 um | 10 |
 
 <div align="center"><strong>Table 9. Adder/Subtractor Cell Sizing</strong></div>
 
@@ -441,8 +459,12 @@ The shifter uses reusable inverter and multiplexer cells. The inverter generates
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| Shifter inverter | Inverter devices | See Fig. 43 | See Fig. 43 | See Fig. 43 |
-| Shifter multiplexer | Multiplexer devices | See Fig. 44 | See Fig. 44 | See Fig. 44 |
+| Shifter inverter | Pull-up PMOS | 60 nm | 2 um | 1 |
+|  | Pull-down NMOS | 60 nm | 1 um | 1 |
+| Shifter multiplexer | Inverter PMOS | 60 nm | 2 um | 1 |
+|  | Inverter NMOS | 60 nm | 1 um | 1 |
+|  | Switch PMOS | 60 nm | 1 um | 1 |
+|  | Switch NMOS | 60 nm | 1 um | 1 |
 
 <div align="center"><strong>Table 10. Shifter Cell Sizing</strong></div>
 
@@ -478,7 +500,7 @@ The multiplexer is built from a repeated one-bit selection cell. Each one-bit ce
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| One-bit multiplexer | Multiplexer devices | See Fig. 48 | See Fig. 48 | See Fig. 48 |
+| multiplexer | Switch NMOS | 60 nm | 1 um | 1 |
 
 <div align="center"><strong>Table 11. Multiplexer Cell Sizing</strong></div>
 
@@ -515,7 +537,10 @@ The accumulator latch uses a repeated one-bit latch cell. Each cell stores one d
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| One-bit accumulator latch | Latch devices | See Fig. 52 | See Fig. 52 | See Fig. 52 |
+| Accumulator latch | Switch PMOS | 60 nm | 1 um | 1 |
+|  | Switch NMOS | 60 nm | 1 um | 1 |
+|  | Inverter PMOS | 60 nm | 1 um | 2 |
+|  | Inverter NMOS | 60 nm | 1 um | 1 |
 
 <div align="center"><strong>Table 12. Accumulator Latch Cell Sizing</strong></div>
 
@@ -543,22 +568,22 @@ The external bus driver connects the internal datapath to `EXT_BUS<0:7>` during 
 </tr>
 </table>
 
-The external bus driver uses a tristate output cell and a repeated one-bit bus-driver cell. The tristate cell isolates the external bus when `STORE_BUS` is inactive, while the one-bit driver cell is repeated across all eight bus lines. Fig. 56 and Fig. 57 show the reusable bus-driver cells, and Table 13 references the corresponding cell-sizing information.
+The external bus driver uses a repeated one-bit bus-driver cell and a tristate output cell. The one-bit driver cell is repeated across all eight bus lines, while the tristate cell isolates the external bus when `STORE_BUS` is inactive. Fig. 56 and Fig. 57 show the reusable bus-driver cells, and Table 13 references the corresponding cell-sizing information.
 
 <div align="center">
-<img src="figures/fig56-tristate-bus-driver-schematic.jpg" alt="Fig. 56. Tristate bus-driver schematic." width="500"><br>
-<em>Fig. 56. Tristate bus-driver schematic.</em>
+<img src="figures/fig56-one-bit-bus-driver-schematic.jpg" alt="Fig. 56. One-bit bus-driver schematic." width="500"><br>
+<em>Fig. 56. One-bit bus-driver schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig57-one-bit-bus-driver-schematic.jpg" alt="Fig. 57. One-bit bus-driver schematic." width="500"><br>
-<em>Fig. 57. One-bit bus-driver schematic.</em>
+<img src="figures/fig57-tristate-bus-driver-schematic.jpg" alt="Fig. 57. Tristate bus-driver schematic." width="500"><br>
+<em>Fig. 57. Tristate bus-driver schematic.</em>
 </div>
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| Tristate bus driver | Tristate devices | See Fig. 56 | See Fig. 56 | See Fig. 56 |
-| One-bit bus driver | Driver devices | See Fig. 57 | See Fig. 57 | See Fig. 57 |
+| One-bit bus driver | Driver devices | See Fig. 56 | See Fig. 56 | See Fig. 56 |
+| Tristate bus driver | Tristate devices | See Fig. 57 | See Fig. 57 | See Fig. 57 |
 
 <div align="center"><strong>Table 13. External Bus-Driver Cell Sizing</strong></div>
 
