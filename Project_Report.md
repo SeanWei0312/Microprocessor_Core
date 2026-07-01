@@ -572,7 +572,7 @@ The transient test sequence in Table 14 verifies the processor at the instructio
 
 Steps 1-8 load the initial SRAM contents through the external bus. Steps 9-32 exercise internal processor operations by repeating a `NOP`, `GET`, arithmetic or shift operation, and `PUT` sequence on selected SRAM addresses. The ADD and SUB steps record the expected carry and overflow outputs, while the SHIFT steps record the applied `SHIFT<2:0>` control code. Steps 33-40 store the final SRAM contents onto the external bus so the memory results can be checked against the expected binary and decimal values.
 
-| Step | Operation | Opcode<br>`INSTR<2:0>`<br>`[input]` | SRAM&nbsp;Address | Memcode<br>`INSTR<5:3>`<br>`[input]` | SRAM&nbsp;Data<br>(Binary)<br>`[input/output]` | SRAM&nbsp;Data<br>(Decimal)<br>`[input/output]` | Carry<br>`C`<br>`[output]` | Overflow<br>`OV`<br>`[output]` | Shift&nbsp;Code<br>`SHIFT<2:0>`<br>`[input]` |
+| Step | Operation | Opcode<br>`INSTR<2:0>`<br>`[input]` | SRAM&nbsp;Address | Memcode<br>`INSTR<5:3>`<br>`[input]` | SRAM&nbsp;Data&nbsp;(Binary)<br>`[input/output]` | SRAM&nbsp;Data&nbsp;(Decimal)<br>`[input/output]` | Carry<br>`C`<br>`[output]` | Overflow<br>`OV`<br>`[output]` | Shift&nbsp;Code<br>`SHIFT<2:0>`<br>`[input]` |
 | ---: | --- | --- | ---: | --- | --- | ---: | ---: | ---: | --- |
 | 1 | `LOAD` | `001` | 0 | `000` | `00000000` | 0 |  |  |  |
 | 2 | `LOAD` | `001` | 1 | `001` | `01001001` | 73 |  |  |  |
