@@ -509,7 +509,7 @@ The accumulator latch stores the selected 8-bit datapath result for the next ope
 The accumulator latch uses a repeated one-bit latch cell. Each cell stores one datapath bit and is tiled across the accumulator so the schematic-to-layout correspondence remains clear. Fig. 52 shows the one-bit accumulator latch schematic, and Table 12 references the corresponding device sizing.
 
 <div align="center">
-<img src="figures/fig52-one-bit-accumulator-latch-schematic.jpg" alt="Fig. 52. One-bit accumulator latch schematic." width="500"><br>
+<img src="figures/fig52-one-bit-accumulator-latch-schematic.jpg" alt="Fig. 52. One-bit accumulator latch schematic." width="800"><br>
 <em>Fig. 52. One-bit accumulator latch schematic.</em>
 </div>
 
@@ -533,11 +533,11 @@ The external bus driver connects the internal datapath to `EXT_BUS<0:7>` during 
 <table>
 <tr>
 <td align="center">
-<img src="figures/fig54-external-bus-driver-schematic.jpg" alt="Fig. 54. External bus-driver schematic." width="100"><br>
+<img src="figures/fig54-external-bus-driver-schematic.jpg" alt="Fig. 54. External bus-driver schematic." width="90"><br>
 <em>Fig. 54. External bus-driver schematic.</em>
 </td>
 <td align="center">
-<img src="figures/fig55-external-bus-driver-layout.jpg" alt="Fig. 55. External bus-driver layout." width="900"><br>
+<img src="figures/fig55-external-bus-driver-layout.jpg" alt="Fig. 55. External bus-driver layout." width="910"><br>
 <em>Fig. 55. External bus-driver layout.</em>
 </td>
 </tr>
