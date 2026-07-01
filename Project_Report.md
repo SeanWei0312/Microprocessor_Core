@@ -546,12 +546,12 @@ The external bus driver connects the internal datapath to `EXT_BUS<0:7>` during 
 The external bus driver uses a tristate output cell and a repeated one-bit bus-driver cell. The tristate cell isolates the external bus when `STORE_BUS` is inactive, while the one-bit driver cell is repeated across all eight bus lines. Fig. 56 and Fig. 57 show the reusable bus-driver cells, and Table 13 references the corresponding cell-sizing information.
 
 <div align="center">
-<img src="figures/fig56-tristate-bus-driver-schematic.jpg" alt="Fig. 56. Tristate bus-driver schematic." width="500"><br>
+<img src="figures/fig56-tristate-bus-driver-schematic.jpg" alt="Fig. 56. Tristate bus-driver schematic." width="800"><br>
 <em>Fig. 56. Tristate bus-driver schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig57-one-bit-bus-driver-schematic.jpg" alt="Fig. 57. One-bit bus-driver schematic." width="500"><br>
+<img src="figures/fig57-one-bit-bus-driver-schematic.jpg" alt="Fig. 57. One-bit bus-driver schematic." width="800"><br>
 <em>Fig. 57. One-bit bus-driver schematic.</em>
 </div>
 
@@ -572,7 +572,7 @@ The transient test sequence in Table 14 verifies the processor at the instructio
 
 Steps 1-8 load the initial SRAM contents through the external bus. Steps 9-32 exercise internal processor operations by repeating a `NOP`, `GET`, arithmetic or shift operation, and `PUT` sequence on selected SRAM addresses. The ADD and SUB steps record the expected carry and overflow outputs, while the SHIFT steps record the applied `SHIFT<2:0>` control code. Steps 33-40 store the final SRAM contents onto the external bus so the memory results can be checked against the expected binary and decimal values.
 
-| Step | Operation | Opcode<br>`INSTR<2:0>`<br>`[input]` | SRAM&nbsp;Address | Memcode<br>`INSTR<5:3>`<br>`[input]` | SRAM&nbsp;Data&nbsp;(Binary)<br>`[input/output]` | SRAM&nbsp;Data&nbsp;(Decimal)<br>`[input/output]` | Carry<br>`C`<br>`[output]` | Overflow<br>`OV`<br>`[output]` | Shift&nbsp;Code<br>`SHIFT<2:0>`<br>`[input]` |
+| Step | Operation | Opcode<br>`INSTR<2:0>`<br>`[input]` | SRAM&nbsp;Address | Memcode<br>`INSTR<5:3>`<br>`[input]` | SRAM&nbsp;Data<br>(Binary)<br>`[input/output]` | SRAM&nbsp;Data<br>(Decimal)<br>`[input/output]` | Carry<br>`C`<br>`[output]` | Overflow<br>`OV`<br>`[output]` | Shift&nbsp;Code<br>`SHIFT<2:0>`<br>`[input]` |
 | ---: | --- | --- | ---: | --- | --- | ---: | ---: | ---: | --- |
 | 1 | `LOAD` | `001` | 0 | `000` | `00000000` | 0 |  |  |  |
 | 2 | `LOAD` | `001` | 1 | `001` | `01001001` | 73 |  |  |  |
