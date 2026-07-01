@@ -388,12 +388,12 @@ The adder/subtractor is built from repeated one-bit adder cells. The full-adder 
 </table>
 
 <div align="center">
-<img src="figures/fig38-adder-xor-cell-schematic.jpg" alt="Fig. 38. Adder XOR cell schematic." width="800"><br>
+<img src="figures/fig38-adder-xor-cell-schematic.jpg" alt="Fig. 38. Adder XOR cell schematic." width="500"><br>
 <em>Fig. 38. Adder XOR cell schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig39-adder-nand-cell-schematic.jpg" alt="Fig. 39. Adder NAND cell schematic." width="800"><br>
+<img src="figures/fig39-adder-nand-cell-schematic.jpg" alt="Fig. 39. Adder NAND cell schematic." width="500"><br>
 <em>Fig. 39. Adder NAND cell schematic.</em>
 </div>
 
