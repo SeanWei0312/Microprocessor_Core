@@ -154,19 +154,19 @@ The control-signal latch is built from one inverter cell and five latch cells. T
 <table>
 <tr>
 <td align="center">
-<img src="figures/fig13-control-latch-inverter-schematic.jpg" alt="Fig. 13. Inverter schematic used in the control latch." width="300"><br>
+<img src="figures/fig13-control-latch-inverter-schematic.jpg" alt="Fig. 13. Inverter schematic used in the control latch." width="850"><br>
 <em>Fig. 13. Inverter schematic used in the control latch.</em>
 </td>
 <td align="center">
-<img src="figures/fig14-control-latch-inverter-layout.jpg" alt="Fig. 14. Inverter layout used in the control latch." width="90"><br>
+<img src="figures/fig14-control-latch-inverter-layout.jpg" alt="Fig. 14. Inverter layout used in the control latch." width="150"><br>
 <em>Fig. 14. Inverter layout used in the control latch.</em>
 </td>
 <td align="center">
-<img src="figures/fig15-control-latch-latch-schematic.jpg" alt="Fig. 15. Latch schematic used in the control latch." width="260"><br>
+<img src="figures/fig15-control-latch-latch-schematic.jpg" alt="Fig. 15. Latch schematic used in the control latch." width="550"><br>
 <em>Fig. 15. Latch schematic used in the control latch.</em>
 </td>
 <td align="center">
-<img src="figures/fig16-control-latch-latch-layout.jpg" alt="Fig. 16. Latch layout used in the control latch." width="210"><br>
+<img src="figures/fig16-control-latch-latch-layout.jpg" alt="Fig. 16. Latch layout used in the control latch." width="450"><br>
 <em>Fig. 16. Latch layout used in the control latch.</em>
 </td>
 </tr>
