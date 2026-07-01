@@ -51,7 +51,7 @@ During `LOAD`, the external bus writes data into SRAM. During `STORE`, the exter
 
 ### B. Instruction Set and Control Table
 
-Table 2 summarizes the instruction opcode and decoded control behavior.
+Table 2 summarizes the instruction opcodes and decoded control behavior.
 
 | Instruction | Opcode | Function | `SUB` | `MUX2 (SRAM)` | `MUX1 (Adder)` | `MUX0 (Shifter)` | `MEM_WRITE` | `MEM_READ` | `DRV_EN` | `SHIFT_BYPASS` | `LOAD_BUS` | `STORE_BUS` |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -91,7 +91,7 @@ The completed top-level layout passes both DRC and LVS. The DRC result reports n
 
 ### A. Instruction-Decoder PLA
 
-The instruction-decoder PLA is generated from the control behavior summarized in Table 2. The control table was translated into the Espresso input file `Espresso_files/instr_decoder.pla`, which defines three opcode inputs, `instr2`, `instr1`, and `instr0`, and ten decoded control outputs: `subtract`, `mux2`, `mux1`, `mux0`, `mem_write`, `mem_read`, `drv_enable`, `shift_bypass`, `load_bus`, and `store_bus`. Unused control values are marked as don't-care terms so Espresso can minimize the logic without forcing every output to a fixed value.
+The instruction-decoder PLA was generated from the control behavior summarized in Table 2. The control table was translated into the Espresso input file `Espresso_files/instr_decoder.pla`, which defines three opcode inputs, `instr2`, `instr1`, and `instr0`, and ten decoded control outputs: `subtract`, `mux2`, `mux1`, `mux0`, `mem_write`, `mem_read`, `drv_enable`, `shift_bypass`, `load_bus`, and `store_bus`. Unused control values are marked as don't-care terms so Espresso can minimize the logic without forcing every output to a fixed value.
 
 <div align="center">
 <img src="figures/fig05-instruction-decoder-pla-input-file.jpg" alt="Fig. 5. Instruction-decoder PLA input file." width="800"><br>
@@ -118,7 +118,7 @@ The Espresso-minimized output was used to build the instruction-decoder PLA symb
 
 <br>
 
-The PLA uses repeated devices in the AND plane, OR plane, and inverter stages so the decoder can be implemented with a regular layout pattern. The plane devices use matched 1 um PMOS and NMOS widths, while each inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path. Table 3 lists the device sizes used in the PLA cells.
+The PLA uses repeated devices in the AND plane, OR plane, and inverter stages so the decoder can be implemented with a regular layout pattern. The plane devices use matched 1 um PMOS and NMOS widths, while each inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path. Table 3 lists the device sizes for the PLA cells.
 
 <div align="center">
 <img src="figures/fig08-instruction-decoder-pla-schematic.jpg" alt="Fig. 8. Instruction-decoder PLA schematic." width="1000"><br>
@@ -147,7 +147,7 @@ The PLA uses repeated devices in the AND plane, OR plane, and inverter stages so
 
 ### B. Control-Signal Latch
 
-The control-signal latch stores selected PLA outputs so the datapath control signals remain stable during evaluation. The block latches the control bits used for subtraction, multiplexer selection, and shift control, then presents those stored signals to the datapath during the active clock phase. Fig. 10 shows the block-level symbol, and Fig. 11 and Fig. 12 show the schematic and layout implementation.
+The control-signal latch stores selected PLA outputs so the datapath control signals remain stable during evaluation. The block latches the control bits used for subtraction, multiplexer selection, and shift control, then presents those stored signals to the datapath during the active clock phase. Fig. 10 shows the block-level symbol, and Figs. 11 and 12 show the schematic and layout implementation.
 
 <div align="center">
 <img src="figures/fig10-control-signal-latch-symbol.jpg" alt="Fig. 10. Control-signal latch symbol." width="1000"><br>
@@ -166,7 +166,7 @@ The control-signal latch stores selected PLA outputs so the datapath control sig
 
 <br>
 
-The control-signal latch is built from one inverter cell and five latch cells. The inverter generates the complementary clock phase used by the latch stages, and each latch cell stores one decoded control bit from the PLA. The inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path. The latch switch devices use matched 700 nm PMOS and NMOS widths to keep the pass path compact while maintaining balanced switching behavior. Fig. 13 and Fig. 14 show the reusable cells, and Table 4 lists their device sizes.
+The control-signal latch is built from one inverter cell and five latch cells. The inverter generates the complementary clock phase used by the latch stages, and each latch cell stores one decoded control bit from the PLA. The inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path. The latch switch devices use matched 700 nm PMOS and NMOS widths to keep the pass path compact while maintaining balanced switching behavior. Figs. 13 and 14 show the reusable cells, and Table 4 lists their device sizes.
 
 <div align="center">
 <img src="figures/fig13-control-signal-latch-inverter-schematic.jpg" alt="Fig. 13. Control-signal latch inverter schematic." width="500"><br>
@@ -214,7 +214,7 @@ The SRAM memory subsystem stores eight 8-bit words and provides the processor's 
 
 #### SRAM Core Array
 
-The SRAM core implements the required eight-word by eight-bit storage array. It is based on the TSMC SRAM layout from `arrayLib`, with the provided 8-by-4 array expanded to an 8-by-8 organization by adding SRAM column instances and extending the edge, corner, and well-strap structures. Fig. 18 and Fig. 19 show the core schematic and layout before the array is connected to the row decoder, precharge network, write circuitry, and read circuitry.
+The SRAM core implements the required eight-word-by-eight-bit storage array. It is based on the TSMC SRAM layout from `arrayLib`, with the provided 8-by-4 array expanded to an 8-by-8 organization by adding SRAM column instances and extending the edge, corner, and well-strap structures. Figs. 18 and 19 show the core schematic and layout before the array is connected to the row decoder, precharge network, write circuitry, and read circuitry.
 
 <table>
 <tr>
@@ -233,7 +233,7 @@ The SRAM core implements the required eight-word by eight-bit storage array. It 
 
 #### Row Decoder
 
-The row decoder converts the 3-bit SRAM address field, `INSTR<5:3>`, into eight row-select outputs, with only one SRAM row selected at a time. The inverters generate the complemented address bits required for decoding. First-stage three-input AND cells form the decoded row terms from the true and complemented address bits, and second-stage three-input AND cells qualify those row terms with `PHI1`. This structure enables the selected word line only during the active `PHI1` interval and keeps the decoder outputs disabled otherwise. Fig. 20 and Fig. 21 show the row-decoder schematic and layout.
+The row decoder converts the 3-bit SRAM address field, `INSTR<5:3>`, into eight row-select outputs, with only one SRAM row selected at a time. The inverters generate the complemented address bits required for decoding. First-stage three-input AND cells form the decoded row terms from the true and complemented address bits, and second-stage three-input AND cells qualify those row terms with `PHI1`. This structure enables the selected word line only during the active `PHI1` interval and keeps the decoder outputs disabled otherwise. Figs. 20 and 21 show the row-decoder schematic and layout.
 
 <table>
 <tr>
@@ -250,7 +250,7 @@ The row decoder converts the 3-bit SRAM address field, `INSTR<5:3>`, into eight 
 
 <br>
 
-The decoder is implemented with three inverter cells and sixteen three-input AND cells. Each AND cell is built from a three-input NAND followed by an output inverter. The inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path, while the NAND stage uses larger NMOS finger counts to reduce the resistance of the three-device series stack. Fig. 22 and Fig. 23 show these reusable decoder cells, and Table 5 lists their device sizes.
+The decoder is implemented with three inverter cells and sixteen three-input AND cells. Each AND cell is built from a three-input NAND followed by an output inverter. The inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path, while the NAND stage uses larger NMOS finger counts to reduce the resistance of the three-device series stack. Figs. 22 and 23 show these reusable decoder cells, and Table 5 lists their device sizes.
 
 <div align="center">
 <img src="figures/fig22-sram-row-decoder-inverter-schematic.jpg" alt="Fig. 22. SRAM row-decoder inverter schematic." width="500"><br>
@@ -277,7 +277,7 @@ The decoder is implemented with three inverter cells and sixteen three-input AND
 
 #### Precharge Circuits
 
-The precharge circuit initializes the SRAM bitlines before row evaluation. During `PHI2`, the precharge devices pull both the bitline and bitline-bar nodes high so the selected cell can disturb the differential pair during the following `PHI1` interval. Fig. 24 and Fig. 25 show the full precharge schematic and layout.
+The precharge circuit initializes the SRAM bitlines before row evaluation. During `PHI2`, the precharge devices pull both the bitline and bitline-bar nodes high so the selected cell can disturb the differential pair during the following `PHI1` interval. Figs. 24 and 25 show the full precharge schematic and layout.
 
 <div align="center">
 <img src="figures/fig24-sram-precharge-circuit-schematic.jpg" alt="Fig. 24. SRAM precharge circuit schematic." width="1000"><br>
@@ -309,7 +309,7 @@ The precharge cell is repeated for each SRAM column. It uses two matched PMOS de
 
 #### Write Circuits
 
-The write circuit drives data onto the selected SRAM column during memory write operations. The write path is qualified by `PHI1`, so the bitline drivers are active only during the evaluation phase when a selected word line is enabled. Fig. 27 and Fig. 28 show the full write schematic and layout.
+The write circuit drives data onto the selected SRAM column during memory-write operations. The write path is qualified by `PHI1`, so the bitline drivers are active only during the evaluation phase when a selected word line is enabled. Figs. 27 and 28 show the full write schematic and layout.
 
 <div align="center">
 <img src="figures/fig27-sram-write-circuit-schematic.jpg" alt="Fig. 27. SRAM write circuit schematic." width="1000"><br>
@@ -345,7 +345,7 @@ The write cell is repeated for each SRAM data bit. It receives the write data an
 
 #### Read Circuits
 
-The read circuit transfers the selected SRAM column value onto the internal data path during memory-read operations. The read driver is controlled by `MEM_READ`, which keeps the output path disabled when the memory is not being read. Fig. 30 and Fig. 31 show the complete read schematic and layout.
+The read circuit transfers the selected SRAM column value onto the internal datapath during memory-read operations. The read driver is controlled by `MEM_READ`, which keeps the output path disabled when the memory is not being read. Figs. 30 and 31 show the complete read schematic and layout.
 
 <div align="center">
 <img src="figures/fig30-sram-read-circuit-schematic.jpg" alt="Fig. 30. SRAM read circuit schematic." width="1000"><br>
@@ -379,7 +379,7 @@ The read cell is repeated for each SRAM data bit. It receives the selected bitli
 
 ### D. Adder/Subtractor
 
-The adder/subtractor performs 8-bit addition and subtraction for the accumulator datapath and generates the carry and overflow flags. The symbol defines the arithmetic block interface, the schematic connects the repeated one-bit adder stages, and the layout implements the full arithmetic datapath. Fig. 33, Fig. 34, and Fig. 35 show the adder/subtractor symbol, schematic, and layout.
+The adder/subtractor performs 8-bit addition and subtraction for the accumulator datapath and generates the carry and overflow flags. The symbol defines the arithmetic block interface, the schematic connects the repeated one-bit adder stages, and the layout implements the full arithmetic datapath. Figs. 33, 34, and 35 show the adder/subtractor symbol, schematic, and layout.
 
 <div align="center">
 <img src="figures/fig33-adder-subtractor-symbol.jpg" alt="Fig. 33. Adder/subtractor symbol." width="300"><br>
@@ -398,7 +398,7 @@ The adder/subtractor performs 8-bit addition and subtraction for the accumulator
 
 <br>
 
-The adder/subtractor is built from repeated adder cells. The full-adder cell provides the bit-slice sum and carry behavior, while the XOR and NAND cells implement the supporting logic used for addition and subtraction. The XOR uses smaller pull-up and pull-down devices for local logic, and the NAND uses larger matched PMOS and NMOS finger counts for stronger shared-gate drive. Fig. 36 through Fig. 39 show the reusable adder cells, and Table 9 lists the device sizes.
+The adder/subtractor is built from repeated adder cells. The full-adder cell provides the bit-slice sum and carry behavior, while the XOR and NAND cells implement the supporting logic used for addition and subtraction. The XOR uses smaller pull-up and pull-down devices for local logic, and the NAND uses larger matched PMOS and NMOS finger counts for stronger shared-gate drive. Figs. 36 through 39 show the reusable adder cells, and Table 9 lists the device sizes.
 
 <table>
 <tr>
@@ -438,7 +438,7 @@ The adder/subtractor is built from repeated adder cells. The full-adder cell pro
 
 ### E. Shifter
 
-The shifter implements the accumulator shift operation and supports the shift-bypass control path. `SHIFT_BYPASS` is generated by the instruction-decoder PLA from the opcode field, then applied to the shifter control path. The symbol defines the shifter interface, the schematic connects the repeated shift-selection cells, and the layout tiles those cells into the full 8-bit shifter. Fig. 40, Fig. 41, and Fig. 42 show the shifter symbol, schematic, and layout.
+The shifter implements the accumulator shift operation and supports the shift-bypass control path. `SHIFT_BYPASS` is generated by the instruction-decoder PLA from the opcode field, then applied to the shifter control path. The symbol defines the shifter interface, the schematic connects the repeated shift-selection cells, and the layout tiles those cells into the full 8-bit shifter. Figs. 40, 41, and 42 show the shifter symbol, schematic, and layout.
 
 <div align="center">
 <img src="figures/fig40-shifter-symbol.jpg" alt="Fig. 40. Shifter symbol." width="500"><br>
@@ -457,7 +457,7 @@ The shifter implements the accumulator shift operation and supports the shift-by
 
 <br>
 
-The shifter uses reusable inverter and multiplexer cells. The inverter generates complementary control and data signals, and the multiplexer cell selects between shifted and bypassed data paths. The inverter uses a 2 um PMOS and 1 um NMOS to balance pull-up and pull-down strength, while the multiplexer switches use matched 1 um PMOS and NMOS devices for symmetric pass behavior. Fig. 43 and Fig. 44 show these cell schematics, and Table 10 lists the device sizes.
+The shifter uses reusable inverter and multiplexer cells. The inverter generates complementary control and data signals, and the multiplexer cell selects between shifted and bypassed data paths. The inverter uses a 2 um PMOS and 1 um NMOS to balance pull-up and pull-down strength, while the multiplexer switches use matched 1 um PMOS and NMOS devices for symmetric pass behavior. Figs. 43 and 44 show these cell schematics, and Table 10 lists the device sizes.
 
 <div align="center">
 <img src="figures/fig43-shifter-inverter-cell-schematic.jpg" alt="Fig. 43. Shifter inverter cell schematic." width="300"><br>
@@ -484,7 +484,7 @@ The shifter uses reusable inverter and multiplexer cells. The inverter generates
 
 ### F. Multiplexer
 
-The multiplexer selects the value written into the accumulator from the SRAM, adder/subtractor, and shifter paths. The symbol defines the select and data interface, the schematic connects the full 8-bit multiplexer, and the layout places the repeated cells in a compact datapath row. Fig. 45, Fig. 46, and Fig. 47 show the multiplexer symbol, schematic, and layout.
+The multiplexer selects the value written into the accumulator from the SRAM, adder/subtractor, and shifter paths. The symbol defines the select and data interface, the schematic connects the full 8-bit multiplexer, and the layout places the repeated cells in a compact datapath row. Figs. 45, 46, and 47 show the multiplexer symbol, schematic, and layout.
 
 <table>
 <tr>
@@ -505,7 +505,7 @@ The multiplexer selects the value written into the accumulator from the SRAM, ad
 
 <br>
 
-The multiplexer is built from a repeated selection cell. Each cell selects the corresponding datapath bit under the decoded control signals, which keeps the 8-bit schematic and layout regular. The listed switch NMOS device provides the controlled pass path for the selected data input. Fig. 48 shows the multiplexer cell schematic, and Table 11 lists the device size.
+The multiplexer is built from a repeated selection cell. Each cell selects the corresponding datapath bit under the decoded control signals, keeping the 8-bit schematic and layout regular. The listed switch NMOS device provides the controlled pass path for the selected data input. Fig. 48 shows the multiplexer cell schematic, and Table 11 lists the device size.
 
 <div align="center">
 <img src="figures/fig48-one-bit-multiplexer-schematic.jpg" alt="Fig. 48. One-bit multiplexer schematic." width="500"><br>
@@ -522,7 +522,7 @@ The multiplexer is built from a repeated selection cell. Each cell selects the c
 
 ### G. Accumulator Latch
 
-The accumulator latch stores the selected 8-bit datapath result for the next operation. The symbol defines the accumulator interface, the schematic connects the repeated storage cells, and the layout implements the same repeated storage structure physically. Fig. 49, Fig. 50, and Fig. 51 show the accumulator latch symbol, schematic, and layout.
+The accumulator latch stores the selected 8-bit datapath result for the next operation. The symbol defines the accumulator interface, the schematic connects the repeated storage cells, and the layout implements the same repeated storage structure physically. Figs. 49, 50, and 51 show the accumulator latch symbol, schematic, and layout.
 
 <div align="center">
 <img src="figures/fig49-accumulator-latch-symbol.jpg" alt="Fig. 49. Accumulator latch symbol." width="500"><br>
@@ -564,7 +564,7 @@ The accumulator latch uses a repeated storage cell. Each cell stores one datapat
 
 ### H. External Bus Driver
 
-The external bus driver connects the internal datapath to `EXT_BUS<0:7>` during store operations. The symbol defines the bus-driver interface, the schematic connects the repeated output-driver cells, and the layout implements the 8-bit bus driver physically. Fig. 53, Fig. 54, and Fig. 55 show the external bus-driver symbol, schematic, and layout.
+The external bus driver connects the internal datapath to `EXT_BUS<0:7>` during STORE operations. The symbol defines the bus-driver interface, the schematic connects the repeated output-driver cells, and the layout implements the 8-bit bus driver physically. Figs. 53, 54, and 55 show the external bus-driver symbol, schematic, and layout.
 
 <div align="center">
 <img src="figures/fig53-external-bus-driver-symbol.jpg" alt="Fig. 53. External bus-driver symbol." width="500"><br>
@@ -586,7 +586,7 @@ The external bus driver connects the internal datapath to `EXT_BUS<0:7>` during 
 
 <br>
 
-The external bus driver uses a repeated bus-driver cell and a tristate output cell. The driver cell is repeated across all eight bus lines, while the tristate cell isolates the external bus when `STORE_BUS` is inactive. The pull-up, pull-down, enable-switch, and inverter devices are sized to provide a controlled output path while preserving bus isolation during inactive store cycles. Fig. 56 and Fig. 57 show the reusable bus-driver cells, and Table 13 lists the device sizes.
+The external bus driver uses a repeated bus-driver cell and a tristate output cell. The driver cell is repeated across all eight bus lines, while the tristate cell isolates the external bus when `STORE_BUS` is inactive. The pull-up, pull-down, enable-switch, and inverter devices are sized to provide a controlled output path while preserving bus isolation during inactive STORE cycles. Figs. 56 and 57 show the reusable bus-driver cells, and Table 13 lists the device sizes.
 
 <div align="center">
 <img src="figures/fig56-one-bit-bus-driver-schematic.jpg" alt="Fig. 56. One-bit bus-driver schematic." width="500"><br>
@@ -679,7 +679,7 @@ The simulation testbench applies the two-phase clocks, instruction sequence, and
 
 ### C. Waveform Results
 
-The clock and instruction waveform verifies that `PHI1`, `PHI2`, `INSTR<2:0>`, and `INSTR<5:3>` follow the sequence defined in Table 14. The clock runs at 1 GHz, so each instruction occupies one clock period of 1 ns. `INSTR<2:0>` carries the opcode from MSB to LSB, and `INSTR<5:3>` carries the SRAM address code from MSB to LSB. The waveform first shows the eight LOAD cycles, then the internal NOP/GET/arithmetic-or-shift/PUT groups, and finally the STORE cycles used to read out the final SRAM contents.
+The clock and instruction waveform verifies that `PHI1`, `PHI2`, `INSTR<2:0>`, and `INSTR<5:3>` follow the sequence defined in Table 14. The clock runs at 1 GHz, so each instruction occupies one clock period of 1 ns. `INSTR<2:0>` carries the opcode from MSB to LSB, and `INSTR<5:3>` carries the SRAM address code from MSB to LSB. The waveform first shows the eight LOAD cycles, then the internal NOP/GET/arithmetic-or-shift/PUT groups, and finally the STORE cycles used to read the final SRAM contents.
 
 <div align="center">
 <img src="figures/fig59-clock-and-instruction-waveform.jpg" alt="Fig. 59. Clock and instruction-code waveform." width="800"><br>
@@ -715,7 +715,7 @@ The clock-to-Q delay waveform shows the measured output delay from the active cl
 
 <br>
 
-A representative timing measurement compares `PHI1` and `EXT_BUS<0>` at the 500 mV crossing. Based on the plotted cursor values in Fig. 62, the output transition follows the clock transition by approximately 15.44 ps.
+A representative timing measurement compares `PHI1` and `EXT_BUS<0>` at their 500 mV crossings. Based on the plotted cursor values in Fig. 62, the output transition follows the clock transition by approximately 15.44 ps.
 
 ```text
 PHI1 reference crossing ~= 40.07966 ns
