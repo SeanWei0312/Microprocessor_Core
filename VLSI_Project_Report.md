@@ -117,12 +117,12 @@ The Espresso-minimized output was used to build the instruction-decoder PLA symb
 </div>
 
 <div align="center">
-<img src="figures/fig08-pla-schematic.jpg" alt="Fig. 8. PLA schematic." width="1000"><br>
+<img src="figures/fig08-pla-schematic.jpg" alt="Fig. 8. PLA schematic." width="800"><br>
 <em>Fig. 8. PLA schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig09-pla-layout.jpg" alt="Fig. 9. PLA layout." width="1000"><br>
+<img src="figures/fig09-pla-layout.jpg" alt="Fig. 9. PLA layout." width="800"><br>
 <em>Fig. 9. PLA layout.</em>
 </div>
 
@@ -133,17 +133,17 @@ The Espresso-minimized output was used to build the instruction-decoder PLA symb
 The control-signal latch stores selected outputs from the PLA so that datapath control remains stable during evaluation. The symbol defines the block-level interface, the schematic connects the latch stages used for subtraction, multiplexer selection, and shift control, and the layout implements the same control-storage structure physically. The inverter and latch-cell schematics and layouts are shown separately because they are the repeated cells used to construct the full control-signal latch.
 
 <div align="center">
-<img src="figures/fig10-control-latch-symbol.jpg" alt="Fig. 10. Control-signal latch symbol." width="1000"><br>
+<img src="figures/fig10-control-latch-symbol.jpg" alt="Fig. 10. Control-signal latch symbol." width="800"><br>
 <em>Fig. 10. Control-signal latch symbol.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig11-control-latch-schematic.jpg" alt="Fig. 11. Control-signal latch schematic." width="1000"><br>
+<img src="figures/fig11-control-latch-schematic.jpg" alt="Fig. 11. Control-signal latch schematic." width="800"><br>
 <em>Fig. 11. Control-signal latch schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig12-control-latch-layout.jpg" alt="Fig. 12. Control-signal latch layout." width="1000"><br>
+<img src="figures/fig12-control-latch-layout.jpg" alt="Fig. 12. Control-signal latch layout." width="800"><br>
 <em>Fig. 12. Control-signal latch layout.</em>
 </div>
 
@@ -154,11 +154,11 @@ The control-signal latch is built from one inverter cell and five latch cells. T
 <table>
 <tr>
 <td align="center">
-<img src="figures/fig13-control-latch-inverter-schematic.jpg" alt="Fig. 13. Inverter schematic used in the control latch." width="850"><br>
+<img src="figures/fig13-control-latch-inverter-schematic.jpg" alt="Fig. 13. Inverter schematic used in the control latch." width="425"><br>
 <em>Fig. 13. Inverter schematic used in the control latch.</em>
 </td>
 <td align="center">
-<img src="figures/fig14-control-latch-inverter-layout.jpg" alt="Fig. 14. Inverter layout used in the control latch." width="150"><br>
+<img src="figures/fig14-control-latch-inverter-layout.jpg" alt="Fig. 14. Inverter layout used in the control latch." width="75"><br>
 <em>Fig. 14. Inverter layout used in the control latch.</em>
 </td>
 </tr>
@@ -167,11 +167,11 @@ The control-signal latch is built from one inverter cell and five latch cells. T
 <table>
 <tr>
 <td align="center">
-<img src="figures/fig15-control-latch-latch-schematic.jpg" alt="Fig. 15. Latch schematic used in the control latch." width="550"><br>
+<img src="figures/fig15-control-latch-latch-schematic.jpg" alt="Fig. 15. Latch schematic used in the control latch." width="275"><br>
 <em>Fig. 15. Latch schematic used in the control latch.</em>
 </td>
 <td align="center">
-<img src="figures/fig16-control-latch-latch-layout.jpg" alt="Fig. 16. Latch layout used in the control latch." width="450"><br>
+<img src="figures/fig16-control-latch-latch-layout.jpg" alt="Fig. 16. Latch layout used in the control latch." width="225"><br>
 <em>Fig. 16. Latch layout used in the control latch.</em>
 </td>
 </tr>
