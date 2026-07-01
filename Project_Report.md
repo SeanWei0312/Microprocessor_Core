@@ -430,12 +430,12 @@ The shifter implements the accumulator shift operation and supports the shift-by
 The shifter uses reusable inverter and multiplexer cells. The inverter generates complementary control and data signals where needed, and the multiplexer cell selects between shifted and bypassed data paths. Fig. 43 and Fig. 44 show these cell schematics, and Table 10 references the corresponding cell-sizing information.
 
 <div align="center">
-<img src="figures/fig43-shifter-inverter-cell-schematic.jpg" alt="Fig. 43. Shifter inverter cell schematic." width="500"><br>
+<img src="figures/fig43-shifter-inverter-cell-schematic.jpg" alt="Fig. 43. Shifter inverter cell schematic." width="300"><br>
 <em>Fig. 43. Shifter inverter cell schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig44-shifter-multiplexer-cell-schematic.jpg" alt="Fig. 44. Shifter multiplexer cell schematic." width="1000"><br>
+<img src="figures/fig44-shifter-multiplexer-cell-schematic.jpg" alt="Fig. 44. Shifter multiplexer cell schematic." width="800"><br>
 <em>Fig. 44. Shifter multiplexer cell schematic.</em>
 </div>
 
