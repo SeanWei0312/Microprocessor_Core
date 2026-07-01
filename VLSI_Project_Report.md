@@ -151,25 +151,31 @@ The control-signal latch stores selected outputs from the PLA so that datapath c
 
 The control-signal latch is built from one inverter cell and five latch cells. The inverter cell generates the complementary control phase required by the latch stages, while each latch cell stores one decoded control bit from the PLA. Reusing the latch cell keeps the control block modular and makes the schematic-to-layout correspondence clear: the cell schematics define the transistor-level storage behavior, and the cell layouts are tiled and connected to form the complete control-signal latch.
 
-<div align="center">
+<table>
+<tr>
+<td align="center">
 <img src="figures/fig13-control-latch-inverter-schematic.jpg" alt="Fig. 13. Inverter schematic used in the control latch." width="850"><br>
 <em>Fig. 13. Inverter schematic used in the control latch.</em>
-</div>
-
-<div align="center">
+</td>
+<td align="center">
 <img src="figures/fig14-control-latch-inverter-layout.jpg" alt="Fig. 14. Inverter layout used in the control latch." width="150"><br>
 <em>Fig. 14. Inverter layout used in the control latch.</em>
-</div>
+</td>
+</tr>
+</table>
 
-<div align="center">
+<table>
+<tr>
+<td align="center">
 <img src="figures/fig15-control-latch-latch-schematic.jpg" alt="Fig. 15. Latch schematic used in the control latch." width="550"><br>
 <em>Fig. 15. Latch schematic used in the control latch.</em>
-</div>
-
-<div align="center">
+</td>
+<td align="center">
 <img src="figures/fig16-control-latch-latch-layout.jpg" alt="Fig. 16. Latch layout used in the control latch." width="450"><br>
 <em>Fig. 16. Latch layout used in the control latch.</em>
-</div>
+</td>
+</tr>
+</table>
 
 <br>
 
@@ -192,29 +198,35 @@ The SRAM stores eight 8-bit words and provides the memory interface for `LOAD`, 
 <em>Fig. 19. SRAM layout.</em>
 </div>
 
-The SRAM core contains the 8-by-8 memory array and connects it to the surrounding peripheral circuits.
+At the core level, the SRAM contains the 8-by-8 memory array and connects it to the surrounding peripheral circuits. The core schematic and layout show how the storage array is organized before it is integrated with the decoder, precharge, write, and read blocks.
 
-<div align="center">
-<img src="figures/fig20-sram-core-schematic.jpg" alt="Fig. 20. SRAM core schematic." width="700"><br>
+<table>
+<tr>
+<td align="center">
+<img src="figures/fig20-sram-core-schematic.jpg" alt="Fig. 20. SRAM core schematic." width="500"><br>
 <em>Fig. 20. SRAM core schematic.</em>
-</div>
-
-<div align="center">
-<img src="figures/fig21-sram-core-layout.jpg" alt="Fig. 21. SRAM core layout." width="700"><br>
+</td>
+<td align="center">
+<img src="figures/fig21-sram-core-layout.jpg" alt="Fig. 21. SRAM core layout." width="500"><br>
 <em>Fig. 21. SRAM core layout.</em>
-</div>
+</td>
+</tr>
+</table>
 
-The decoder selects one SRAM row from the address bits. Its layout is built from the decoder schematic and supporting inverter and three-input AND cells.
+The decoder selects one SRAM row from the address bits. Its schematic and layout are shown together to compare the row-selection logic with the physical decoder implementation.
 
-<div align="center">
-<img src="figures/fig22-sram-decoder-schematic.jpg" alt="Fig. 22. SRAM decoder schematic." width="700"><br>
+<table>
+<tr>
+<td align="center">
+<img src="figures/fig22-sram-decoder-schematic.jpg" alt="Fig. 22. SRAM decoder schematic." width="500"><br>
 <em>Fig. 22. SRAM decoder schematic.</em>
-</div>
-
-<div align="center">
-<img src="figures/fig23-sram-decoder-layout.jpg" alt="Fig. 23. SRAM decoder layout." width="700"><br>
+</td>
+<td align="center">
+<img src="figures/fig23-sram-decoder-layout.jpg" alt="Fig. 23. SRAM decoder layout." width="500"><br>
 <em>Fig. 23. SRAM decoder layout.</em>
-</div>
+</td>
+</tr>
+</table>
 
 <div align="center">
 <img src="figures/fig24-sram-decoder-inverter-schematic.jpg" alt="Fig. 24. SRAM decoder inverter schematic." width="700"><br>
@@ -226,7 +238,7 @@ The decoder selects one SRAM row from the address bits. Its layout is built from
 <em>Fig. 25. SRAM decoder three-input AND schematic.</em>
 </div>
 
-The precharge, write, and read circuits control bit-line initialization, memory writes, and memory reads for each SRAM column.
+The decoder layout is built from reusable inverter and three-input AND cells, which generate the decoded word-line signals used to select the target SRAM row. After row selection, the precharge circuit initializes the bit lines before read and write activity.
 
 <div align="center">
 <img src="figures/fig26-sram-precharge-schematic.jpg" alt="Fig. 26. SRAM precharge schematic." width="700"><br>
@@ -243,6 +255,8 @@ The precharge, write, and read circuits control bit-line initialization, memory 
 <em>Fig. 28. One-bit SRAM precharge schematic.</em>
 </div>
 
+The write circuit drives the selected SRAM column during memory-update operations. The full write schematic and layout show the column-level implementation, while the one-bit schematic shows the repeated write cell used across the 8-bit data path.
+
 <div align="center">
 <img src="figures/fig29-sram-write-schematic.jpg" alt="Fig. 29. SRAM write schematic." width="700"><br>
 <em>Fig. 29. SRAM write schematic.</em>
@@ -257,6 +271,8 @@ The precharge, write, and read circuits control bit-line initialization, memory 
 <img src="figures/fig31-sram-write-1bit-schematic.jpg" alt="Fig. 31. One-bit SRAM write schematic." width="700"><br>
 <em>Fig. 31. One-bit SRAM write schematic.</em>
 </div>
+
+The read circuit senses the selected SRAM column and drives the internal data path during memory-read operations. The full read schematic and layout show the complete read path, and the one-bit schematic shows the repeated cell used for each data bit.
 
 <div align="center">
 <img src="figures/fig32-sram-read-schematic.jpg" alt="Fig. 32. SRAM read schematic." width="700"><br>
