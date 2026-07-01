@@ -635,7 +635,7 @@ The simulation testbench applies the two-phase clocks, instruction sequence, and
 The clock and instruction waveform verifies that `PHI1`, `PHI2`, `INSTR<2:0>`, and `INSTR<5:3>` follow the sequence defined in Table 14. The clock runs at 1 GHz, so each instruction occupies one clock period of 1 ns. `INSTR<2:0>` carries the opcode from MSB to LSB, and `INSTR<5:3>` carries the SRAM address code from MSB to LSB. The waveform first shows the eight LOAD cycles, then the internal NOP/GET/arithmetic-or-shift/PUT groups, and finally the STORE cycles used to read out the final SRAM contents.
 
 <div align="center">
-<img src="figures/fig59-clock-and-instruction-waveform.jpg" alt="Fig. 59. Clock and instruction-code waveform." width="760"><br>
+<img src="figures/fig59-clock-and-instruction-waveform.jpg" alt="Fig. 59. Clock and instruction-code waveform." width="800"><br>
 <em>Fig. 59. Clock and instruction-code waveform.</em>
 </div>
 
@@ -646,12 +646,12 @@ The external-bus waveform confirms the data movement listed in Table 14. From 0 
 The shifter-control and adder-output waveform verifies the control and status signals used in the internal operation window. `SHIFT_BYPASS` is asserted during SHIFT instructions, `SHIFT<2:0>` matches the shift codes listed in Table 14, and the carry and overflow outputs are checked during the ADD and SUB operations in steps 11, 15, 19, and 23.
 
 <div align="center">
-<img src="figures/fig60-external-bus-waveform.jpg" alt="Fig. 60. External-bus input and output waveform." width="760"><br>
+<img src="figures/fig60-external-bus-waveform.jpg" alt="Fig. 60. External-bus input and output waveform." width="800"><br>
 <em>Fig. 60. External-bus input and output waveform.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig61-shifter-control-and-adder-output-waveform.jpg" alt="Fig. 61. Shifter-control and adder-output waveform." width="760"><br>
+<img src="figures/fig61-shifter-control-and-adder-output-waveform.jpg" alt="Fig. 61. Shifter-control and adder-output waveform." width="800"><br>
 <em>Fig. 61. Shifter-control and adder-output waveform.</em>
 </div>
 
@@ -662,7 +662,7 @@ The shifter-control and adder-output waveform verifies the control and status si
 The clock-to-Q delay waveform shows the measured output delay from the active clock edge to the external bus transition.
 
 <div align="center">
-<img src="figures/fig62-clock-to-q-delay-waveform.jpg" alt="Fig. 62. Clock-to-Q delay waveform." width="760"><br>
+<img src="figures/fig62-clock-to-q-delay-waveform.jpg" alt="Fig. 62. Clock-to-Q delay waveform." width="800"><br>
 <em>Fig. 62. Clock-to-Q delay waveform.</em>
 </div>
 
