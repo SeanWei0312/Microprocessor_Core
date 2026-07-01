@@ -430,7 +430,7 @@ The shifter implements the accumulator shift operation and supports the shift-by
 The shifter uses reusable inverter and multiplexer cells. The inverter generates complementary control and data signals where needed, and the multiplexer cell selects between shifted and bypassed data paths. Fig. 43 and Fig. 44 show these cell schematics, and Table 10 references the corresponding cell-sizing information.
 
 <div align="center">
-<img src="figures/fig43-shifter-inverter-cell-schematic.jpg" alt="Fig. 43. Shifter inverter cell schematic." width="800"><br>
+<img src="figures/fig43-shifter-inverter-cell-schematic.jpg" alt="Fig. 43. Shifter inverter cell schematic." width="500"><br>
 <em>Fig. 43. Shifter inverter cell schematic.</em>
 </div>
 
@@ -455,15 +455,15 @@ The multiplexer selects the value written into the accumulator from the SRAM, ad
 <table>
 <tr>
 <td align="center">
-<img src="figures/fig45-multiplexer-symbol.jpg" alt="Fig. 45. Multiplexer symbol." width="500"><br>
+<img src="figures/fig45-multiplexer-symbol.jpg" alt="Fig. 45. Multiplexer symbol." width="700"><br>
 <em>Fig. 45. Multiplexer symbol.</em>
 </td>
 <td align="center">
-<img src="figures/fig46-multiplexer-schematic.jpg" alt="Fig. 46. Multiplexer schematic." width="250"><br>
+<img src="figures/fig46-multiplexer-schematic.jpg" alt="Fig. 46. Multiplexer schematic." width="100"><br>
 <em>Fig. 46. Multiplexer schematic.</em>
 </td>
 <td align="center">
-<img src="figures/fig47-multiplexer-layout.jpg" alt="Fig. 47. Multiplexer layout." width="250"><br>
+<img src="figures/fig47-multiplexer-layout.jpg" alt="Fig. 47. Multiplexer layout." width="200"><br>
 <em>Fig. 47. Multiplexer layout.</em>
 </td>
 </tr>
