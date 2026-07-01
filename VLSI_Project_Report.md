@@ -121,6 +121,19 @@ The Espresso-minimized output was used to build the instruction-decoder PLA symb
 <em>Fig. 8. PLA schematic.</em>
 </div>
 
+| Cell | Device | Length | Width | Fingers |
+| --- | --- | ---: | ---: | ---: |
+| PLA AND plane | PMOS | 60 nm | 1 um | 1 |
+|  | NMOS | 60 nm | 1 um | 1 |
+| PLA OR plane | PMOS | 60 nm | 1 um | 1 |
+|  | NMOS | 60 nm | 1 um | 1 |
+| PLA inverter | PMOS | 60 nm | 1 um | 2 |
+|  | NMOS | 60 nm | 1 um | 1 |
+
+<div align="center"><strong>Table 3. PLA Cell Sizing</strong></div>
+
+<br>
+
 <div align="center">
 <img src="figures/fig09-pla-layout.jpg" alt="Fig. 9. PLA layout." width="1000"><br>
 <em>Fig. 9. PLA layout.</em>
@@ -130,7 +143,7 @@ The Espresso-minimized output was used to build the instruction-decoder PLA symb
 
 ### B. Control-Signal Latch
 
-The control-signal latch stores selected outputs from the PLA so that datapath control remains stable during evaluation. The symbol defines the block-level interface, the schematic connects the latch stages used for subtraction, multiplexer selection, and shift control, and the layout implements the same control-storage structure physically. The inverter and latch-cell schematics and layouts are shown separately because they are the repeated cells used to construct the full control-signal latch.
+The control-signal latch stores selected PLA outputs so the datapath control signals remain stable during evaluation. The block latches the control bits used for subtraction, multiplexer selection, and shift control, then presents those stored signals to the datapath during the active clock phase. Fig. 10 shows the block-level symbol, and Fig. 11 and Fig. 12 show the schematic and layout implementation.
 
 <div align="center">
 <img src="figures/fig10-control-latch-symbol.jpg" alt="Fig. 10. Control-signal latch symbol." width="1000"><br>
@@ -149,7 +162,7 @@ The control-signal latch stores selected outputs from the PLA so that datapath c
 
 <br>
 
-The control-signal latch is built from one inverter cell and five latch cells. The inverter cell generates the complementary control phase required by the latch stages, while each latch cell stores one decoded control bit from the PLA. Reusing the latch cell keeps the control block modular and makes the schematic-to-layout correspondence clear: the cell schematics define the transistor-level storage behavior, and the cell layouts are tiled and connected to form the complete control-signal latch.
+The control-signal latch is built from one inverter cell and five latch cells. The inverter generates the complementary clock phase required by the latch stages, while each latch cell stores one decoded control bit from the PLA. The inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path. The latch switch devices use matched 700 nm PMOS and NMOS widths so the pass path remains compact while providing balanced switching behavior. Fig. 13 through Fig. 16 show the reusable inverter and latch cells, and Table 4 lists the device sizes.
 
 <table>
 <tr>
@@ -177,11 +190,20 @@ The control-signal latch is built from one inverter cell and five latch cells. T
 </tr>
 </table>
 
+| Cell | Device | Length | Width | Fingers |
+| --- | --- | ---: | ---: | ---: |
+| Control-latch inverter | PMOS | 60 nm | 1 um | 2 |
+|  | NMOS | 60 nm | 1 um | 1 |
+| Control-latch switch | PMOS | 60 nm | 700 nm | 1 |
+|  | NMOS | 60 nm | 700 nm | 1 |
+
+<div align="center"><strong>Table 4. Control-Latch Cell Sizing</strong></div>
+
 <br>
 
 ### C. SRAM Memory Design
 
-The SRAM memory subsystem stores eight 8-bit words and provides the processor's data-memory interface. Following the SRAM project requirements, the block uses `PHI1`, `PHI2`, `MEM_READ`, `MEM_WRITE`, an 8-bit bidirectional data bus, and a 3-bit address input. The design is organized into the top-level SRAM interface, the 8-by-8 core array, the row decoder, `PHI2` precharge circuitry, `PHI1`-qualified write circuitry, and the `MEM_READ`-controlled read path.
+The SRAM memory subsystem stores eight 8-bit words and provides the processor's data-memory interface. The block uses `PHI1`, `PHI2`, `MEM_READ`, `MEM_WRITE`, an 8-bit bidirectional data bus, and a 3-bit address input. It is organized into the top-level SRAM interface, the 8-by-8 core array, the row decoder, `PHI2` precharge circuitry, `PHI1`-qualified write circuitry, and the `MEM_READ`-controlled read path.
 
 <div align="center">
 <img src="figures/fig17-sram-symbol.jpg" alt="Fig. 17. SRAM symbol." width="500"><br>
@@ -198,9 +220,11 @@ The SRAM memory subsystem stores eight 8-bit words and provides the processor's 
 <em>Fig. 19. SRAM layout.</em>
 </div>
 
+<br>
+
 #### SRAM Core Array
 
-The SRAM core implements the required eight-word by eight-bit memory array. It is based on the TSMC-provided SRAM layout from `arrayLib`; the provided 8-by-4 array is expanded to an 8-by-8 organization by adding SRAM column instances and extending the edge, corner, and well-strap structures. The core schematic and layout show the tiled memory-cell array before it is connected to the row decoder, `PHI2` precharge network, `PHI1`-qualified word-line control, write circuitry, and read circuitry.
+The SRAM core implements the required eight-word by eight-bit storage array. It is based on the TSMC SRAM layout from `arrayLib`, with the provided 8-by-4 array expanded to an 8-by-8 organization by adding SRAM column instances and extending the edge, corner, and well-strap structures. Fig. 20 and Fig. 21 show the core schematic and layout before the array is connected to the row decoder, precharge network, write circuitry, and read circuitry.
 
 <table>
 <tr>
@@ -215,9 +239,11 @@ The SRAM core implements the required eight-word by eight-bit memory array. It i
 </tr>
 </table>
 
+<br>
+
 #### Row Decoder
 
-The row decoder converts the 3-bit SRAM address into one active row-select signal. Because the SRAM requirements specify single-level decoding, the decoder directly generates the eight row-select terms without a predecoder. During operation, the address bits and their complemented versions are combined to select one target row, and the selected row is then qualified by `PHI1` so the SRAM word line is active only during the evaluation phase. The schematic and layout in Fig. 22 and Fig. 23 show this row-selection logic and its physical implementation.
+The row decoder converts the 3-bit SRAM address field, `INSTR<3:5>`, into eight row-select outputs, with only one SRAM row selected at a time. The inverters generate the complemented address bits required for decoding. First-stage three-input AND cells form the decoded row terms from the true and complemented address bits, and second-stage three-input AND cells qualify those row terms with `PHI1`. This structure enables the selected word line only during the active `PHI1` interval and keeps the decoder outputs disabled otherwise. Fig. 22 and Fig. 23 show the row-decoder schematic and layout.
 
 <table>
 <tr>
@@ -232,7 +258,7 @@ The row decoder converts the 3-bit SRAM address into one active row-select signa
 </tr>
 </table>
 
-The row decoder uses three inverter cells and sixteen three-input AND cells. The inverter cells generate the complemented address bits needed to form all eight address combinations. The first eight three-input AND cells make the decoding stage: each one receives a unique combination of true and complemented address bits and produces one decoded row term. The second eight three-input AND cells make the control stage: each one receives `PHI1`, one decoded row term from the first stage, and `VDD`, then drives the corresponding SRAM row-control line. This connection allows only the addressed row to turn on during `PHI1`; when `PHI1` is low, all row-control outputs remain disabled. Fig. 24 and Fig. 25 show the reusable inverter and three-input AND cells used to build this decoder.
+The decoder is implemented with three inverter cells and sixteen three-input AND cells. Each AND cell is built from a three-input NAND followed by an output inverter. The inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path, and the NAND stage uses 3x NMOS fingers to compensate for the three-device series stack. Fig. 24 and Fig. 25 show these reusable decoder cells.
 
 <div align="center">
 <img src="figures/fig24-sram-decoder-inverter-schematic.jpg" alt="Fig. 24. SRAM decoder inverter schematic." width="500"><br>
@@ -244,11 +270,20 @@ The row decoder uses three inverter cells and sixteen three-input AND cells. The
 <em>Fig. 25. SRAM decoder three-input AND schematic.</em>
 </div>
 
-The inverter and three-input AND schematics define the reusable cells used throughout the decoder layout.
+| Cell | Device | Length | Width | Fingers |
+| --- | --- | ---: | ---: | ---: |
+| Row-decoder inverter | PMOS | 60 nm | 150 nm | 10 |
+|  | NMOS | 60 nm | 150 nm | 5 |
+| Row-decoder three-input AND | PMOS | 60 nm | 150 nm | 2 |
+|  | NMOS | 60 nm | 150 nm | 3 |
+
+<div align="center"><strong>Table 5. Row Decoder Cell Sizing</strong></div>
+
+<br>
 
 #### Precharge Circuits
 
-The memory uses `PHI2` precharge so the bit lines are initialized before the `PHI1` evaluation phase. The precharge schematic and layout show the shared column-level precharge network, while the one-bit schematic isolates the repeated precharge cell used across the SRAM columns.
+The precharge circuit initializes the SRAM bitlines before row evaluation. During `PHI2`, the precharge devices pull both the bitline and bitline-bar nodes high so the selected cell can disturb the differential pair during the following `PHI1` interval. Fig. 26 and Fig. 27 show the full precharge schematic and layout.
 
 <div align="center">
 <img src="figures/fig26-sram-precharge-schematic.jpg" alt="Fig. 26. SRAM precharge schematic." width="1000"><br>
@@ -260,14 +295,25 @@ The memory uses `PHI2` precharge so the bit lines are initialized before the `PH
 <em>Fig. 27. SRAM precharge layout.</em>
 </div>
 
+The one-bit precharge cell is the repeated column cell used for each SRAM bit. It uses two matched PMOS devices, one connected to the bitline and one connected to the bitline-bar node. Both devices use a 60 nm channel length, 300 nm width, and one finger so the complementary bitlines receive balanced pull-up strength during `PHI2`. Fig. 28 shows the one-bit precharge schematic, and Table 6 lists the device sizes.
+
 <div align="center">
 <img src="figures/fig28-sram-precharge-1bit-schematic.jpg" alt="Fig. 28. One-bit SRAM precharge schematic." width="500"><br>
 <em>Fig. 28. One-bit SRAM precharge schematic.</em>
 </div>
 
+| Cell | Device | Length | Width | Fingers |
+| --- | --- | ---: | ---: | ---: |
+| Precharge cell | Bitline PMOS | 60 nm | 300 nm | 1 |
+|  | Bitline-bar PMOS | 60 nm | 300 nm | 1 |
+
+<div align="center"><strong>Table 6. Precharge Cell Sizing</strong></div>
+
+<br>
+
 #### Write Circuits
 
-The write circuit drives the selected SRAM column during memory write operations. As required, the write path is qualified by `PHI1`, so data is written only during the active evaluation phase. The write schematic and layout show the column-level implementation, while the one-bit schematic isolates the repeated write cell used across the 8-bit data path.
+The write circuit drives data onto the selected SRAM column during memory write operations. The write path is qualified by `PHI1`, so the bitline drivers are active only during the evaluation phase when a selected word line is enabled. Fig. 29 and Fig. 30 show the full write schematic and layout.
 
 <div align="center">
 <img src="figures/fig29-sram-write-schematic.jpg" alt="Fig. 29. SRAM write schematic." width="1000"><br>
@@ -279,14 +325,18 @@ The write circuit drives the selected SRAM column during memory write operations
 <em>Fig. 30. SRAM write layout.</em>
 </div>
 
+The one-bit write cell is the repeated driver used for each data bit. It takes the write data and its complement, then drives the bitline pair only when the write control path is enabled. This keeps unselected columns isolated and allows the same cell structure to be tiled across the 8-bit data path. Fig. 31 shows the one-bit write schematic.
+
 <div align="center">
 <img src="figures/fig31-sram-write-1bit-schematic.jpg" alt="Fig. 31. One-bit SRAM write schematic." width="500"><br>
 <em>Fig. 31. One-bit SRAM write schematic.</em>
 </div>
 
+<br>
+
 #### Read Circuits
 
-The read circuit senses the selected SRAM column and drives the internal data path during memory-read operations. The read driver is controlled by `MEM_READ`, allowing the output driver to remain tristated when the memory is not being read. The read schematic and layout show the complete read path, while the one-bit schematic isolates the repeated read cell used for each data bit.
+The read circuit transfers the selected SRAM column value onto the internal data path during memory-read operations. The read driver is controlled by `MEM_READ`, which keeps the output path disabled when the memory is not being read. Fig. 32 and Fig. 33 show the complete read schematic and layout.
 
 <div align="center">
 <img src="figures/fig32-sram-read-schematic.jpg" alt="Fig. 32. SRAM read schematic." width="1000"><br>
@@ -297,6 +347,8 @@ The read circuit senses the selected SRAM column and drives the internal data pa
 <img src="figures/fig33-sram-read-layout.jpg" alt="Fig. 33. SRAM read layout." width="1000"><br>
 <em>Fig. 33. SRAM read layout.</em>
 </div>
+
+The one-bit read cell is the repeated read path used for each SRAM data bit. It receives the selected bitline information and drives the output only when `MEM_READ` is asserted, preventing bus contention during non-read cycles. Fig. 34 shows the one-bit read schematic.
 
 <div align="center">
 <img src="figures/fig34-sram-read-1bit-schematic.jpg" alt="Fig. 34. One-bit SRAM read schematic." width="500"><br>
@@ -380,7 +432,7 @@ The transient test sequence loads memory with known values, executes accumulator
 | 39 | `STORE` | `010b` | 6 | `10110110b` | -74 |  |  |  |
 | 40 | `STORE` | `010b` | 7 | `11111111b` | -1 |  |  |  |
 
-<div align="center"><strong>Table 3. Functional Verification Test Sequence</strong></div>
+<div align="center"><strong>Table 7. Functional Verification Test Sequence</strong></div>
 
 <br>
 
@@ -424,7 +476,7 @@ Measured delay          ~= 15 ps
 | `figures/` | Schematic, layout, DRC/LVS, and waveform figures used by this report |
 | `VLSI_Project_Report.md` | DAC-style Markdown version of the microprocessor report |
 
-<div align="center"><strong>Table 4. Design File Package</strong></div>
+<div align="center"><strong>Table 8. Design File Package</strong></div>
 
 <br>
 
