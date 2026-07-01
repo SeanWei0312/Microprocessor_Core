@@ -181,36 +181,120 @@ The control-signal latch is built from one inverter cell and five latch cells. T
 
 ### C. SRAM Block
 
-The SRAM stores eight 8-bit words. It includes address decoding, bit-line precharge, write circuitry, read circuitry, and the 8-by-8 memory array.
+The SRAM stores eight 8-bit words and provides the memory interface for `LOAD`, `STORE`, arithmetic, and shift operations. The block includes the top-level SRAM symbol, schematic, and layout, along with the core array, decoder, precharge, write, and read circuits.
 
 <div align="center">
-<img src="figures/fig17-sram-layout.png" alt="Fig. 17. SRAM block layout." width="700"><br>
-<em>Fig. 17. SRAM block layout.</em>
+<img src="figures/fig17-sram-symbol.jpg" alt="Fig. 17. SRAM symbol." width="700"><br>
+<em>Fig. 17. SRAM symbol.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig18-sram-decoder-layout.png" alt="Fig. 18. SRAM decoder layout." width="380"><br>
-<em>Fig. 18. SRAM decoder layout.</em>
+<img src="figures/fig18-sram-schematic.jpg" alt="Fig. 18. SRAM schematic." width="700"><br>
+<em>Fig. 18. SRAM schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig19-sram-precharge-layout.png" alt="Fig. 19. SRAM precharge circuit layout." width="600"><br>
-<em>Fig. 19. SRAM precharge circuit layout.</em>
+<img src="figures/fig19-sram-layout.jpg" alt="Fig. 19. SRAM layout." width="900"><br>
+<em>Fig. 19. SRAM layout.</em>
 </div>
 
-<div align="center">
-<img src="figures/fig20-sram-write-layout.png" alt="Fig. 20. SRAM write circuit layout." width="600"><br>
-<em>Fig. 20. SRAM write circuit layout.</em>
-</div>
+The SRAM core contains the 8-by-8 memory array and connects it to the surrounding peripheral circuits.
+
+<table>
+<tr>
+<td align="center">
+<img src="figures/fig20-sram-core-schematic.jpg" alt="Fig. 20. SRAM core schematic." width="500"><br>
+<em>Fig. 20. SRAM core schematic.</em>
+</td>
+<td align="center">
+<img src="figures/fig21-sram-core-layout.jpg" alt="Fig. 21. SRAM core layout." width="500"><br>
+<em>Fig. 21. SRAM core layout.</em>
+</td>
+</tr>
+</table>
+
+The decoder selects one SRAM row from the address bits. Its layout is built from the decoder schematic and supporting inverter and three-input AND cells.
+
+<table>
+<tr>
+<td align="center">
+<img src="figures/fig22-sram-decoder-schematic.jpg" alt="Fig. 22. SRAM decoder schematic." width="420"><br>
+<em>Fig. 22. SRAM decoder schematic.</em>
+</td>
+<td align="center">
+<img src="figures/fig23-sram-decoder-layout.jpg" alt="Fig. 23. SRAM decoder layout." width="420"><br>
+<em>Fig. 23. SRAM decoder layout.</em>
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td align="center">
+<img src="figures/fig24-sram-decoder-inverter-schematic.jpg" alt="Fig. 24. SRAM decoder inverter schematic." width="500"><br>
+<em>Fig. 24. SRAM decoder inverter schematic.</em>
+</td>
+<td align="center">
+<img src="figures/fig25-sram-decoder-3input-and-schematic.jpg" alt="Fig. 25. SRAM decoder three-input AND schematic." width="500"><br>
+<em>Fig. 25. SRAM decoder three-input AND schematic.</em>
+</td>
+</tr>
+</table>
+
+The precharge, write, and read circuits control bit-line initialization, memory writes, and memory reads for each SRAM column.
+
+<table>
+<tr>
+<td align="center">
+<img src="figures/fig26-sram-precharge-schematic.jpg" alt="Fig. 26. SRAM precharge schematic." width="500"><br>
+<em>Fig. 26. SRAM precharge schematic.</em>
+</td>
+<td align="center">
+<img src="figures/fig27-sram-precharge-layout.jpg" alt="Fig. 27. SRAM precharge layout." width="500"><br>
+<em>Fig. 27. SRAM precharge layout.</em>
+</td>
+</tr>
+</table>
 
 <div align="center">
-<img src="figures/fig21-sram-read-layout.png" alt="Fig. 21. SRAM read circuit layout." width="600"><br>
-<em>Fig. 21. SRAM read circuit layout.</em>
+<img src="figures/fig28-sram-precharge-1bit-schematic.jpg" alt="Fig. 28. One-bit SRAM precharge schematic." width="900"><br>
+<em>Fig. 28. One-bit SRAM precharge schematic.</em>
 </div>
 
+<table>
+<tr>
+<td align="center">
+<img src="figures/fig29-sram-write-schematic.jpg" alt="Fig. 29. SRAM write schematic." width="500"><br>
+<em>Fig. 29. SRAM write schematic.</em>
+</td>
+<td align="center">
+<img src="figures/fig30-sram-write-1bit-schematic.jpg" alt="Fig. 30. One-bit SRAM write schematic." width="500"><br>
+<em>Fig. 30. One-bit SRAM write schematic.</em>
+</td>
+</tr>
+</table>
+
 <div align="center">
-<img src="figures/fig22-sram-array-layout.png" alt="Fig. 22. 8-by-8 SRAM array layout." width="460"><br>
-<em>Fig. 22. 8-by-8 SRAM array layout.</em>
+<img src="figures/fig31-sram-write-layout.jpg" alt="Fig. 31. SRAM write layout." width="900"><br>
+<em>Fig. 31. SRAM write layout.</em>
+</div>
+
+<table>
+<tr>
+<td align="center">
+<img src="figures/fig32-sram-read-schematic.jpg" alt="Fig. 32. SRAM read schematic." width="500"><br>
+<em>Fig. 32. SRAM read schematic.</em>
+</td>
+<td align="center">
+<img src="figures/fig33-sram-read-1bit-schematic.jpg" alt="Fig. 33. One-bit SRAM read schematic." width="500"><br>
+<em>Fig. 33. One-bit SRAM read schematic.</em>
+</td>
+</tr>
+</table>
+
+<div align="center">
+<img src="figures/fig34-sram-read-layout.jpg" alt="Fig. 34. SRAM read layout." width="900"><br>
+<em>Fig. 34. SRAM read layout.</em>
 </div>
 
 <br>
@@ -220,23 +304,23 @@ The SRAM stores eight 8-bit words. It includes address decoding, bit-line precha
 The datapath includes the adder/subtractor, shifter, multiplexer, and accumulator latch. The arithmetic block generates the 8-bit result, carry flag, and overflow flag. The shifter and multiplexer route the selected value into the accumulator latch.
 
 <div align="center">
-<img src="figures/fig23-adder-layout.png" alt="Fig. 23. Adder/subtractor layout." width="620"><br>
-<em>Fig. 23. Adder/subtractor layout.</em>
+<img src="figures/fig35-adder-layout.png" alt="Fig. 35. Adder/subtractor layout." width="620"><br>
+<em>Fig. 35. Adder/subtractor layout.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig24-shifter-layout.png" alt="Fig. 24. Shifter layout." width="700"><br>
-<em>Fig. 24. Shifter layout.</em>
+<img src="figures/fig36-shifter-layout.png" alt="Fig. 36. Shifter layout." width="700"><br>
+<em>Fig. 36. Shifter layout.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig25-mux-layout.png" alt="Fig. 25. Multiplexer layout." width="180"><br>
-<em>Fig. 25. Multiplexer layout.</em>
+<img src="figures/fig37-mux-layout.png" alt="Fig. 37. Multiplexer layout." width="180"><br>
+<em>Fig. 37. Multiplexer layout.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig26-latch-layout.png" alt="Fig. 26. Accumulator latch layout." width="260"><br>
-<em>Fig. 26. Accumulator latch layout.</em>
+<img src="figures/fig38-latch-layout.png" alt="Fig. 38. Accumulator latch layout." width="260"><br>
+<em>Fig. 38. Accumulator latch layout.</em>
 </div>
 
 <br>
@@ -299,8 +383,8 @@ The transient test sequence loads memory with known values, executes accumulator
 The instruction waveform verifies the applied opcode and address fields. The external bus waveform confirms that memory load values are accepted and that store operations reproduce the expected output sequence.
 
 <div align="center">
-<img src="figures/fig27-waveforms-instruction-bus.png" alt="Fig. 27. Instruction and external bus waveform verification." width="760"><br>
-<em>Fig. 27. Instruction and external bus waveform verification.</em>
+<img src="figures/fig39-waveforms-instruction-bus.png" alt="Fig. 39. Instruction and external bus waveform verification." width="760"><br>
+<em>Fig. 39. Instruction and external bus waveform verification.</em>
 </div>
 
 <br>
@@ -308,8 +392,8 @@ The instruction waveform verifies the applied opcode and address fields. The ext
 The status and shift waveforms verify `SHIFT_BYPASS`, carry, overflow, and shift-control behavior. The delay plot compares `PHI1` and `EXT_BUS<0>` around a representative output transition.
 
 <div align="center">
-<img src="figures/fig28-waveforms-shift-delay.png" alt="Fig. 28. Shift, carry, overflow, and delay waveform verification." width="760"><br>
-<em>Fig. 28. Shift, carry, overflow, and delay waveform verification.</em>
+<img src="figures/fig40-waveforms-shift-delay.png" alt="Fig. 40. Shift, carry, overflow, and delay waveform verification." width="760"><br>
+<em>Fig. 40. Shift, carry, overflow, and delay waveform verification.</em>
 </div>
 
 <br>
