@@ -181,7 +181,7 @@ The control-signal latch is built from one inverter cell and five latch cells. T
 
 ### C. SRAM Memory Design
 
-The SRAM memory subsystem stores eight 8-bit words and provides the data-memory interface required by the processor. Following the SRAM project requirements, the block uses `PHI1`, `PHI2`, `MEM_READ`, `MEM_WRITE`, an 8-bit bidirectional data bus, and a 3-bit address input. The implementation is organized into the top-level SRAM interface, the 8-by-8 core array, the row decoder, `PHI2` precharge circuitry, `PHI1`-qualified write circuitry, and the `MEM_READ`-controlled read path.
+The SRAM memory subsystem stores eight 8-bit words and provides the processor's data-memory interface. Following the SRAM project requirements, the block uses `PHI1`, `PHI2`, `MEM_READ`, `MEM_WRITE`, an 8-bit bidirectional data bus, and a 3-bit address input. The design is organized into the top-level SRAM interface, the 8-by-8 core array, the row decoder, `PHI2` precharge circuitry, `PHI1`-qualified write circuitry, and the `MEM_READ`-controlled read path.
 
 <div align="center">
 <img src="figures/fig17-sram-symbol.jpg" alt="Fig. 17. SRAM symbol." width="500"><br>
@@ -200,7 +200,7 @@ The SRAM memory subsystem stores eight 8-bit words and provides the data-memory 
 
 #### SRAM Core Array
 
-The SRAM core implements the required eight-word by eight-bit memory array. It is based on the TSMC-provided SRAM layout from `arrayLib`, where the provided 8-by-4 array is extended to an 8-by-8 organization by adding SRAM column instances and extending the edge, corner, and well-strap structures. The core schematic and layout show the tiled memory-cell array before integration with the row decoder, `PHI2` precharge circuitry, `PHI1`-qualified word-line control, write circuitry, and read circuitry.
+The SRAM core implements the required eight-word by eight-bit memory array. It is based on the TSMC-provided SRAM layout from `arrayLib`; the provided 8-by-4 array is expanded to an 8-by-8 organization by adding SRAM column instances and extending the edge, corner, and well-strap structures. The core schematic and layout show the tiled memory-cell array before it is connected to the row decoder, `PHI2` precharge network, `PHI1`-qualified word-line control, write circuitry, and read circuitry.
 
 <table>
 <tr>
@@ -217,7 +217,7 @@ The SRAM core implements the required eight-word by eight-bit memory array. It i
 
 #### Row Decoder
 
-The row decoder selects one SRAM row from the 3-bit address field. Because the requirements call for only one level of decoding, the decoder directly generates the row-select terms without a predecoder. Its schematic and layout are shown together to compare the row-selection logic with its physical implementation.
+The row decoder selects one SRAM row from the 3-bit address field. Because the requirements specify single-level decoding, the decoder directly generates the row-select terms without a predecoder. Its schematic and layout are shown together to compare the row-selection logic with its physical implementation.
 
 <table>
 <tr>
@@ -232,7 +232,7 @@ The row decoder selects one SRAM row from the 3-bit address field. Because the r
 </tr>
 </table>
 
-The decoder is implemented with three inverter cells and sixteen three-input AND cells. The three inverters generate the complemented address bits required for decoding. Eight first-stage three-input AND cells generate the decoded row terms from the true and complemented address bits, and eight second-stage three-input AND cells qualify those decoded terms with `PHI1`. This structure enables the selected word line only during the active `PHI1` interval and keeps the decoder outputs disabled otherwise.
+The decoder is implemented with three inverter cells and sixteen three-input AND cells. The inverters generate the complemented address bits required for decoding. Eight first-stage three-input AND cells form the decoded row terms from the true and complemented address bits, and eight second-stage three-input AND cells qualify those row terms with `PHI1`. This structure enables the selected word line only during the active `PHI1` interval and keeps the decoder outputs disabled otherwise.
 
 <div align="center">
 <img src="figures/fig24-sram-decoder-inverter-schematic.jpg" alt="Fig. 24. SRAM decoder inverter schematic." width="500"><br>
@@ -248,7 +248,7 @@ The inverter and three-input AND schematics define the reusable cells used throu
 
 #### Precharge Circuits
 
-The memory uses `PHI2` precharge so the bit lines are initialized before the `PHI1` evaluation phase. The precharge schematic and layout show the shared column-level precharge network, while the one-bit schematic shows the repeated precharge cell used across the SRAM columns.
+The memory uses `PHI2` precharge so the bit lines are initialized before the `PHI1` evaluation phase. The precharge schematic and layout show the shared column-level precharge network, while the one-bit schematic isolates the repeated precharge cell used across the SRAM columns.
 
 <div align="center">
 <img src="figures/fig26-sram-precharge-schematic.jpg" alt="Fig. 26. SRAM precharge schematic." width="1000"><br>
@@ -267,7 +267,7 @@ The memory uses `PHI2` precharge so the bit lines are initialized before the `PH
 
 #### Write Circuits
 
-The write circuit drives the selected SRAM column during memory write operations. As required, the write path is qualified by `PHI1`, so data is written only during the active evaluation phase. The write schematic and layout show the column-level implementation, while the one-bit schematic shows the repeated write cell used across the 8-bit data path.
+The write circuit drives the selected SRAM column during memory write operations. As required, the write path is qualified by `PHI1`, so data is written only during the active evaluation phase. The write schematic and layout show the column-level implementation, while the one-bit schematic isolates the repeated write cell used across the 8-bit data path.
 
 <div align="center">
 <img src="figures/fig29-sram-write-schematic.jpg" alt="Fig. 29. SRAM write schematic." width="1000"><br>
@@ -286,7 +286,7 @@ The write circuit drives the selected SRAM column during memory write operations
 
 #### Read Circuits
 
-The read circuit senses the selected SRAM column and drives the internal data path during memory-read operations. The read driver is controlled by `MEM_READ`, allowing the output driver to remain tristated when the memory is not being read. The read schematic and layout show the complete read path, while the one-bit schematic shows the repeated read cell used for each data bit.
+The read circuit senses the selected SRAM column and drives the internal data path during memory-read operations. The read driver is controlled by `MEM_READ`, allowing the output driver to remain tristated when the memory is not being read. The read schematic and layout show the complete read path, while the one-bit schematic isolates the repeated read cell used for each data bit.
 
 <div align="center">
 <img src="figures/fig32-sram-read-schematic.jpg" alt="Fig. 32. SRAM read schematic." width="1000"><br>
