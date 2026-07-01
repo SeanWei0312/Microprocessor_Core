@@ -245,12 +245,12 @@ The row decoder converts the 3-bit SRAM address field, `INSTR<5:3>`, into eight 
 The decoder is implemented with three inverter cells and sixteen three-input AND cells. Each AND cell is built from a three-input NAND followed by an output inverter. The inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path, and the NAND stage uses 3x NMOS fingers to compensate for the three-device series stack. Fig. 22 and Fig. 23 show these reusable decoder cells.
 
 <div align="center">
-<img src="figures/fig22-sram-row-decoder-inverter-schematic.jpg" alt="Fig. 22. SRAM row-decoder inverter schematic." width="800"><br>
+<img src="figures/fig22-sram-row-decoder-inverter-schematic.jpg" alt="Fig. 22. SRAM row-decoder inverter schematic." width="500"><br>
 <em>Fig. 22. SRAM row-decoder inverter schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig23-sram-row-decoder-three-input-and-schematic.jpg" alt="Fig. 23. SRAM row-decoder three-input AND schematic." width="800"><br>
+<img src="figures/fig23-sram-row-decoder-three-input-and-schematic.jpg" alt="Fig. 23. SRAM row-decoder three-input AND schematic." width="500"><br>
 <em>Fig. 23. SRAM row-decoder three-input AND schematic.</em>
 </div>
 
