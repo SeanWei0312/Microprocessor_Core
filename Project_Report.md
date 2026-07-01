@@ -116,6 +116,10 @@ The Espresso-minimized output was used to build the instruction-decoder PLA symb
 <em>Fig. 7. Instruction-decoder PLA symbol.</em>
 </div>
 
+<br>
+
+The PLA uses repeated devices in the AND plane, OR plane, and inverter stages so the decoder can be implemented with a regular layout pattern. The plane devices use matched 1 um PMOS and NMOS widths, while each inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path. Table 3 lists the device sizes used in the PLA cells.
+
 <div align="center">
 <img src="figures/fig08-instruction-decoder-pla-schematic.jpg" alt="Fig. 8. Instruction-decoder PLA schematic." width="1000"><br>
 <em>Fig. 8. Instruction-decoder PLA schematic.</em>
@@ -162,7 +166,7 @@ The control-signal latch stores selected PLA outputs so the datapath control sig
 
 <br>
 
-The control-signal latch is built from one inverter cell and five latch cells. The inverter generates the complementary clock phase required by the latch stages, while each latch cell stores one decoded control bit from the PLA. The inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path. The latch switch devices use matched 700 nm PMOS and NMOS widths so the pass path remains compact while providing balanced switching behavior. Fig. 13 and Fig. 14 show the reusable inverter and latch cells, and Table 4 lists the device sizes.
+The control-signal latch is built from one inverter cell and five latch cells. The inverter generates the complementary clock phase used by the latch stages, and each latch cell stores one decoded control bit from the PLA. The inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path. The latch switch devices use matched 700 nm PMOS and NMOS widths to keep the pass path compact while maintaining balanced switching behavior. Fig. 13 and Fig. 14 show the reusable cells, and Table 4 lists their device sizes.
 
 <div align="center">
 <img src="figures/fig13-control-signal-latch-inverter-schematic.jpg" alt="Fig. 13. Control-signal latch inverter schematic." width="500"><br>
@@ -178,16 +182,16 @@ The control-signal latch is built from one inverter cell and five latch cells. T
 | --- | --- | ---: | ---: | ---: |
 | Control-signal latch inverter | Pull-up PMOS | 60 nm | 1 um | 2 |
 |  | Pull-down NMOS | 60 nm | 1 um | 1 |
-| Control-signal latch switch | Switch PMOS | 60 nm | 700 nm | 1 |
+| Control-signal latch cell | Switch PMOS | 60 nm | 700 nm | 1 |
 |  | Switch NMOS | 60 nm | 700 nm | 1 |
-| | inverter PMOS | 60 nm | 1 um | 2 |
-|  | inverter NMOS | 60 nm | 1 um | 1 |
+|  | Inverter PMOS | 60 nm | 1 um | 2 |
+|  | Inverter NMOS | 60 nm | 1 um | 1 |
 
 <div align="center"><strong>Table 4. Control-Signal Latch Cell Sizing</strong></div>
 
 <br>
 
-### C. SRAM Memory Design
+### C. SRAM
 
 The SRAM memory subsystem stores eight 8-bit words and provides the processor's data-memory interface. The block uses `PHI1`, `PHI2`, `MEM_READ`, `MEM_WRITE`, an 8-bit bidirectional data bus, and a 3-bit address input. It is organized into the top-level SRAM interface, the 8-by-8 core array, the row decoder, the `PHI2` precharge circuitry, the `PHI1`-qualified write circuitry, and the `MEM_READ`-controlled read path.
 
@@ -244,7 +248,9 @@ The row decoder converts the 3-bit SRAM address field, `INSTR<5:3>`, into eight 
 </tr>
 </table>
 
-The decoder is implemented with three inverter cells and sixteen three-input AND cells. Each AND cell is built from a three-input NAND followed by an output inverter. The inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path, and the NAND stage uses 3x NMOS fingers to compensate for the three-device series stack. Fig. 22 and Fig. 23 show these reusable decoder cells.
+<br>
+
+The decoder is implemented with three inverter cells and sixteen three-input AND cells. Each AND cell is built from a three-input NAND followed by an output inverter. The inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path, while the NAND stage uses larger NMOS finger counts to reduce the resistance of the three-device series stack. Fig. 22 and Fig. 23 show these reusable decoder cells, and Table 5 lists their device sizes.
 
 <div align="center">
 <img src="figures/fig22-sram-row-decoder-inverter-schematic.jpg" alt="Fig. 22. SRAM row-decoder inverter schematic." width="500"><br>
@@ -283,7 +289,9 @@ The precharge circuit initializes the SRAM bitlines before row evaluation. Durin
 <em>Fig. 25. SRAM precharge circuit layout.</em>
 </div>
 
-The one-bit precharge cell is the repeated column cell used for each SRAM bit. It uses two matched PMOS devices, one connected to the bitline and one connected to the bitline-bar node. Both devices use a 60 nm channel length, 300 nm width, and one finger so the complementary bitlines receive balanced pull-up strength during `PHI2`. Fig. 26 shows the one-bit precharge schematic, and Table 6 lists the device sizes.
+<br>
+
+The precharge cell is repeated for each SRAM column. It uses two matched PMOS devices, with one device connected to the bitline and the other connected to the bitline-bar node. Both devices use the same length, width, and finger count so the complementary bitlines receive balanced pull-up strength during `PHI2`. Fig. 26 shows the precharge cell schematic, and Table 6 lists the device sizes.
 
 <div align="center">
 <img src="figures/fig26-sram-one-bit-precharge-schematic.jpg" alt="Fig. 26. One-bit SRAM precharge schematic." width="500"><br>
@@ -292,7 +300,7 @@ The one-bit precharge cell is the repeated column cell used for each SRAM bit. I
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| One-bit precharge cell | Bitline PMOS | 60 nm | 300 nm | 1 |
+| Precharge cell | Bitline PMOS | 60 nm | 300 nm | 1 |
 |  | Bitline-bar PMOS | 60 nm | 300 nm | 1 |
 
 <div align="center"><strong>Table 6. SRAM Precharge Cell Sizing</strong></div>
@@ -313,7 +321,9 @@ The write circuit drives data onto the selected SRAM column during memory write 
 <em>Fig. 28. SRAM write circuit layout.</em>
 </div>
 
-The one-bit write cell is the repeated driver used for each data bit. It receives the write data and its complement, then drives the bitline pair only when the write control path is enabled. This keeps unselected columns isolated and allows the same cell structure to be tiled across the 8-bit data path. Fig. 29 shows the one-bit write schematic, and Table 7 references the corresponding device sizing.
+<br>
+
+The write cell is repeated for each SRAM data bit. It receives the write data and its complement, then drives the bitline pair only when the write control path is enabled. The inverter and three-input AND devices provide the local control logic, while the bitline switches use wider NMOS devices to drive the column nodes. Fig. 29 shows the write cell schematic, and Table 7 lists the device sizes.
 
 <div align="center">
 <img src="figures/fig29-sram-one-bit-write-schematic.jpg" alt="Fig. 29. One-bit SRAM write schematic." width="500"><br>
@@ -322,14 +332,12 @@ The one-bit write cell is the repeated driver used for each data bit. It receive
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| Write-cell inverter | Pull-up PMOS | 60 nm | 150 nm | 10 |
-|  | Pull-down NMOS | 60 nm | 150 nm | 5 |
-| Write-cell three-input AND | NAND pull-up PMOS | 60 nm | 150 nm | 2 |
-|  | NAND pull-down NMOS | 60 nm | 150 nm | 3 |
-|  | Inverter PMOS | 60 nm | 150 nm | 10 |
+| Write cell | Inverter PMOS | 60 nm | 150 nm | 10 |
 |  | Inverter NMOS | 60 nm | 150 nm | 5 |
-| Write-cell bitline switch | Bitline NMOS | 60 nm | 500 nm | 2 |
-|  | Bitline-bar NMOS | 60 nm | 500 nm | 2 |
+|  | Three-input AND PMOS | 60 nm | 150 nm | 2 |
+|  | Three-input AND NMOS | 60 nm | 150 nm | 3 |
+|  | Bitline switch NMOS | 60 nm | 500 nm | 2 |
+|  | Bitline-bar switch NMOS | 60 nm | 500 nm | 2 |
 
 <div align="center"><strong>Table 7. SRAM Write Cell Sizing</strong></div>
 
@@ -349,7 +357,9 @@ The read circuit transfers the selected SRAM column value onto the internal data
 <em>Fig. 31. SRAM read circuit layout.</em>
 </div>
 
-The one-bit read cell is the repeated read path used for each SRAM data bit. It receives the selected bitline information and drives the output only when `MEM_READ` is asserted, preventing bus contention during non-read cycles. Fig. 32 shows the one-bit read schematic, and Table 8 references the corresponding device sizing.
+<br>
+
+The read cell is repeated for each SRAM data bit. It receives the selected bitline information and drives the internal output only when `MEM_READ` is asserted, which prevents contention during non-read cycles. The inverter and three-input AND devices match the write-control sizing style so the read path remains regular across the data width. Fig. 32 shows the read cell schematic, and Table 8 lists the device sizes.
 
 <div align="center">
 <img src="figures/fig32-sram-one-bit-read-schematic.jpg" alt="Fig. 32. One-bit SRAM read schematic." width="500"><br>
@@ -358,12 +368,10 @@ The one-bit read cell is the repeated read path used for each SRAM data bit. It 
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| Read-cell inverter | Pull-up PMOS | 60 nm | 150 nm | 10 |
-|  | Pull-down NMOS | 60 nm | 150 nm | 5 |
-| Read-cell three-input AND | NAND pull-up PMOS | 60 nm | 150 nm | 2 |
-|  | NAND pull-down NMOS | 60 nm | 150 nm | 3 |
-|  | Inverter PMOS | 60 nm | 150 nm | 10 |
+| Read cell | Inverter PMOS | 60 nm | 150 nm | 10 |
 |  | Inverter NMOS | 60 nm | 150 nm | 5 |
+|  | Three-input AND PMOS | 60 nm | 150 nm | 2 |
+|  | Three-input AND NMOS | 60 nm | 150 nm | 3 |
 
 <div align="center"><strong>Table 8. SRAM Read Cell Sizing</strong></div>
 
@@ -388,7 +396,9 @@ The adder/subtractor performs 8-bit addition and subtraction for the accumulator
 <em>Fig. 35. Adder/subtractor layout.</em>
 </div>
 
-The adder/subtractor is built from repeated one-bit adder cells. The full-adder cell provides the bit-slice sum and carry behavior, while the XOR and NAND cells implement supporting arithmetic logic for addition and subtraction. Fig. 36 through Fig. 39 show the reusable adder cells, and Table 9 references the corresponding cell-sizing information.
+<br>
+
+The adder/subtractor is built from repeated adder cells. The full-adder cell provides the bit-slice sum and carry behavior, while the XOR and NAND cells implement the supporting logic used for addition and subtraction. The XOR uses smaller pull-up and pull-down devices for local logic, and the NAND uses larger matched PMOS and NMOS finger counts for stronger shared-gate drive. Fig. 36 through Fig. 39 show the reusable adder cells, and Table 9 lists the device sizes.
 
 <table>
 <tr>
@@ -445,7 +455,9 @@ The shifter implements the accumulator shift operation and supports the shift-by
 <em>Fig. 42. Shifter layout.</em>
 </div>
 
-The shifter uses reusable inverter and multiplexer cells. The inverter generates complementary control and data signals where needed, and the multiplexer cell selects between shifted and bypassed data paths. Fig. 43 and Fig. 44 show these cell schematics, and Table 10 references the corresponding cell-sizing information.
+<br>
+
+The shifter uses reusable inverter and multiplexer cells. The inverter generates complementary control and data signals, and the multiplexer cell selects between shifted and bypassed data paths. The inverter uses a 2 um PMOS and 1 um NMOS to balance pull-up and pull-down strength, while the multiplexer switches use matched 1 um PMOS and NMOS devices for symmetric pass behavior. Fig. 43 and Fig. 44 show these cell schematics, and Table 10 lists the device sizes.
 
 <div align="center">
 <img src="figures/fig43-shifter-inverter-cell-schematic.jpg" alt="Fig. 43. Shifter inverter cell schematic." width="300"><br>
@@ -491,7 +503,9 @@ The multiplexer selects the value written into the accumulator from the SRAM, ad
 </tr>
 </table>
 
-The multiplexer is built from a repeated one-bit selection cell. Each one-bit cell selects the corresponding datapath bit under the decoded control signals, and repeating the cell keeps the 8-bit schematic and layout regular. Fig. 48 shows the one-bit multiplexer schematic, and Table 11 references the corresponding device sizing.
+<br>
+
+The multiplexer is built from a repeated selection cell. Each cell selects the corresponding datapath bit under the decoded control signals, which keeps the 8-bit schematic and layout regular. The listed switch NMOS device provides the controlled pass path for the selected data input. Fig. 48 shows the multiplexer cell schematic, and Table 11 lists the device size.
 
 <div align="center">
 <img src="figures/fig48-one-bit-multiplexer-schematic.jpg" alt="Fig. 48. One-bit multiplexer schematic." width="500"><br>
@@ -500,7 +514,7 @@ The multiplexer is built from a repeated one-bit selection cell. Each one-bit ce
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| multiplexer | Switch NMOS | 60 nm | 1 um | 1 |
+| Multiplexer cell | Switch NMOS | 60 nm | 1 um | 1 |
 
 <div align="center"><strong>Table 11. Multiplexer Cell Sizing</strong></div>
 
@@ -528,7 +542,9 @@ The accumulator latch stores the selected 8-bit datapath result for the next ope
 </tr>
 </table>
 
-The accumulator latch uses a repeated one-bit latch cell. Each cell stores one datapath bit and is tiled across the accumulator so the schematic-to-layout correspondence remains clear. Fig. 52 shows the one-bit accumulator latch schematic, and Table 12 references the corresponding device sizing.
+<br>
+
+The accumulator latch uses a repeated storage cell. Each cell stores one datapath bit and is tiled across the accumulator so the schematic-to-layout correspondence remains clear. The switch devices form the gated storage path, and the inverter devices restore and hold the stored logic level. Fig. 52 shows the accumulator latch cell schematic, and Table 12 lists the device sizes.
 
 <div align="center">
 <img src="figures/fig52-one-bit-accumulator-latch-schematic.jpg" alt="Fig. 52. One-bit accumulator latch schematic." width="500"><br>
@@ -568,7 +584,9 @@ The external bus driver connects the internal datapath to `EXT_BUS<0:7>` during 
 </tr>
 </table>
 
-The external bus driver uses a repeated one-bit bus-driver cell and a tristate output cell. The one-bit driver cell is repeated across all eight bus lines, while the tristate cell isolates the external bus when `STORE_BUS` is inactive. Fig. 56 and Fig. 57 show the reusable bus-driver cells, and Table 13 references the corresponding cell-sizing information.
+<br>
+
+The external bus driver uses a repeated bus-driver cell and a tristate output cell. The driver cell is repeated across all eight bus lines, while the tristate cell isolates the external bus when `STORE_BUS` is inactive. The pull-up, pull-down, enable-switch, and inverter devices are sized to provide a controlled output path while preserving bus isolation during inactive store cycles. Fig. 56 and Fig. 57 show the reusable bus-driver cells, and Table 13 lists the device sizes.
 
 <div align="center">
 <img src="figures/fig56-one-bit-bus-driver-schematic.jpg" alt="Fig. 56. One-bit bus-driver schematic." width="500"><br>
@@ -582,8 +600,12 @@ The external bus driver uses a repeated one-bit bus-driver cell and a tristate o
 
 | Cell | Device | Length | Width | Fingers |
 | --- | --- | ---: | ---: | ---: |
-| One-bit bus driver | Driver devices | See Fig. 56 | See Fig. 56 | See Fig. 56 |
-| Tristate bus driver | Tristate devices | See Fig. 57 | See Fig. 57 | See Fig. 57 |
+| Tristate bus driver | Pull-up PMOS | 60 nm | 1 um | 2 |
+|  | Pull-down NMOS | 60 nm | 1 um | 1 |
+|  | Enable-switch PMOS | 60 nm | 1 um | 2 |
+|  | Enable-switch NMOS | 60 nm | 1 um | 1 |
+|  | Inverter PMOS | 60 nm | 1 um | 2 |
+|  | Inverter NMOS | 60 nm | 1 um | 1 |
 
 <div align="center"><strong>Table 13. External Bus-Driver Cell Sizing</strong></div>
 
