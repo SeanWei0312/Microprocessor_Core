@@ -245,12 +245,12 @@ The row decoder converts the 3-bit SRAM address field, `INSTR<5:3>`, into eight 
 The decoder is implemented with three inverter cells and sixteen three-input AND cells. Each AND cell is built from a three-input NAND followed by an output inverter. The inverter uses a 2x PMOS finger count to balance the stronger NMOS pull-down path, and the NAND stage uses 3x NMOS fingers to compensate for the three-device series stack. Fig. 22 and Fig. 23 show these reusable decoder cells.
 
 <div align="center">
-<img src="figures/fig22-sram-row-decoder-inverter-schematic.jpg" alt="Fig. 22. SRAM row-decoder inverter schematic." width="500"><br>
+<img src="figures/fig22-sram-row-decoder-inverter-schematic.jpg" alt="Fig. 22. SRAM row-decoder inverter schematic." width="800"><br>
 <em>Fig. 22. SRAM row-decoder inverter schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig23-sram-row-decoder-three-input-and-schematic.jpg" alt="Fig. 23. SRAM row-decoder three-input AND schematic." width="500"><br>
+<img src="figures/fig23-sram-row-decoder-three-input-and-schematic.jpg" alt="Fig. 23. SRAM row-decoder three-input AND schematic." width="800"><br>
 <em>Fig. 23. SRAM row-decoder three-input AND schematic.</em>
 </div>
 
@@ -282,7 +282,7 @@ The precharge circuit initializes the SRAM bitlines before row evaluation. Durin
 The one-bit precharge cell is the repeated column cell used for each SRAM bit. It uses two matched PMOS devices, one connected to the bitline and one connected to the bitline-bar node. Both devices use a 60 nm channel length, 300 nm width, and one finger so the complementary bitlines receive balanced pull-up strength during `PHI2`. Fig. 26 shows the one-bit precharge schematic, and Table 6 lists the device sizes.
 
 <div align="center">
-<img src="figures/fig26-sram-one-bit-precharge-schematic.jpg" alt="Fig. 26. One-bit SRAM precharge schematic." width="500"><br>
+<img src="figures/fig26-sram-one-bit-precharge-schematic.jpg" alt="Fig. 26. One-bit SRAM precharge schematic." width="800"><br>
 <em>Fig. 26. One-bit SRAM precharge schematic.</em>
 </div>
 
@@ -312,7 +312,7 @@ The write circuit drives data onto the selected SRAM column during memory write 
 The one-bit write cell is the repeated driver used for each data bit. It receives the write data and its complement, then drives the bitline pair only when the write control path is enabled. This keeps unselected columns isolated and allows the same cell structure to be tiled across the 8-bit data path. Fig. 29 shows the one-bit write schematic, and Table 7 references the corresponding device sizing.
 
 <div align="center">
-<img src="figures/fig29-sram-one-bit-write-schematic.jpg" alt="Fig. 29. One-bit SRAM write schematic." width="500"><br>
+<img src="figures/fig29-sram-one-bit-write-schematic.jpg" alt="Fig. 29. One-bit SRAM write schematic." width="800"><br>
 <em>Fig. 29. One-bit SRAM write schematic.</em>
 </div>
 
@@ -341,7 +341,7 @@ The read circuit transfers the selected SRAM column value onto the internal data
 The one-bit read cell is the repeated read path used for each SRAM data bit. It receives the selected bitline information and drives the output only when `MEM_READ` is asserted, preventing bus contention during non-read cycles. Fig. 32 shows the one-bit read schematic, and Table 8 references the corresponding device sizing.
 
 <div align="center">
-<img src="figures/fig32-sram-one-bit-read-schematic.jpg" alt="Fig. 32. One-bit SRAM read schematic." width="500"><br>
+<img src="figures/fig32-sram-one-bit-read-schematic.jpg" alt="Fig. 32. One-bit SRAM read schematic." width="800"><br>
 <em>Fig. 32. One-bit SRAM read schematic.</em>
 </div>
 
@@ -388,12 +388,12 @@ The adder/subtractor is built from repeated one-bit adder cells. The full-adder 
 </table>
 
 <div align="center">
-<img src="figures/fig38-adder-xor-cell-schematic.jpg" alt="Fig. 38. Adder XOR cell schematic." width="500"><br>
+<img src="figures/fig38-adder-xor-cell-schematic.jpg" alt="Fig. 38. Adder XOR cell schematic." width="800"><br>
 <em>Fig. 38. Adder XOR cell schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig39-adder-nand-cell-schematic.jpg" alt="Fig. 39. Adder NAND cell schematic." width="500"><br>
+<img src="figures/fig39-adder-nand-cell-schematic.jpg" alt="Fig. 39. Adder NAND cell schematic." width="800"><br>
 <em>Fig. 39. Adder NAND cell schematic.</em>
 </div>
 
@@ -430,7 +430,7 @@ The shifter implements the accumulator shift operation and supports the shift-by
 The shifter uses reusable inverter and multiplexer cells. The inverter generates complementary control and data signals where needed, and the multiplexer cell selects between shifted and bypassed data paths. Fig. 43 and Fig. 44 show these cell schematics, and Table 10 references the corresponding cell-sizing information.
 
 <div align="center">
-<img src="figures/fig43-shifter-inverter-cell-schematic.jpg" alt="Fig. 43. Shifter inverter cell schematic." width="500"><br>
+<img src="figures/fig43-shifter-inverter-cell-schematic.jpg" alt="Fig. 43. Shifter inverter cell schematic." width="800"><br>
 <em>Fig. 43. Shifter inverter cell schematic.</em>
 </div>
 
