@@ -282,7 +282,7 @@ The precharge circuit initializes the SRAM bitlines before row evaluation. Durin
 The one-bit precharge cell is the repeated column cell used for each SRAM bit. It uses two matched PMOS devices, one connected to the bitline and one connected to the bitline-bar node. Both devices use a 60 nm channel length, 300 nm width, and one finger so the complementary bitlines receive balanced pull-up strength during `PHI2`. Fig. 26 shows the one-bit precharge schematic, and Table 6 lists the device sizes.
 
 <div align="center">
-<img src="figures/fig26-sram-one-bit-precharge-schematic.jpg" alt="Fig. 26. One-bit SRAM precharge schematic." width="800"><br>
+<img src="figures/fig26-sram-one-bit-precharge-schematic.jpg" alt="Fig. 26. One-bit SRAM precharge schematic." width="500"><br>
 <em>Fig. 26. One-bit SRAM precharge schematic.</em>
 </div>
 
@@ -312,7 +312,7 @@ The write circuit drives data onto the selected SRAM column during memory write 
 The one-bit write cell is the repeated driver used for each data bit. It receives the write data and its complement, then drives the bitline pair only when the write control path is enabled. This keeps unselected columns isolated and allows the same cell structure to be tiled across the 8-bit data path. Fig. 29 shows the one-bit write schematic, and Table 7 references the corresponding device sizing.
 
 <div align="center">
-<img src="figures/fig29-sram-one-bit-write-schematic.jpg" alt="Fig. 29. One-bit SRAM write schematic." width="800"><br>
+<img src="figures/fig29-sram-one-bit-write-schematic.jpg" alt="Fig. 29. One-bit SRAM write schematic." width="500"><br>
 <em>Fig. 29. One-bit SRAM write schematic.</em>
 </div>
 
@@ -341,7 +341,7 @@ The read circuit transfers the selected SRAM column value onto the internal data
 The one-bit read cell is the repeated read path used for each SRAM data bit. It receives the selected bitline information and drives the output only when `MEM_READ` is asserted, preventing bus contention during non-read cycles. Fig. 32 shows the one-bit read schematic, and Table 8 references the corresponding device sizing.
 
 <div align="center">
-<img src="figures/fig32-sram-one-bit-read-schematic.jpg" alt="Fig. 32. One-bit SRAM read schematic." width="800"><br>
+<img src="figures/fig32-sram-one-bit-read-schematic.jpg" alt="Fig. 32. One-bit SRAM read schematic." width="500"><br>
 <em>Fig. 32. One-bit SRAM read schematic.</em>
 </div>
 
@@ -472,7 +472,7 @@ The multiplexer selects the value written into the accumulator from the SRAM, ad
 The multiplexer is built from a repeated one-bit selection cell. Each one-bit cell selects the corresponding datapath bit under the decoded control signals, and repeating the cell keeps the 8-bit schematic and layout regular. Fig. 48 shows the one-bit multiplexer schematic, and Table 11 references the corresponding device sizing.
 
 <div align="center">
-<img src="figures/fig48-one-bit-multiplexer-schematic.jpg" alt="Fig. 48. One-bit multiplexer schematic." width="800"><br>
+<img src="figures/fig48-one-bit-multiplexer-schematic.jpg" alt="Fig. 48. One-bit multiplexer schematic." width="500"><br>
 <em>Fig. 48. One-bit multiplexer schematic.</em>
 </div>
 
@@ -509,7 +509,7 @@ The accumulator latch stores the selected 8-bit datapath result for the next ope
 The accumulator latch uses a repeated one-bit latch cell. Each cell stores one datapath bit and is tiled across the accumulator so the schematic-to-layout correspondence remains clear. Fig. 52 shows the one-bit accumulator latch schematic, and Table 12 references the corresponding device sizing.
 
 <div align="center">
-<img src="figures/fig52-one-bit-accumulator-latch-schematic.jpg" alt="Fig. 52. One-bit accumulator latch schematic." width="800"><br>
+<img src="figures/fig52-one-bit-accumulator-latch-schematic.jpg" alt="Fig. 52. One-bit accumulator latch schematic." width="500"><br>
 <em>Fig. 52. One-bit accumulator latch schematic.</em>
 </div>
 
@@ -546,12 +546,12 @@ The external bus driver connects the internal datapath to `EXT_BUS<0:7>` during 
 The external bus driver uses a tristate output cell and a repeated one-bit bus-driver cell. The tristate cell isolates the external bus when `STORE_BUS` is inactive, while the one-bit driver cell is repeated across all eight bus lines. Fig. 56 and Fig. 57 show the reusable bus-driver cells, and Table 13 references the corresponding cell-sizing information.
 
 <div align="center">
-<img src="figures/fig56-tristate-bus-driver-schematic.jpg" alt="Fig. 56. Tristate bus-driver schematic." width="800"><br>
+<img src="figures/fig56-tristate-bus-driver-schematic.jpg" alt="Fig. 56. Tristate bus-driver schematic." width="500"><br>
 <em>Fig. 56. Tristate bus-driver schematic.</em>
 </div>
 
 <div align="center">
-<img src="figures/fig57-one-bit-bus-driver-schematic.jpg" alt="Fig. 57. One-bit bus-driver schematic." width="800"><br>
+<img src="figures/fig57-one-bit-bus-driver-schematic.jpg" alt="Fig. 57. One-bit bus-driver schematic." width="500"><br>
 <em>Fig. 57. One-bit bus-driver schematic.</em>
 </div>
 
