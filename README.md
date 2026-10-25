@@ -10,12 +10,6 @@ The design uses a 6-bit instruction field. `INSTR<2:0>` provides the opcode, and
 
 The main report is [Project_Report.md](Project_Report.md). It documents the top-level architecture, physical verification, circuit implementation, functional verification, and measured delay results.
 
-## Contributors
-
-Yi-Hsiang Wei and Zijian Shang are students in Columbia University's Department of Electrical Engineering.
-
-- Yi-Hsiang Wei: full-custom CMOS schematic and layout implementation, Cadence Virtuoso design, and verification.
-- Zijian Shang: report organization, result documentation, and project packaging.
 
 ## Key Results
 
